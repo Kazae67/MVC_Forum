@@ -2,6 +2,7 @@
     namespace App;
     
     /**
+     * sauvegarde
      * Classe d'accès aux données de la BDD, abstraite
      * 
      * @property static $bdd l'instance de PDO que la classe stockera lorsque connect() sera appelé
