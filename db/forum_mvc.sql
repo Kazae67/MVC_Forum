@@ -33,13 +33,13 @@ CREATE TABLE IF NOT EXISTS `post` (
   `id_post` int NOT NULL,
   `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `creation_date` datetime NOT NULL,
-  `id_user` int NOT NULL,
-  `id_topic` int NOT NULL,
+  `user_id` int NOT NULL,
+  `topic_id` int NOT NULL,
   PRIMARY KEY (`id_post`),
-  KEY `id_user` (`id_user`),
-  KEY `id_topic` (`id_topic`),
-  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  CONSTRAINT `post_ibfk_2` FOREIGN KEY (`id_topic`) REFERENCES `topic` (`id_topic`)
+  KEY `id_topic` (`topic_id`) USING BTREE,
+  KEY `id_user` (`user_id`) USING BTREE,
+  CONSTRAINT `post_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
+  CONSTRAINT `post_ibfk_2` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id_topic`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table forum_mvc.post : ~0 rows (environ)
@@ -50,13 +50,13 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `title` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   `creation_date` datetime NOT NULL,
   `is_locked` tinyint(1) NOT NULL,
-  `id_user` int NOT NULL,
-  `id_category` int NOT NULL,
+  `user_id` int NOT NULL,
+  `category_id` int NOT NULL,
   PRIMARY KEY (`id_topic`),
-  KEY `id_user` (`id_user`),
-  KEY `id_category` (`id_category`),
-  CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`),
-  CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`id_category`) REFERENCES `category` (`id_category`)
+  KEY `id_user` (`user_id`) USING BTREE,
+  KEY `id_category` (`category_id`) USING BTREE,
+  CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`),
+  CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Listage des données de la table forum_mvc.topic : ~0 rows (environ)
