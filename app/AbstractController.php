@@ -3,11 +3,14 @@
 
     abstract class AbstractController{
 
-        public function index(){}
+        public function index(){
+
+        }
         
         public function redirectTo($ctrl = null, $action = null, $id = null){
 
             if($ctrl != "home"){
+                $url = "index.php";
                 $url = $ctrl ? "/".$ctrl : "";
                 $url.= $action ? "/".$action : "";
                 $url.= $id ? "/".$id : "";

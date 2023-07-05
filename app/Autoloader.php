@@ -3,6 +3,7 @@
 	
 	class Autoloader{
 
+		// Autoload class
 		public static function register(){
 			spl_autoload_register(array(__CLASS__, 'autoload'));
 		}
