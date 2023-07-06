@@ -75,12 +75,12 @@
                 return $this;
         }
 
-        public function getcreation_date(){
+        public function getCreation_date(){
             $formattedDate = $this->creation_date->format("d/m/Y, H:i:s");
             return $formattedDate;
         }
 
-        public function setcreation_date($date){
+        public function setCreation_date($date){
             $this->creation_date = new \DateTime($date);
             return $this;
         }
@@ -88,7 +88,7 @@
         /**
          * Get the value of is_locked
          */ 
-        public function getis_locked()
+        public function getIs_locked()
         {
                 return $this->is_locked;
         }
@@ -98,7 +98,7 @@
          *
          * @return  self
          */ 
-        public function setis_locked($is_locked)
+        public function setIs_locked($is_locked)
         {
                 $this->is_locked = $is_locked;
 
