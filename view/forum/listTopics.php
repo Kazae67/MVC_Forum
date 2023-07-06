@@ -2,7 +2,7 @@
 $topics = $result["data"]["topics"];
 ?>
 
-<h1>LIST CATEGORY</h1>
+<h1>La liste des topics</h1>
 
 <?php
 if ($topics !== null) {
