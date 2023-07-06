@@ -29,7 +29,7 @@
             return [
                 "view" => VIEW_DIR."forum/listTopics.php", // (2)
                 "data" => [ // (3)
-                    "topics" => $topicManager->findAll(["creationdate", "DESC"]) // (4)
+                    "topics" => $topicManager->findAll(["creation_date", "DESC"]) // (4)
                 ]
             ];
         

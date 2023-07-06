@@ -1,18 +1,16 @@
 <?php
-
-$topics = $result["data"]['topics'];
-    
+$topics = $result["data"]["topics"];
 ?>
 
-<h1>liste topics</h1>
+<h1>LIST CATEGORY</h1>
 
 <?php
-foreach($topics as $topic ){
-
-    ?>
-    <p><?=$topic->getTitle()?></p>
-    <?php
+if ($topics !== null) {
+    foreach ($topics as $topic) {
+        ?>
+        <p><?= $topic->getTitle() ?></p>
+        <?php
+    }
 }
+?>
 
-
-  

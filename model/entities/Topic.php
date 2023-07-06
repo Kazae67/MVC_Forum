@@ -8,8 +8,8 @@
         private $id;
         private $title;
         private $user;
-        private $creationdate;
-        private $closed;
+        private $creation_date;
+        private $is_locked;
 
         public function __construct($data){         
             $this->hydrate($data);        
@@ -75,32 +75,32 @@
                 return $this;
         }
 
-        public function getCreationdate(){
-            $formattedDate = $this->creationdate->format("d/m/Y, H:i:s");
+        public function getcreation_date(){
+            $formattedDate = $this->creation_date->format("d/m/Y, H:i:s");
             return $formattedDate;
         }
 
-        public function setCreationdate($date){
-            $this->creationdate = new \DateTime($date);
+        public function setcreation_date($date){
+            $this->creation_date = new \DateTime($date);
             return $this;
         }
 
         /**
-         * Get the value of closed
+         * Get the value of is_locked
          */ 
-        public function getClosed()
+        public function getis_locked()
         {
-                return $this->closed;
+                return $this->is_locked;
         }
 
         /**
-         * Set the value of closed
+         * Set the value of is_locked
          *
          * @return  self
          */ 
-        public function setClosed($closed)
+        public function setis_locked($is_locked)
         {
-                $this->closed = $closed;
+                $this->is_locked = $is_locked;
 
                 return $this;
         }
