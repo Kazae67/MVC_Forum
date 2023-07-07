@@ -59,5 +59,30 @@ class SecurityController extends AbstractController implements ControllerInterfa
         Session::addFlash('success', 'you are registered !');
         $this->redirectTo('security', 'login');
     }
+    
+    public function login()
+    {
+        if (!isset($_POST["submit"])) {
+            $this->redirectTo('security', 'linkToLogin');
+        }
 
+        $userManager = new UserManager();
+
+        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        if (!$email || !$password) {
+            $this->redirectTo('security', 'linkToLogin');
+        }
+
+        $user = $userManager->findOneByEmail($email);
+
+        if (!$user || $user->getBan() == 1 || !password_verify($password, $user->getPassword())) {
+            $this->redirectTo('security', 'linkToLogin');
+        }
+
+        Session::setUser($user);
+        Session::addFlash('success', 'sucessful connection');
+        $this->redirectTo('security', 'viewProfile');
+    }
 }
