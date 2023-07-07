@@ -22,6 +22,17 @@ class CategoryController extends AbstractController implements ControllerInterfa
             Session::addFlash('error', "Please, log in before adding a new category.");
             $this->redirectTo('category', 'index');
         }
+
+        $categoryLabel = filter_input(INPUT_POST, "categoryLabel", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+        if (isset($_POST["submit"]) && isset($categoryLabel) && !empty($categoryLabel)) {
+            $categoryManager = new CategoryManager();
+            $categoryManager->add(["categoryLabel" => $categoryLabel]);
+
+            Session::addFlash('success', "The new category has been correctly added.");
+        }
+
+        $this->redirectTo('category', 'index');
     }
-    
 }
+?>
