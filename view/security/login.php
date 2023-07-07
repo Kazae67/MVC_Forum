@@ -1,3 +1,4 @@
+<h3>Login</h3>
 <form action="index.php?ctrl=security&action=login" method="post">
 
     <label for="email">Email</label>

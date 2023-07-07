@@ -1,4 +1,3 @@
-
 <h3>Register</h3>
 
 <!--REGISTER-->
@@ -16,6 +15,6 @@
     <label for="passwordConfirm">Password</label>
     <input type ="password" name="password_confirmation" id="password_confirmation" required></input>
 
-    <input class="button" type="submit" name="submit" id="submit" value="Créer un compte">
+    <input class="button" type="submit" name="submit" id="submit" value="register">
 
 </form>
