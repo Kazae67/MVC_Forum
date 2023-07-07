@@ -1,17 +1,16 @@
 <?php
 
-    namespace Model\Entities;
+namespace Model\Entities;
 
-    use App\Entity;
+use App\Entity;
 
 final class User extends Entity
 {
-
     private $id;
     private $nickName;
     private $password;
     private $email;
-    private $creation_date;
+    private $user_registration_date;
     private $role;
 
     public function __construct($data)
@@ -94,19 +93,19 @@ final class User extends Entity
     }
 
     /**
-     * Get the value of Creation_date
+     * Get the value of user_registration_date
      */ 
-    public function getCreation_date()
+    public function getUser_registration_date()
     {
-        return $this->creation_date;
+        return $this->user_registration_date;
     }
 
     /**
-     * Set the value of Creation_date
+     * Set the value of user_registration_date
      */ 
-    public function setCreation_date($creation_date)
+    public function setUser_registration_date($user_registration_date)
     {
-        $this->creation_date = $creation_date;
+        $this->user_registration_date = $user_registration_date;
 
         return $this;
     }

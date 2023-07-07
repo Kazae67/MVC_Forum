@@ -25,7 +25,7 @@
             $this->restrictTo("ROLE_USER");
 
             $manager = new UserManager();
-            $users = $manager->findAll(['registerdate', 'DESC']);
+            $users = $manager->findAll(['user_registration_date', 'DESC']);
 
             return [
                 "view" => VIEW_DIR."security/users.php",
@@ -42,9 +42,4 @@
             ];
         }
 
-        /*public function ajax(){
-            $nb = $_GET['nb'];
-            $nb++;
-            include(VIEW_DIR."ajax.php");
-        }*/
     }

@@ -8,7 +8,7 @@ final class Topic extends Entity
 {
     private $id;
     private $title;
-    private $creation_date;
+    private $topic_creation_date;
     private $is_locked;
     private $user;
     private $category;
@@ -57,22 +57,22 @@ final class Topic extends Entity
     }
 
     /**
-     * Get the value of creation_date
+     * Get the value of topic_creation_date
      */ 
-    public function getCreation_date()
+    public function getTopic_creation_date()
     {
-        $formattedDate = $this->creation_date->format("d/m/Y, H:i:s");
+        $formattedDate = $this->topic_creation_date->format("d/m/Y, H:i:s");
         return $formattedDate;
     }
 
     /**
-     * Set the value of creation_date
+     * Set the value of topic_creation_date
      *
      * @return self
      */ 
-    public function setCreation_date($date)
+    public function setTopic_creation_date($date)
     {
-        $this->creation_date = new \DateTime($date);
+        $this->topic_creation_date = new \DateTime($date);
         return $this;
     }
 

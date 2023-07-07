@@ -7,7 +7,7 @@ use App\Entity;
 final class Category extends Entity
 {
     private $id;
-    private $label;
+    private $categoryLabel;
 
     public function __construct($data)
     {
@@ -34,21 +34,21 @@ final class Category extends Entity
     }
 
     /**
-     * Get the value of label
+     * Get the value of categoryLabel
      */ 
-    public function getLabel()
+    public function getCategoryLabel()
     {
-        return $this->label;
+        return $this->categoryLabel;
     }
 
     /**
-     * Set the value of label
+     * Set the value of categoryLabel
      *
      * @return self
      */ 
-    public function setLabel($label)
+    public function setCategoryLabel($categoryLabel)
     {
-        $this->label = $label;
+        $this->categoryLabel = $categoryLabel;
         return $this;
     }
 }

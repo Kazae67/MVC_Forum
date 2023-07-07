@@ -8,7 +8,7 @@ final class Post extends Entity
 {
     private $id;
     private $text;
-    private $creation_date;
+    private $post_creation_date;
     private $user;
     private $topic;
 
@@ -56,21 +56,21 @@ final class Post extends Entity
     }
 
     /**
-     * Get the value of creation_date
+     * Get the value of post_creation_date
      */ 
-    public function getCreation_date()
+    public function getPost_creation_date()
     {
-        return $this->creation_date;
+        return $this->post_creation_date;
     }
 
     /**
-     * Set the value of creation_date
+     * Set the value of post_creation_date
      *
      * @return self
      */ 
-    public function setCreation_date($creation_date)
+    public function setPost_creation_date($post_creation_date)
     {
-        $this->creation_date = $creation_date;
+        $this->post_creation_date = $post_creation_date;
         return $this;
     }
 
