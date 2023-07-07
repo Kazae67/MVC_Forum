@@ -16,4 +16,12 @@ class CategoryController extends AbstractController implements ControllerInterfa
             "data" => compact('categories')
         ];
     }
+
+    public function addNewCategory() {
+        if (!isset($_SESSION["user"]) || $_SESSION["user"]->getRole() !== "admin") {
+            Session::addFlash('error', "Please, log in before adding a new category.");
+            $this->redirectTo('category', 'index');
+        }
+    }
+    
 }
