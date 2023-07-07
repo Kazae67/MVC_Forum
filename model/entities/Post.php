@@ -58,7 +58,7 @@ final class Post extends Entity
     /**
      * Get the value of post_creation_date
      */ 
-    public function getPost_creation_date()
+    public function getPostCreationDate()
     {
         return $this->post_creation_date;
     }
@@ -68,7 +68,7 @@ final class Post extends Entity
      *
      * @return self
      */ 
-    public function setPost_creation_date($post_creation_date)
+    public function setPostCreationDate($post_creation_date)
     {
         $this->post_creation_date = $post_creation_date;
         return $this;

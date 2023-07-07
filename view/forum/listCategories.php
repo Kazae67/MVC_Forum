@@ -7,7 +7,7 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
 <h3>List of categories</h3>
 
 <?php if ($admin) : ?>
-    <form action="index.php?ctrl=category&action=addNewCategory" method="post">
+    <form action="index.php?ctrl=category&action=addCategory" method="post">
         <label for="categoryLabel">New category :</label>
         <input type="text" name="categoryLabel" id="categoryLabel">
         <input type="submit" name="submit" id="submit" value="add">

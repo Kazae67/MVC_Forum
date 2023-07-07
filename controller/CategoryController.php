@@ -17,7 +17,7 @@ class CategoryController extends AbstractController implements ControllerInterfa
         ];
     }
 
-    public function addNewCategory() {
+    public function addCategory() {
         if (!isset($_SESSION["user"]) || $_SESSION["user"]->getRole() !== "admin") {
             Session::addFlash('error', "Please, log in before adding a new category.");
             $this->redirectTo('category', 'index');

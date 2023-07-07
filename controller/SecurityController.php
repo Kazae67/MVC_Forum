@@ -16,7 +16,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         ];
     }
 
-    public function linkToLogin()
+    public function toLogin()
     {
         $userManager = new UserManager();
 
@@ -63,7 +63,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     public function login()
     {
         if (!isset($_POST["submit"])) {
-            $this->redirectTo('security', 'linkToLogin');
+            $this->redirectTo('security', 'toLogin');
         }
 
         $userManager = new UserManager();
@@ -72,13 +72,13 @@ class SecurityController extends AbstractController implements ControllerInterfa
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         if (!$email || !$password) {
-            $this->redirectTo('security', 'linkToLogin');
+            $this->redirectTo('security', 'toLogin');
         }
 
         $user = $userManager->findOneByEmail($email);
 
         if (!$user || $user->getBan() == 1 || !password_verify($password, $user->getPassword())) {
-            $this->redirectTo('security', 'linkToLogin');
+            $this->redirectTo('security', 'toLogin');
         }
 
         Session::setUser($user);
@@ -95,7 +95,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         }
 
         session_destroy();
-        $this->redirectTo('security', 'linkToLogin');
+        $this->redirectTo('security', 'toLogin');
         Session::addFlash('success', 'sucessful disconnection');
     }
 }
