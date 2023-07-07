@@ -85,4 +85,17 @@ class SecurityController extends AbstractController implements ControllerInterfa
         Session::addFlash('success', 'sucessful connection');
         $this->redirectTo('security', 'viewProfile');
     }
+
+    
+    public function logout()
+    {
+        if (!$_SESSION["user"]) {
+            Session::addFlash('error', 'disconnection failed');
+            $this->redirectTo('user', 'index');
+        }
+
+        session_destroy();
+        $this->redirectTo('security', 'linkToLogin');
+        Session::addFlash('success', 'sucessful disconnection');
+    }
 }
