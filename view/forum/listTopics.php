@@ -1,5 +1,5 @@
 <?php
-$topics = $result["data"]["topics"];
+$topics = $result["data"]["topics"] ?? null;
 ?>
 
 <h1>La liste des topics</h1>
