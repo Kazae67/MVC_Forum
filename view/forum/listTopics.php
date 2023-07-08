@@ -3,7 +3,7 @@ $topics = $result["data"]["topics"] ?? null;
 $category = $result["data"]["category"] ?? null;
 ?>
 
-<h1>La liste des topics</h1>
+<h1>Topics list</h1>
 
 <?php
 if ($topics !== null) {
