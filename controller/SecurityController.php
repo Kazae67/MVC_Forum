@@ -29,6 +29,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     }
 
     // Renvoyer la vue pour la connexion, avec la liste des utilisateurs
+    // La fonction compact est utilisée pour créer un tableau associatif à partir de la variable $users
     public function toLogin() {
         $users = $this->userManager->findAll(["user_registration_date", "DESC"]);
         return [
@@ -38,6 +39,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     }
 
     // Cette méthode s'occupe de l'enregistrement d'un nouvel utilisateur
+    // Les méthodes isValidRegistration, filterPost sont introduites pour améliorer la lisibilité et la maintenabilité du code
     public function register() {
         if (!isset($_POST["submit"])) {
             $this->redirectTo('security', 'index');
@@ -60,6 +62,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     }
 
     // Cette méthode s'occupe de la connexion d'un utilisateur
+    // Les méthodes isValidLogin, isValidUser, filterPost sont introduites pour améliorer la lisibilité et la maintenabilité du code
     public function login() {
         if (!isset($_POST["submit"])) {
             $this->redirectTo('security', 'toLogin');
@@ -95,10 +98,12 @@ class SecurityController extends AbstractController implements ControllerInterfa
         $this->redirectTo('security', 'toLogin');
     }
 
+    // Méthode pour filtrer les données POST pour éviter les injections
     private function filterPost($key, $filter) {
         return filter_input(INPUT_POST, $key, $filter);
     }
 
+    // Méthode pour valider les données d'enregistrement
     private function isValidRegistration($nickName, $password, $passwordConfirm, $email) {
         if (!$nickName || !$password || !$passwordConfirm || !$email) {
             return false;
@@ -115,6 +120,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         return true;
     }
 
+    // Méthode pour valider les données de connexion
     private function isValidLogin($email, $password) {
         if (!$email || !$password) {
             return false;
@@ -122,6 +128,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         return true;
     }
 
+    // Méthode pour valider un utilisateur
     private function isValidUser($user, $password) {
         if (!$user || $user->getBan() == 1 || !password_verify($password, $user->getPassword())) {
             return false;
