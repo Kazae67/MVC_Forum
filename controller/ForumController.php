@@ -31,6 +31,7 @@ class ForumController extends AbstractController implements ControllerInterface 
         ];
     }
 
+    
     // Autres fonctions de redirection
 
 }
