@@ -6,11 +6,10 @@ $admin = $_SESSION['user']->getRole() == 'admin';
 <table>
     <thead>
         <tr>
-            <th>Pseudo</th>
+            <th>Nickname</th>
             <th>Email</th>
-            <th>Date d'inscription</th>
+            <th>Registration date</th>
             <th>Role</th>
-            <th>Statut</th>
             <?php if ($admin) : ?><th>Admin</th><?php endif; ?>
         </tr>
     </thead>

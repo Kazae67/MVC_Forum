@@ -39,37 +39,6 @@
             );
         }
         
-        public function banUserById($id){
-            parent::connect();
 
-        $sql =  "UPDATE " . $this->tableName .
-            " SET ban = 1 
-             WHERE id_user = :id";
-
-
-        return DAO::update($sql, ['id' => $id]);
-        }
-        
-        public function unbanUserById($id){
-            parent::connect();
-
-        $sql =  "UPDATE " . $this->tableName .
-            " SET ban = 0 
-             WHERE id_user = :id";
-
-
-        return DAO::update($sql, ['id' => $id]);
-        }
-
-        public function modifyPasswordByUser($id, $newPassword){
-            parent::connect();
-
-        $sql = "UPDATE " . $this->tableName . 
-            " SET password = :newPassword 
-            WHERE id_user = :id";
-
-            return DAO::update($sql, ['id' => $id, 'newPassword' => $newPassword]);
-
-        }
     }
     ?>
