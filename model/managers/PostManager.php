@@ -21,7 +21,9 @@ class PostManager extends Manager
 
         return $this->getMultipleResults(
             DAO::select($sql, ['id' => $id], true),
-            $this->className
+            $this->classTable
         );
     }
+
+    
 }
