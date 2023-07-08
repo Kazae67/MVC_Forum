@@ -13,5 +13,10 @@ class PostManager extends Manager
     public function __construct()
     {
         parent::connect();
+
+        $sql = "SELECT *
+        FROM " . $this->tableName . " a
+        WHERE a.topic_id = :id
+        ";
     }
 }
