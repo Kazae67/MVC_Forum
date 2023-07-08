@@ -6,12 +6,19 @@ use App\Manager;
 use App\DAO;
 class PostManager extends Manager
 {
+
     protected $className = "Model\Entities\Post";
     protected $tableName = "post";
-    
-    
+
+
     public function __construct()
     {
+        parent::connect();
+    }
+
+    public function findPostByTopic($id)
+    {
+
         parent::connect();
 
         $sql = "SELECT *
@@ -21,9 +28,8 @@ class PostManager extends Manager
 
         return $this->getMultipleResults(
             DAO::select($sql, ['id' => $id], true),
-            $this->classTable
+            $this->className
         );
     }
 
-    
 }
