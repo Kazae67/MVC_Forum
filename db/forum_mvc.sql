@@ -26,11 +26,12 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.category : ~3 rows (environ)
+-- Listage des données de la table forum_mvc.category : ~4 rows (environ)
 INSERT INTO `category` (`id_category`, `categoryLabel`) VALUES
-	(1, 'Jeu-vidéo'),
-	(2, 'Musique'),
-	(3, 'Informatique');
+	(1, 'Games'),
+	(2, 'Events'),
+	(3, 'Updates 1.0'),
+	(4, 'Questions');
 
 -- Listage de la structure de table forum_mvc. post
 CREATE TABLE IF NOT EXISTS `post` (
@@ -67,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `topic` (
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.topic : ~3 rows (environ)
+-- Listage des données de la table forum_mvc.topic : ~4 rows (environ)
 INSERT INTO `topic` (`id_topic`, `title`, `topic_creation_date`, `is_locked`, `user_id`, `category_id`) VALUES
 	(1, 'test', '2023-07-07 08:50:43', 0, 6, 3),
 	(57, 'test', '2023-07-07 08:53:21', 0, 37, 2),
@@ -87,9 +88,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `password` (`password`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.user : ~2 rows (environ)
+-- Listage des données de la table forum_mvc.user : ~3 rows (environ)
 INSERT INTO `user` (`id_user`, `nickname`, `password`, `email`, `user_registration_date`, `role`) VALUES
-	(6, 'Edouard_Cislak', '$2y$10$GG9CHtOoGRdhl/KTKy/Bb.7CMLoAV.K4hx0fktCHpTCNNRAfnKSrG', 'edouardcislak@gmail.com', '2023-03-29 09:04:44', 'admin'),
+	(6, 'ADmin', '$2y$10$GG9CHtOoGRdhl/KTKy/Bb.7CMLoAV.K4hx0fktCHpTCNNRAfnKSrG', 'Admin@gmail.com', '2019-03-31 09:04:44', 'normal'),
 	(37, 'testtest', '$2y$10$9FPG0SmH8By1ZPOK483FtOelgWuu6.c2qiyUQc//g3mfYlmZF0Lz.', 'test123@gmail.com', '2023-07-07 08:52:50', 'normal'),
 	(38, 'azeazeaze', '$2y$10$lj5letRXtpOfct70SwZCTejBTdvQmMnSlPZHIK.3B4n72F6you3SO', 'aaaaas@gmail.com', '2023-07-07 09:15:42', 'normal');
 
