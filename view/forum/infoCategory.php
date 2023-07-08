@@ -2,8 +2,8 @@
 $categories = $result["data"]['categories'];
 ?>
 
+<!-- list -->
 <h3>Category list</h3>
-
 
     <form action="index.php?ctrl=category&action=addNewCategory" method="post">
         <label for="categoryLabel">New Category :</label>
@@ -11,10 +11,12 @@ $categories = $result["data"]['categories'];
         <input type="submit" name="submit" id="submit" value="new">
     </form>
 
-    <div class="forum-post-category">
+    <?php if ($categories): foreach ($categories as $category): ?>
+    <div class="category-post">
         <p>
-            <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getId() ?>">
+            <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getTitle() ?>">
                 <?= $category->getCategoryLabel() ?>
             </a>
         </p>
     </div>
+<?php endforeach; endif; ?>
