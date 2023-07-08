@@ -7,9 +7,16 @@ use App\ControllerInterface;
 use Model\Managers\CategoryManager;
 
 class CategoryController extends AbstractController implements ControllerInterface {
+
+    private $categoryManager;
+
+    // Injecter le CategoryManager dans le constructeur pour le réutiliser
+    public function __construct() {
+        $this->categoryManager = new CategoryManager();
+    }
+
     public function index() {
-        $categoryManager = new CategoryManager();
-        $categories = $categoryManager->findAll(["categoryLabel", "DESC"]);
+        $categories = $this->categoryManager->findAll(["categoryLabel", "DESC"]);
 
         return [
             "view" => VIEW_DIR . "forum/listCategories.php",
@@ -18,18 +25,17 @@ class CategoryController extends AbstractController implements ControllerInterfa
     }
 
     public function addCategory() {
-        if (!isset($_SESSION["user"]) || $_SESSION["user"]->getRole() !== "admin") {
-            Session::addFlash('error', "Please, log in before adding a new category.");
-            $this->redirectTo('category', 'index');
-        }
+        $this->restrictTo('admin');
 
-        $categoryLabel = filter_input(INPUT_POST, "categoryLabel", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if (isset($_POST["submit"])) {
+            $categoryLabel = filter_input(INPUT_POST, "categoryLabel", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        if (isset($_POST["submit"]) && isset($categoryLabel) && !empty($categoryLabel)) {
-            $categoryManager = new CategoryManager();
-            $categoryManager->add(["categoryLabel" => $categoryLabel]);
-
-            Session::addFlash('success', "The new category has been correctly added.");
+            if ($categoryLabel) {
+                $this->categoryManager->add(["categoryLabel" => $categoryLabel]);
+                Session::addFlash('success', "The new category has been correctly added.");
+            } else {
+                Session::addFlash('error', "Please, provide a valid category label.");
+            }
         }
 
         $this->redirectTo('category', 'index');
