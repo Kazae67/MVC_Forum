@@ -26,12 +26,13 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.category : ~4 rows (environ)
+-- Listage des données de la table forum_mvc.category : ~5 rows (environ)
 INSERT INTO `category` (`id_category`, `categoryLabel`) VALUES
 	(1, 'Games'),
 	(2, 'Events'),
 	(3, 'Updates 1.0'),
-	(4, 'Questions');
+	(4, 'Questions'),
+	(5, 'ANswer');
 
 -- Listage de la structure de table forum_mvc. post
 CREATE TABLE IF NOT EXISTS `post` (
@@ -68,12 +69,13 @@ CREATE TABLE IF NOT EXISTS `topic` (
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.topic : ~4 rows (environ)
+-- Listage des données de la table forum_mvc.topic : ~5 rows (environ)
 INSERT INTO `topic` (`id_topic`, `title`, `topic_creation_date`, `is_locked`, `user_id`, `category_id`) VALUES
 	(1, 'test', '2023-07-07 08:50:43', 0, 6, 3),
 	(57, 'test', '2023-07-07 08:53:21', 0, 37, 2),
 	(60, 'azezae', '2023-07-07 08:54:45', 0, 37, 2),
-	(61, 'azezae', '2023-07-07 09:15:26', 0, 37, 2);
+	(61, 'azezae', '2023-07-07 09:15:26', 0, 37, 2),
+	(62, 'azea', '2023-07-09 23:53:04', 0, 38, 3);
 
 -- Listage de la structure de table forum_mvc. user
 CREATE TABLE IF NOT EXISTS `user` (
