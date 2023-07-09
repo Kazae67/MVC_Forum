@@ -27,7 +27,7 @@ class TopicManager extends Manager
         $sql = "SELECT *
                 FROM " . $this->tableName . "
                 WHERE category_id = :categoryId
-                ORDER BY creation_date DESC";
+                ORDER BY topic_creation_date DESC";
 
         // Exécute la requête et renvoie le résultat sous forme de multiples instances de la classe Topic, ou un tableau vide si aucun sujet n'a été trouvé
         return $this->getMultipleResults(
