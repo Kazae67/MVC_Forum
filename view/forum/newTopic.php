@@ -1,11 +1,6 @@
 <?php
-if (isset($result["data"]['category'])) {
-    $category = $result["data"]['category'];
-}
-
+$category = $result["data"]['category'] ?? null;
 $userLoggedIn = isset($_SESSION["user"]);
-
-if (isset($_SESSION["user"])) :
 ?>
 
 <!-- NEW TOPIC -->
