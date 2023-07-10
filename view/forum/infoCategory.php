@@ -11,7 +11,7 @@ $categories = $result["data"]['categories'] ?? [];
         <input type="submit" name="submit" id="submit" value="new">
     </form>
 
-    <?php if ($categories): foreach ($categories as $category): ?>
+    <?php foreach ($categories as $category) : ?>
     <div class="category-post">
         <p>
             <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getTitle() ?>">
@@ -19,5 +19,4 @@ $categories = $result["data"]['categories'] ?? [];
             </a>
         </p>
     </div>
-<?php endforeach; endif; ?>
-
+<?php endforeach; ?>
