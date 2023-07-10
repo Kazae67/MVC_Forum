@@ -1,5 +1,8 @@
 <?php
 $category = $result["data"]['category'] ?? null;
+
+
+$userLoggedIn = isset($_SESSION["user"]);
 ?>
 
 <!-- list -->
