@@ -1,5 +1,5 @@
 <?php
-$categories = $result["data"]['categories'];
+$category = $result["data"]['category'] ?? null;
 ?>
 
 <!-- list -->
