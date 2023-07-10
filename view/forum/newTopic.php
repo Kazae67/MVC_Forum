@@ -3,6 +3,8 @@ if (isset($result["data"]['category'])) {
     $category = $result["data"]['category'];
 }
 
+$userLoggedIn = isset($_SESSION["user"]);
+
 if (isset($_SESSION["user"])) :
 ?>
 
@@ -22,3 +24,4 @@ if (isset($_SESSION["user"])) :
 <?php else : ?>
     <a href="index.php?ctrl=security&action=login">Please log in</a>
 <?php endif; ?>
+
