@@ -9,4 +9,12 @@ $category = $result["data"]["category"] ?? null;
   <a class="button" href="index.php?ctrl=topic&action=addTopic&id=<?= $category->getId() ?>">NEW TOPIC</a>
 </div>
 
+<?php if ($topics): ?>
+  <div class="topic-container">
+    <div class="topic-head">
+        <span class="topic-author"></span>
+      <span class="topic-object"></span>
+      <span class="topic-date"></span>
+    </div>
+<?php endif; ?>
 
