@@ -33,15 +33,17 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             <a title="View topic" href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>">
               <?= $topic->getId() ?>
             </a>
-          <?php
-          var_dump($topic->getId());
-          ?>
+            <?php
+            var_dump($topic);
+            ?>
           </td>
           <td>
             <p title="View profile" class="<?= $topic->getUser()->getRole()?>">
               <a href="index.php?ctrl=security&action=viewUsersProfiles&id=<?= $topic->getUser()->getId() ?>">
                 <?= $topic->getUser()->getNickName() ?>
               </a>
+              <?php
+              ?>
             </p>
           </td>
           <td>
