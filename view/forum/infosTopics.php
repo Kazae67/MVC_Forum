@@ -16,5 +16,17 @@ $category = $result["data"]["category"] ?? null;
       <span class="topic-object"></span>
       <span class="topic-date"></span>
     </div>
+        <ul class="topic-list">
+      <?php foreach ($topics as $topic): ?>
+        <li class="infos-topic">
+          <a href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a>
+          <p class="<?= $topic->getUser()->getRole() === "normal" ? "user-name" : "user-name-red" ?>">
+            <a href="index.php?ctrl=security&action=viewUsersProfiles&id=<?= $topic->getUser()->getId() ?>">
+              <?= $topic->getUser()->getNickname() ?>
+            </a>
+          </p>
+      <?php endforeach; ?>
+    </ul>
+  </div>
 <?php endif; ?>
 
