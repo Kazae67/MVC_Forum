@@ -27,12 +27,15 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
       </tr>
     </thead>
     <tbody>
-      <?php foreach ($topics as $topic): ?>
+      <?php foreach ($topics as $topic):?>
         <tr>
           <td>
             <a title="View topic" href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>">
-              <?= $topic->getTitle() ?>
+              <?= $topic->getId() ?>
             </a>
+          <?php
+          var_dump($topic->getId());
+          ?>
           </td>
           <td>
             <p title="View profile" class="<?= $topic->getUser()->getRole()?>">
@@ -49,7 +52,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             </div>
           </td>
           </td>
-          <!-- Options d'ad -->
+          <!-- Options d'adminstrateur -->
           <?php if ($admin): ?>
             <td>
               <div class="container-admin">
@@ -65,4 +68,3 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
   </table>
 <?php endif; ?>
 
-<!-- SAUVEGARDE TEST x13 -->

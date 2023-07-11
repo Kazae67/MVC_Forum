@@ -19,6 +19,8 @@ $categories = $result["data"]['categories'] ?? [];
             <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getTitle() ?>">
                 <?= $category->getCategoryLabel() ?>
             </a>
+            <?php
+            ?>
         </p>
     </div>
 <?php endforeach; ?>
