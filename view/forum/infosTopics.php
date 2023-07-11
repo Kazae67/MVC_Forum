@@ -22,12 +22,12 @@ $category = $result["data"]["category"] ?? null;
           <a href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a>
           <p class="<?= $topic->getUser()->getRole() === "normal" ? "user-name" : "user-name-red" ?>">
             <a href="index.php?ctrl=security&action=viewUsersProfiles&id=<?= $topic->getUser()->getId() ?>">
-              <?= $topic->getUser()->getNickname() ?>
+              <?= $topic->getUser()->getNickname()?>
             </a>
           </p>
           <div class="container-admin">
-            <div class="<?= $topic->getIs_Locked() ? "admin-red" : "admin-green" ?>">
-              <i class="fa-solid <?= $topic->getIs_Locked() ? "fa-lock" : "fa-lock-open" ?>"></i>
+            <div class="<?= $topic->getIs_Locked()?>">
+              <i class="fa-solid<?= $topic->getIs_Locked()?>"></i>
             </div>
           </div>
         </li>
