@@ -1,16 +1,19 @@
 <?php
+// Récupération des données nécessaires
 $topics = $result["data"]["topics"] ?? null;
 $category = $result["data"]["category"] ?? null;
 
 $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["admin", "moderator"]);
 ?>
 
+<!-- Header avec le bouton de retour, le titre de la catégorie et le bouton pour créer un nouveau sujet -->
 <div class="header-topic">
   <a title="Go back to categories" href="index.php?ctrl=category" class="button">Back to category list</a>
   <h3>Category: <?= $category->getCategoryLabel() ?></h3>
   <a title="Create a new topic" class="button" href="index.php?ctrl=topic&action=linkAddTopic&id=<?= $category->getId() ?>">NEW TOPIC</a>
 </div>
 
+<!-- Tableau des topics -->
 <?php if ($topics): ?>
   <table>
     <thead>
@@ -46,6 +49,16 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             </div>
           </td>
           </td>
+          <!-- Options d'administration -->
+          <?php if ($admin): ?>
+            <td>
+              <div class="container-admin">
+                <a title="Lock topic" class="admin-lock" href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                  <i class="fa-solid fa-lock"></i>
+                </a>
+              </div>
+            </td>
+          <?php endif; ?>
         </tr>
       <?php endforeach; ?>
     </tbody>
