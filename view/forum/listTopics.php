@@ -65,4 +65,4 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
   </table>
 <?php endif; ?>
 
-<!-- SAUVEGARDE TEST x6 -->
+<!-- SAUVEGARDE TEST x7 -->
