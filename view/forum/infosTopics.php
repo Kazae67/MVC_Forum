@@ -25,6 +25,12 @@ $category = $result["data"]["category"] ?? null;
               <?= $topic->getUser()->getNickname() ?>
             </a>
           </p>
+          <div class="container-admin">
+            <div class="<?= $topic->getIs_Locked() ? "admin-red" : "admin-green" ?>">
+              <i class="fa-solid <?= $topic->getIs_Locked() ? "fa-lock" : "fa-lock-open" ?>"></i>
+            </div>
+          </div>
+        </li>
       <?php endforeach; ?>
     </ul>
   </div>
