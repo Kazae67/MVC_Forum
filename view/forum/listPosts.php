@@ -69,10 +69,13 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
     ?>
   </div>
   
+  <?php
 
+  if ($topic->getIs_Locked() == 0) { ?>
     <form class="form-add-topic" action="index.php?ctrl=post&action=addPostByTopic&id=<?= $topic->getId() ?>" method="POST">
       <label for="text">Answer</label>
       <textarea rows="5" name="text" id="text"></textarea>
       <input type="submit" name="submit" id="submit" value="answer">
     </form>
+  <?php } ?>
 </div>
