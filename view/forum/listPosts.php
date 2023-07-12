@@ -33,8 +33,35 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
       $countPost = 0;
       foreach($posts as $post){
         $countPost++;
+        $colorClass = $post->getUser()->getRole() == 'normal' ? 'user-name' : 'user-name-red';
         ?>
+        
+        <div class="post-card">
+            <div class="post-header">
+              <div class="post-header-left">
+                  <a title="Check profile" href="index.php?ctrl=security&action=viewUsersProfiles&id=<?= $post->getUser()->getId() ?>"><?= $post->getUser()->getNickname() ?></a>
+                </p>
+                <p class="post-date"><?= $post->getPost_creation_date() ?></p>
+              </div>
+              <div class="post-header-right">
+                <?php
+                if($admin){
 
+                  if($countPost > 1){
+                    echo "<a href='index.php?ctrl=post&action=deletePost&id={$post->getId()}'><p title='delete post'</p></a>";
+                  }
+
+                  echo "<a href='index.php?ctrl=post&action=linkToModifyPost&id={$post->getId()}'><p title='modify post'</p></a>";
+                }
+                ?>
+              </div>
+            </div>
+            <p class="post-text"><?= $post->getText() ?></p>
+        </div>
+        <?php
+      }
+    }
+    ?>
   </div>
 
 
