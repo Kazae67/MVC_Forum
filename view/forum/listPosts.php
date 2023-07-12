@@ -2,6 +2,8 @@
 $posts = $result["data"]['posts'] ?? null;
 $topic = $result["data"]['topic'] ?? null;
 
+$admin = false;
+
 if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin', 'moderator'])) {
     $admin = true;
 }
