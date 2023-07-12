@@ -7,7 +7,6 @@ use Model\Managers\PostManager;
 use Model\Managers\TopicManager;
 
 class PostController extends AbstractController implements ControllerInterface {
-
     private $postManager;
     private $topicManager;
 
@@ -17,4 +16,16 @@ class PostController extends AbstractController implements ControllerInterface {
         $this->topicManager = new TopicManager();
     }
 
+    public function index() {
+        $posts = $this->postManager->findAll(["post_creation_date", "ASC"]);
+        return $this->render("forum/listPosts.php", ["posts" => $posts]);
+    }
+
+    // Méthode générique pour afficher une vue avec ses données
+    private function render($view, $data) {
+        return [
+            "view" => VIEW_DIR . $view,
+            "data" => $data
+        ];
+    }
 }
