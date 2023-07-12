@@ -1,10 +1,12 @@
 <?php
 
+// Vérifie si les données sont définies et les assigne aux variables, sinon assigne null
 $posts = $result["data"]['posts'] ?? null;
 $topic = $result["data"]['topic'] ?? null;
 
 $admin = false;
 
+// Vérifie si l'utilisateur est défini et s'il a un rôle d'administrateur ou de modérateur
 if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin', 'moderator'])) {
     $admin = true;
 }
@@ -19,12 +21,14 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
     <div class="post-header-right">
       <?php 
 
+    // Si l'utilisateur est un administrateur
       if($admin){
         $action = $topic->getIs_Locked() == 0 ? 'lockTopicFromTopic' : 'lockTopicFromTopic';
         $title = $topic->getIs_Locked() == 0 ? 'lock topic' : 'lock topic';
         
         echo "<a title='{$title}' href='index.php?ctrl=topic&action={$action}&id={$topic->getId()}'></a>";
         
+        // Vérifie si l'utilisateur actuel est le créateur du sujet
         if(isset($_SESSION["user"]) && $_SESSION["user"]->getId() == $topic->getUser()->getId()){
           echo "<a title='delete topic' href='index.php?ctrl=topic&action=deleteTopic&id={$topic->getId()}'></a>";
         }
@@ -36,6 +40,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
   <div class="forum-posts">
     <?php 
 
+    // Si les publications sont définies
     if($posts){
       $countPost = 0;
       foreach($posts as $post){
@@ -53,6 +58,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
               <div class="forum-post-header-right">
                 <?php
                 if($admin){
+                   // Si ce n'est pas le premier post, affiche le bouton de suppression modification
                   if($countPost > 1){
                     echo "<a href='index.php?ctrl=post&action=deletePost&id={$post->getId()}'><p title='delete topic'</p></a>";
                   }
@@ -71,6 +77,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
   
   <?php
 
+  // Si le sujet n'est pas verrouillé, affiche le formulaire de réponse
   if ($topic->getIs_Locked() == 0) { ?>
     <form class="form-add-topic" action="index.php?ctrl=post&action=addPostByTopic&id=<?= $topic->getId() ?>" method="POST">
       <label for="text">Answer</label>
