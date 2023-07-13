@@ -50,7 +50,6 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
         <div class="post-card">
             <div class="forum-post-header">
               <div class="forum-post-header-left">
-                <p class="<?= $colorClass; ?>">
                   <a title="Check profile" href="index.php?ctrl=security&action=viewUsersProfiles&id=<?= $post->getUser()->getId() ?>"><?= $post->getUser()->getNickname() ?></a>
                 </p>
                 <p class="post-date"><?= $post->getPost_creation_date() ?></p>
