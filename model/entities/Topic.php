@@ -12,6 +12,7 @@ final class Topic extends Entity
     private $is_locked;
     private $user;
     private $category;
+    private $format;
 
     public function __construct($data)
     {
@@ -62,8 +63,8 @@ final class Topic extends Entity
      */ 
     public function getTopic_creation_date()
     {
-        $formattedDate = $this->topic_creation_date->format("d/m/Y, H:i:s");
-        return $formattedDate;
+        $formatDate = $this->topic_creation_date->format("d/m/Y, H:i:s");
+        return $formatDate;
     }
 
     /**
@@ -133,6 +134,8 @@ final class Topic extends Entity
         $this->category = $category;
         return $this;
     }
+
+
 }
 
 ?>
