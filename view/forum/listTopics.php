@@ -1,6 +1,7 @@
 <?php
 // Récupération des données nécessaires
 $topics = $result["data"]["topics"] ?? null;
+var_dump($topics);
 $category = $result["data"]["category"] ?? null;
 
 $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["admin", "moderator"]);
@@ -33,18 +34,20 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             <a title="View topic" href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>">
               <?= $topic->getId() ?>
             </a>
-            <?php
-            var_dump($topic);
-            ?>
           </td>
           <td>
-            <p title="View profile" class="<?= $topic->getUser()->getRole()?>">
-              <a href="index.php?ctrl=security&action=viewUsersProfiles&id=<?= $topic->getUser()->getId() ?>">
-                <?= $topic->getUser()->getNickName() ?>
-              </a>
-              <?php
-              ?>
-            </p>
+            <?php if ($topic->getUser() !== null): ?>
+              <p title="View profile" class="<?= $topic->getUser()->getRole() ?>">
+                <a href="index.php?ctrl=security&action=viewUsersProfiles&id=<?= $topic->getUser()->getId() ?>">
+                  <?= $topic->getUser()->getNickName() ?>
+                </a>
+              </p>
+            <?php else: ?>
+              <p>No user available</p>
+            <?php endif; ?>
+          </td>
+          <td>
+          <?= $topic->getTopic_creation_date()->format('Y-m-d H:i:s') ?>
           </td>
           <td>
             <div class="container-admin">
@@ -52,7 +55,6 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
                 <i class="fa-solid fa-lock<?= $topic->getIs_Locked() ? "" : "-open" ?>"></i>
               </div>
             </div>
-          </td>
           </td>
           <!-- Options d'adminstrateur -->
           <?php if ($admin): ?>
@@ -69,4 +71,3 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
     </tbody>
   </table>
 <?php endif; ?>
-
