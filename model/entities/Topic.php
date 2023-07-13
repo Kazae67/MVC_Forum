@@ -17,9 +17,13 @@ final class Topic extends Entity
     public function __construct($data)
     {
         $this->hydrate($data);
-        $this->topic_creation_date = new \DateTime();
+        if (isset($data['topic_creation_date'])) {
+            $this->setTopic_creation_date($data['topic_creation_date']);
+        } else {
+            $this->topic_creation_date = new \DateTime();
+        }
     }
-
+    
     /**
      * Get the value of id
      */ 
