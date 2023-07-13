@@ -54,7 +54,7 @@ class TopicController extends AbstractController implements ControllerInterface
         ];
     }
 
-    public function newTopic($id)
+    public function NewTopic($id)
     {
         if (!isset($_SESSION['user'])) {
             Session::addFlash('error', 'you need to loggin for creat a new topic.');
