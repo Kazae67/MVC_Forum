@@ -47,7 +47,14 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             <?php endif; ?>
           </td>
           <td>
-            <?= $topic->getTopic_creation_date()->format('Y-m-d H:i:s') ?>
+            <?php
+            $topicCreationDate = $topic->getTopic_creation_date();
+            if (is_a($topicCreationDate, 'DateTime')) {
+              echo $topicCreationDate->format('Y-m-d H:i:s');
+            } else {
+              echo 'Invalid date';
+            }
+            ?>
           </td>
           <td>
             <div class="container-admin">
