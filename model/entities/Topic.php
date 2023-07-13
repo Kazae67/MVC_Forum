@@ -63,8 +63,7 @@ final class Topic extends Entity
      */ 
     public function getTopic_creation_date()
     {
-        $formatDate = $this->topic_creation_date->format("d/m/Y, H:i:s");
-        return $formatDate;
+        return $this->topic_creation_date;
     }
 
     /**
