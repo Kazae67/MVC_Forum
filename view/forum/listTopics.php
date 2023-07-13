@@ -47,7 +47,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             <?php endif; ?>
           </td>
           <td>
-          <?= $topic->getTopic_creation_date()->format('Y-m-d H:i:s') ?>
+            <?= $topic->getTopic_creation_date()->format('Y-m-d H:i:s') ?>
           </td>
           <td>
             <div class="container-admin">
