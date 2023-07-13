@@ -4,6 +4,7 @@ $topics = $result["data"]["topics"] ?? null;
 var_dump($topics);
 $category = $result["data"]["category"] ?? null;
 
+
 $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["admin", "moderator"]);
 ?>
 
@@ -11,7 +12,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
 <div class="header-topic">
   <a title="Go back to categories" href="index.php?ctrl=category" class="button">Back to category list</a>
   <h3>Category: <?= $category->getCategoryLabel() ?></h3>
-  <a title="Create a new topic" class="button" href="index.php?ctrl=topic&action=linkAddTopic&id=<?= $category->getId() ?>">NEW TOPIC</a>
+  <a title="Create a new topic" class="button" href="index.php?ctrl=topic&action=newTopic&id=<?= $category->getId() ?>">NEW TOPIC</a>
 </div>
 
 <!-- Tableau des topics -->

@@ -54,4 +54,22 @@ class TopicController extends AbstractController implements ControllerInterface
         ];
     }
 
+    public function newTopic($id)
+    {
+        if (!isset($_SESSION['user'])) {
+            Session::addFlash('error', 'you need to loggin for creat a new topic.');
+            $this->redirectTo('topic', 'listTopicsByCategory', $id);
+        }
+
+        $categoryManager = new CategoryManager();
+        $category = $categoryManager->findOneById($id);
+
+        return [
+            "view" => VIEW_DIR . "forum/newTopic.php",
+            "data" => [
+                "category" => $category
+            ]
+        ];
+    }
+
 }
