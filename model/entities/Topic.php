@@ -16,6 +16,7 @@ final class Topic extends Entity
     public function __construct($data)
     {
         $this->hydrate($data);
+        $this->topic_creation_date = new \DateTime();
     }
 
     /**
