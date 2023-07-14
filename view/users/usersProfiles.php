@@ -22,12 +22,13 @@ $userBanned = $user && $user->getBan() == 1;
 <?php endif; ?>
 
 <?php if ($user): ?>
-
+    <!-- Affiche les informations de l'utilisateur -->
     <p>Nickname : <?= $user->getNickname(); ?></p>
     <p>Role : <?= $user->getRole(); ?></p>
     <p>Email: <?= $user->getEmail(); ?></p>
     <p>Register date : <?= $user->getUser_registration_date(); ?></p>
-
+    <!-- Affiche l'état du compte de l'utilisateur -->
+    <div style="display:flex; flex-direction:row; align-items:center;">
         <?php if ($userBanned): ?>
 
             <p class='button'>Banned</p>
