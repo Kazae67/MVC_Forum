@@ -27,7 +27,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
         <li class="topic-row">
           <a href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>"><?= $topic->getTitle() ?></a>
           <p class="<?= $topic->getUser()->getRole()?>">
-            <a href="index.php?ctrl=security&action=viewUserProfiles&id=<?= $topic->getUser()->getId() ?>">
+            <a href="index.php?ctrl=security&action=usersProfiles&id=<?= $topic->getUser()->getId() ?>">
               <?= $topic->getUser()->getNickName() ?>
             </a>
           </p>
