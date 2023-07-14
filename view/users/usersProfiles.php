@@ -14,11 +14,10 @@ $userBanned = $user && $user->getBan() == 1;
 
 
 <?php if ($admin && !$userBanned): ?>
-
-    <a class="button" href="index.php?ctrl=security&action=banUser&id=<?= $user->getId() ?>">Ban this user</a>
+    <!-- Affiche un lien pour bannir l'utilisateur -->
+    <a class="button-red" href="index.php?ctrl=security&action=banUser&id=<?= $user->getId() ?>">Ban this user</a>
 <?php elseif ($admin && $userBanned): ?>
-
-    <a class="button" href="index.php?ctrl=security&action=unbanUser&id=<?= $user->getId() ?>">Unban this user</a>
+    <!-- Affiche un lien pour débannir l'utilisateur -->
+    <a class="button-green" href="index.php?ctrl=security&action=unbanUser&id=<?= $user->getId() ?>">Unban this user</a>
 <?php endif; ?>
-
 
