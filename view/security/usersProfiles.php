@@ -38,3 +38,19 @@ $userBanned = $user && $user->getBan() == 1;
         <?php endif; ?>
     </div>
 <?php endif; ?>
+
+<ul>Last posts :
+    <?php if ($lastPosts): ?>
+        <?php foreach ($lastPosts as $post): ?>
+            <!-- Affiche les détails des derniers messages -->
+            <div class="forum-last-post">
+                <li><?= $post->getTopic()->getTitle(); ?></li>
+                <li class="post-date"><?= $post->getPost_creation_date() ?></li>
+                <li><?= $post->getText() ?></li><br>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+
+        <p>PThere's not last message</p>
+    <?php endif; ?>
+</ul>
