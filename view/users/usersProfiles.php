@@ -21,3 +21,19 @@ $userBanned = $user && $user->getBan() == 1;
     <a class="button-green" href="index.php?ctrl=security&action=unbanUser&id=<?= $user->getId() ?>">Unban this user</a>
 <?php endif; ?>
 
+<?php if ($user): ?>
+
+    <p>Nickname : <?= $user->getNickname(); ?></p>
+    <p>Role : <?= $user->getRole(); ?></p>
+    <p>Email: <?= $user->getEmail(); ?></p>
+    <p>Register date : <?= $user->getUser_registration_date(); ?></p>
+
+        <?php if ($userBanned): ?>
+
+            <p class='button'>Banned</p>
+        <?php else: ?>
+
+            <p class='button'>Active</p>
+        <?php endif; ?>
+    </div>
+<?php endif; ?>
