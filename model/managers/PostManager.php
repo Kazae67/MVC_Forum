@@ -56,4 +56,9 @@ class PostManager extends Manager
             $this->className
         );
     }
+
+    public function updatePostById($id, $text)
+    {
+
+    }
 }
