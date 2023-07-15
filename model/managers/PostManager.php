@@ -35,6 +35,7 @@ class PostManager extends Manager
         );
     }
 
+    // Méthode pour trouver tous les posts associés à un utilisateur spécifique
     public function findPostsByUser($id)
     {
         parent::connect();
