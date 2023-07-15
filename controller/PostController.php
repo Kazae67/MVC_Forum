@@ -101,7 +101,14 @@ class PostController extends AbstractController implements ControllerInterface {
 }
 
     public function returnModifyPost($id) {
-
-}
+        if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
+            return [
+                "view" => VIEW_DIR . "forum/modifyPost.php",
+                "data" => [
+                    "post" => (new PostManager())->findOneById($id)
+                ]
+            ];
+        }
+    }
 
 }
