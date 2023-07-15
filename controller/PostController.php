@@ -76,5 +76,11 @@ class PostController extends AbstractController implements ControllerInterface {
         $this->redirectTo('post', 'listPostByTopic', $topicId);
     }
 
+        public function modifyPost($id) {
+        $postManager = new PostManager();
+        $post = $postManager->findOneById($id);
+        $topicId = $post->getTopic()->getId();
+
+        }
 
 }
