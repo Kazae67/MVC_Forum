@@ -100,7 +100,10 @@ class PostController extends AbstractController implements ControllerInterface {
     }
 }
 
+
+    // Méthode pour renvoyer la vue de modification d'un post
     public function returnModifyPost($id) {
+        // Vérifie les autorisations avant de renvoyer la vue de modification du post
         if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
             return [
                 "view" => VIEW_DIR . "forum/modifyPost.php",
