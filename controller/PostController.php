@@ -45,4 +45,21 @@ class PostController extends AbstractController implements ControllerInterface {
     }
 
 
+    public function addPostByTopic($id) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
+            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $user = $_SESSION["user"]->getId();
+
+
+            (new PostManager())->add(["topic_id" => $id, "user_id" => $user, "text" => $text]);
+            Session::addFlash('success', 'Message ajouté avec succès');
+        } else {
+            Session::addFlash('error', "Echec de l'ajout du message");
+        }
+
+        $this->redirectTo('post', 'listPostByTopic', $id);
+    }
+
+
+
 }
