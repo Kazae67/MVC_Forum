@@ -61,13 +61,13 @@ class PostController extends AbstractController implements ControllerInterface {
     }
 
 
-
+    // Méthode pour supprimer un post
     public function deletePost($id) {
         $postManager = new PostManager();
         $post = $postManager->findOneById($id);
         $topicId = $post->getTopic()->getId();
 
-
+        // Vérifie les autorisations avant de supprimer le post
         if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
             $postManager->delete($id);
             Session::addFlash('success', "Message successfully deleted");
@@ -75,7 +75,6 @@ class PostController extends AbstractController implements ControllerInterface {
 
         $this->redirectTo('post', 'listPostByTopic', $topicId);
     }
-
 
 
 }
