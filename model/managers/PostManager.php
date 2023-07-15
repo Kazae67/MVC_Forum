@@ -57,6 +57,8 @@ class PostManager extends Manager
         );
     }
 
+
+    // Méthode pour mettre à jour le texte d'un post spécifié par son ID
     public function updatePostById($id, $text)
     {
         parent::connect();
