@@ -1,4 +1,5 @@
 <?php
+
 namespace Controller;
 
 use App\Session;
@@ -17,18 +18,17 @@ class PostController extends AbstractController implements ControllerInterface {
         $this->topicManager = new TopicManager();
     }
 
-
     // Méthode pour lister tous les posts
-
-    public function index() {
+    public function index()
+    {
         // Récupère tous les posts triés par date de création
         $posts = $this->postManager->findAll(["post_creation_date", "ASC"]);
         return $this->render("forum/listPosts.php", ["posts" => $posts]);
     }
 
-
     // Méthode pour lister tous les posts par sujet
-    public function listPostByTopic($topicId) {
+    public function listPostByTopic($topicId)
+    {
         // Récupère les posts associés à un sujet donné
         $posts = $this->postManager->findPostByTopic($topicId);
         // Récupère les informations du sujet
@@ -36,9 +36,9 @@ class PostController extends AbstractController implements ControllerInterface {
         return $this->render("forum/listPosts.php", ["posts" => $posts, "topic" => $topic]);
     }
 
-
     // Méthode générique pour afficher une vue avec des données
-    private function render($view, $data) {
+    private function render($view, $data)
+    {
         return [
             "view" => VIEW_DIR . $view,
             "data" => $data
@@ -46,7 +46,8 @@ class PostController extends AbstractController implements ControllerInterface {
     }
 
     // Méthode pour ajouter un post à un sujet donné
-    public function addPostByTopic($id) {
+    public function addPostByTopic($id)
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
             $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $user = $_SESSION["user"]->getId();
@@ -61,9 +62,9 @@ class PostController extends AbstractController implements ControllerInterface {
         $this->redirectTo('post', 'listPostByTopic', $id);
     }
 
-
     // Méthode pour supprimer un post
-    public function deletePost($id) {
+    public function deletePost($id)
+    {
         $postManager = new PostManager();
         $post = $postManager->findOneById($id);
         $topicId = $post->getTopic()->getId();
@@ -78,31 +79,31 @@ class PostController extends AbstractController implements ControllerInterface {
     }
 
     // Méthode pour modifier un post
-    public function modifyPost($id) {
-    $postManager = new PostManager();
-    $post = $postManager->findOneById($id);
-    $topicId = $post->getTopic()->getId();
-
+    public function modifyPost($id)
+    {
+        $postManager = new PostManager();
+        $post = $postManager->findOneById($id);
+        $topicId = $post->getTopic()->getId();
 
         // Vérifie les autorisations avant de modifier le post
-    if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
-            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
+                $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
                 // Met à jour le texte du post
-            $postManager->updatePostById($id, $text);
-            Session::addFlash('success', 'Message successfully modified');
-        } else {
-            Session::addFlash('error', 'Message modification failed');
+                $postManager->updatePostById($id, $text);
+                Session::addFlash('success', 'Message successfully modified');
+            } else {
+                Session::addFlash('error', 'Message modification failed');
+            }
+
+            $this->redirectTo('post', 'listPostByTopic', $topicId);
         }
-
-        $this->redirectTo('post', 'listPostByTopic', $topicId);
     }
-}
-
 
     // Méthode pour renvoyer la vue de modification d'un post
-    public function returnModifyPost($id) {
+    public function returnModifyPost($id)
+    {
         // Vérifie les autorisations avant de renvoyer la vue de modification du post
         if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
             return [
@@ -113,5 +114,4 @@ class PostController extends AbstractController implements ControllerInterface {
             ];
         }
     }
-
 }
