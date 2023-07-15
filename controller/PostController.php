@@ -77,16 +77,19 @@ class PostController extends AbstractController implements ControllerInterface {
         $this->redirectTo('post', 'listPostByTopic', $topicId);
     }
 
+        // Méthode pour modifier un post
         public function modifyPost($id) {
         $postManager = new PostManager();
         $post = $postManager->findOneById($id);
         $topicId = $post->getTopic()->getId();
 
 
+         // Vérifie les autorisations avant de modifier le post
         if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
                 $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+                 // Met à jour le texte du post
                 $postManager->updatePostById($id, $text);
                 Session::addFlash('success', 'Message successfully modified');
             } else {
