@@ -59,6 +59,12 @@ class PostManager extends Manager
 
     public function updatePostById($id, $text)
     {
+        parent::connect();
 
+        $sql = "UPDATE post 
+                SET text = :textPost  
+                WHERE id_post = :id 
+                ";
+        return DAO::update($sql, [':textPost' => $text, ':id' => $id]);
     }
 }
