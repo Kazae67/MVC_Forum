@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use App\Session;
 use App\AbstractController;
 use App\ControllerInterface;
 use Model\Managers\PostManager;
@@ -81,6 +82,19 @@ class PostController extends AbstractController implements ControllerInterface {
         $post = $postManager->findOneById($id);
         $topicId = $post->getTopic()->getId();
 
+
+        if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
+                $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+                $postManager->updatePostById($id, $text);
+                Session::addFlash('success', 'Message successfully modified');
+            } else {
+                Session::addFlash('error', 'Message modification failed');
+            }
+
+            $this->redirectTo('post', 'listPostByTopic', $topicId);
         }
+    }
 
 }
