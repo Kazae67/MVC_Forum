@@ -52,12 +52,28 @@ class PostController extends AbstractController implements ControllerInterface {
 
             // Ajoute un nouveau post avec les informations fournies
             (new PostManager())->add(["topic_id" => $id, "user_id" => $user, "text" => $text]);
-            Session::addFlash('success', 'Message ajouté avec succès');
+            Session::addFlash('success', 'Message successfully added');
         } else {
-            Session::addFlash('error', "Echec de l'ajout du message");
+            Session::addFlash('error', "Failed to add message");
         }
 
         $this->redirectTo('post', 'listPostByTopic', $id);
+    }
+
+
+
+    public function deletePost($id) {
+        $postManager = new PostManager();
+        $post = $postManager->findOneById($id);
+        $topicId = $post->getTopic()->getId();
+
+
+        if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
+            $postManager->delete($id);
+            Session::addFlash('success', "Message successfully deleted");
+        }
+
+        $this->redirectTo('post', 'listPostByTopic', $topicId);
     }
 
 
