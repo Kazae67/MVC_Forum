@@ -5,9 +5,7 @@ namespace Model\Managers;
 use App\Manager;
 use App\DAO;
 
-/*
-La classe PostManager est dédiée à la gestion des posts. Elle hérite de la classe Manager qui permet une connexion à la base de données.
-*/
+// La classe PostManager est dédiée à la gestion des posts. Elle hérite de la classe Manager qui permet une connexion à la base de données.
 class PostManager extends Manager
 {
     // Nom de la classe correspondante et de la table dans la base de données
@@ -57,7 +55,6 @@ class PostManager extends Manager
         );
     }
 
-
     // Méthode pour mettre à jour le texte d'un post spécifié par son ID
     public function updatePostById($id, $text)
     {
@@ -67,6 +64,7 @@ class PostManager extends Manager
                 SET text = :textPost  
                 WHERE id_post = :id 
                 ";
+
         return DAO::update($sql, [':textPost' => $text, ':id' => $id]);
     }
 }
