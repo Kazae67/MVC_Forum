@@ -37,7 +37,7 @@ class TopicManager extends Manager
         );
     }
 
-    
+    // Cette méthode verrouille un sujet par son ID, empêchant de nouveaux posts d'être créés
     public function lockTopicById($id)
     {
         // Définition de la requête SQL
