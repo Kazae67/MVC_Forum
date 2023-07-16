@@ -5,9 +5,8 @@ namespace Model\Managers;
 use App\Manager;
 use App\DAO;
 
-/*
-La classe UserManager est utilisée pour gérer les utilisateurs. Elle hérite de la classe Manager qui fournit la connexion à la base de données.
-*/
+
+// La classe UserManager est utilisée pour gérer les utilisateurs. Elle hérite de la classe Manager qui fournit la connexion à la base de données.
 class UserManager extends Manager
 {
     // Nom de la classe correspondante et de la table dans la base de données
@@ -49,4 +48,5 @@ class UserManager extends Manager
             $this->className
         );
     }
+    
 }
