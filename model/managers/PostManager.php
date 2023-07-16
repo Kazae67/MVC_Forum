@@ -67,4 +67,13 @@ class PostManager extends Manager
 
         return DAO::update($sql, [':textPost' => $text, ':id' => $id]);
     }
+
+    public function deletePostsByTopic($id)
+    {
+        $sql = "DELETE FROM " . $this->tableName . " 
+                WHERE topic_id = :id
+                ";
+
+        DAO::delete($sql, ['id' => $id]);
+    }
 }
