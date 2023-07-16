@@ -50,12 +50,15 @@ class UserManager extends Manager
         );
     }
 
+    // Méthode pour bannir un utilisateur par son identifiant
     public function banUserById($id)
     {
+        // Requête SQL pour bannir l'utilisateur avec l'identifiant spécifié
         $sql =  "UPDATE " . $this->tableName .
             " SET ban = 1 
              WHERE id_user = :id";
 
+        // Exécute la requête et renvoie le résultat
         return DAO::update($sql, ['id' => $id]);
     }
     
