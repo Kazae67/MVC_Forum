@@ -62,13 +62,15 @@ class UserManager extends Manager
         return DAO::update($sql, ['id' => $id]);
     }
     
-
+    // Méthode pour réintégrer un utilisateur par son identifiant
     public function unbanUserById($id)
     {
+        // Requête SQL pour réintégrer l'utilisateur avec l'identifiant spécifié
         $sql =  "UPDATE " . $this->tableName .
             " SET ban = 0 
              WHERE id_user = :id";
 
+        // Exécute la requête et renvoie le résultat
         return DAO::update($sql, ['id' => $id]);
     }
 
