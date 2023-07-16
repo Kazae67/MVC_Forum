@@ -49,13 +49,15 @@ class TopicManager extends Manager
         return DAO::update($sql, ['id' => $id]);
     }
 
+    // Cette méthode déverrouille un sujet par son ID, permettant de nouveaux posts d'être créés
     public function unlockTopicById($id)
     {
-
+        // Définition de la requête SQL
         $sql =  "UPDATE " . $this->tableName .
             " SET locked = 0 
              WHERE id_topic = :id";
 
+        // Exécution de la requête et retour du résultat
         return DAO::update($sql, ['id' => $id]);
     }
 }
