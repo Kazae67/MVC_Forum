@@ -37,4 +37,16 @@ class TopicManager extends Manager
         );
     }
 
+    
+    public function lockTopicById($id)
+    {
+        // Définition de la requête SQL
+        $sql =  "UPDATE " . $this->tableName .
+            " SET locked = 1
+             WHERE id_topic = :id";
+
+
+        return DAO::update($sql, ['id' => $id]);
+    }
+
 }
