@@ -62,4 +62,14 @@ class UserManager extends Manager
         return DAO::update($sql, ['id' => $id]);
     }
     
+
+    public function unbanUserById($id)
+    {
+        $sql =  "UPDATE " . $this->tableName .
+            " SET ban = 0 
+             WHERE id_user = :id";
+
+        return DAO::update($sql, ['id' => $id]);
+    }
+
 }
