@@ -83,7 +83,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
 
         Session::setUser($user);
         Session::addFlash('success', self::SUCCESS_LOGIN);
-        $this->redirectTo('security', 'viewProfile');
+        $this->redirectTo('security', 'myProfile');
     }
 
     // Cette méthode s'occupe de la déconnexion d'un utilisateur
@@ -96,6 +96,21 @@ class SecurityController extends AbstractController implements ControllerInterfa
         session_destroy();
         Session::addFlash('success', self::SUCCESS_LOGOUT);
         $this->redirectTo('security', 'toLogin');
+    }
+
+    public function myProfile()
+    {
+        if (!$_SESSION["user"]) {
+            Session::addFlash('error', 'Pour consulter votre profil, veuillez vous connecter');
+            $this->redirectTo('security', 'linkToLogin');
+        }
+
+        return [
+            "view" => VIEW_DIR . "security/myProfile.php",
+            "data" => [
+                "user" => $_SESSION["user"]
+            ]
+        ];
     }
 
     // Méthode pour filtrer les données POST pour éviter les injections

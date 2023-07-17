@@ -51,6 +51,6 @@ $userBanned = $user && $user->getBan() == 1;
         <?php endforeach; ?>
     <?php else: ?>
         <!-- Affiche un message s'il n'y a pas de dernier message -->
-        <p>PThere's not last message</p>
+        <p>There's not last message</p>
     <?php endif; ?>
 </ul>

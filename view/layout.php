@@ -25,7 +25,7 @@
                     </div>
                     <div id="nav-right">
                         <?php if ($user = App\Session::getUser()): ?>
-                            <a class="button" href="index.php?ctrl=security&action=viewProfile"><?= $user->getNickname() ?></a>
+                            <a class="button" href="index.php?ctrl=security&action=myProfile"><?= $user->getNickname() ?></a>
                             <a class="button" href="index.php?ctrl=security&action=logOut">Logout</a>
                         <?php else: ?>
                             <a class="button" href="index.php?ctrl=security&action=login">Login</a>
