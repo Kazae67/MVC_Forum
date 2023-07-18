@@ -47,10 +47,10 @@ class SecurityController extends AbstractController implements ControllerInterfa
 
         $nickName = $this->filterPost("nickName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $password = $this->filterPost("password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        $passwordConfirm = $this->filterPost("passwordConfirm", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $password_confirmation = $this->filterPost("password_confirmation", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $email = $this->filterPost("email", FILTER_SANITIZE_EMAIL);
 
-        if (!$this->isValidRegistration($nickName, $password, $passwordConfirm, $email)) {
+        if (!$this->isValidRegistration($nickName, $password, $password_confirmation, $email)) {
             $this->redirectTo('security', 'index');
         }
 
@@ -119,8 +119,8 @@ class SecurityController extends AbstractController implements ControllerInterfa
     }
 
     // Méthode pour valider les données d'enregistrement
-    private function isValidRegistration($nickName, $password, $passwordConfirm, $email) {
-        if (!$nickName || !$password || !$passwordConfirm || !$email) {
+    private function isValidRegistration($nickName, $password, $password_confirmation, $email) {
+        if (!$nickName || !$password || !$password_confirmation || !$email) {
             return false;
         }
 
@@ -128,7 +128,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
             return false;
         }
 
-        if ($password != $passwordConfirm) {
+        if ($password != $password_confirmation) {
             return false;
         }
 

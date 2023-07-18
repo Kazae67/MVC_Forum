@@ -13,7 +13,7 @@
          * @param array $order an array with field and order option
          * @return Collection a collection of objects hydrated by DAO, which are results of the request sent
          */
-        public function findAll($order = null){
+        public function findAll($order /*= null*/){
 
             $orderQuery = ($order) ?                 
                 "ORDER BY ".$order[0]. " ".$order[1] :
@@ -105,4 +105,5 @@
             }
             return false;
         }
+    
     }

@@ -37,11 +37,11 @@
             return (isset($_SESSION['user'])) ? $_SESSION['user'] : false;
         }
 
-        public static function isAdmin(){
-            if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
-                return true;
-            }
-            return false;
-        }
+        // public static function isAdmin(){
+        //     if(self::getUser() && self::getUser()->hasRole("ROLE_ADMIN")){
+        //         return true;
+        //     }
+        //     return false;
+        // }
 
     }

@@ -1,6 +1,6 @@
 <!-- FORMULAIRE D'INSCRIPTION -->
 <h3>Register</h3>
-<form action="index.php?ctrl=security&action=register" method="post">
+<form action="index.php?ctrl=security&action=register" method="POST">
     
     <!-- Champ d'entrée pour le pseudonyme -->
     <label for="nickName">Nickname</label>

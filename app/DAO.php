@@ -2,7 +2,6 @@
     namespace App;
     
     /**
-     * sauvegarde
      * Classe d'accès aux données de la BDD, abstraite
      * 
      * @property static $bdd l'instance de PDO que la classe stockera lorsque connect() sera appelé
@@ -53,6 +52,7 @@
 
         public static function update($sql, $params){
             try{
+
                 $stmt = self::$bdd->prepare($sql);
                 
                 //on renvoie l'état du statement après exécution (true ou false)
@@ -105,3 +105,4 @@
             }
         }
     }
+    ?>
