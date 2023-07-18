@@ -12,18 +12,19 @@
 </head>
 <body>
     <div id="wrapper"> 
-        <div id="mainpage">
+        <div id="mainpage"></div>
+            <!-- Message de succes ou d'erreur -->
             <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
             <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
             <header>
                 <nav>
-                    <div id="nav-left">
+                    <div id="nav-list">
                         <a href="index.php?ctrl=category&action=listCategories">
                         </a>
                         <a class="button" href="index.php?ctrl=category&action=listTopics">Topics list</a>
                         <a class="button" href="index.php?ctrl=category&action=listCategories">Categories list</a>
                     </div>
-                    <div id="nav-right">
+                    <div id="nav-user">
                         <?php if ($user = App\Session::getUser()): ?>
                             <a class="button" href="index.php?ctrl=security&action=myProfile"><?= $user->getNickname() ?></a>
                             <a class="button" href="index.php?ctrl=security&action=logOut">Logout</a>

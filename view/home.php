@@ -3,7 +3,7 @@
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ut nemo quia voluptas numquam, itaque ipsa soluta ratione eum temporibus aliquid, facere rerum in laborum debitis labore aliquam ullam cumque.</p>
 
 <p>
-    <a href="view/security/login.php">Login</a>
+    <a href="index.php?ctrl=security&action=login">Login</a>
     <span>&nbsp;-&nbsp;</span>
-    <a href="view/security/register.php">Register</a>
+    <a href="index.php?ctrl=security&action=register">Register</a>
 </p>
