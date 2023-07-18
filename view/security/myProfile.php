@@ -9,8 +9,8 @@ $user = $_SESSION["user"];
 
 <p>Account status: 
 <?php if ($user->getBan() == 1) {
-    echo "<p>Your account is unvalid, you must have been banned.</p>";
+    echo "<p>This account is unvalid, you probably have been banned.</p>";
 } else {
-    echo "Your account is valid.";
+    echo "This account is valid.";
 } ?>
 </p>
