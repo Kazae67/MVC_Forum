@@ -102,7 +102,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
     {
         if (!$_SESSION["user"]) {
             Session::addFlash('error', 'Pour consulter votre profil, veuillez vous connecter');
-            $this->redirectTo('security', 'linkToLogin');
+            $this->redirectTo('security', 'ToLogin');
         }
 
         return [

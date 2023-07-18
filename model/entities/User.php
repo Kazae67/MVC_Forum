@@ -12,6 +12,7 @@ final class User extends Entity
     private $email;
     private $user_registration_date;
     private $role;
+    private $ban;
 
     public function __construct($data)
     {
@@ -126,6 +127,26 @@ final class User extends Entity
     public function setRole($role)
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+        /**
+     * Get the value of ban
+     */ 
+    public function getBan()
+    {
+        return $this->ban;
+    }
+
+    /**
+     * Set the value of ban
+     *
+     * @return  self
+     */ 
+    public function setBan($ban)
+    {
+        $this->ban = $ban;
 
         return $this;
     }
