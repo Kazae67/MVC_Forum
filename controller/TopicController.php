@@ -56,51 +56,20 @@ class TopicController extends AbstractController implements ControllerInterface
 
     public function NewTopic($id)
     {
-        // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['user'])) {
             Session::addFlash('error', 'you need to loggin for creat a new topic.');
             $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
-    
-        // Si la requête est de type POST, nous devons créer un nouveau topic
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Stocker les données POST dans la session pour le débogage
-            $_SESSION['debug']['post'] = $_POST;
-    
-            // Récupérer les données du formulaire
-            $title = $_POST['title'];
-            $text = $_POST['text'];
-            $userId = $_SESSION['user']->getId();
-    
-            // debugage
-            $_SESSION['debug']['values'] = [
-                "Title" => $title,
-                "Text" => $text,
-                "User ID" => $userId
-            ];
-    
-            // Appeler la méthode du gestionnaire pour créer le sujet
-            $result = $this->topicManager->createTopic($title, $text, $userId, $id);
-    
-            // débugage
-            $_SESSION['debug']['result'] = $result;
-    
-            // Rediriger vers la liste des sujets de cette catégorie
-            $this->redirectTo('topic', 'listTopicsByCategory', $id);
-        }
-    
-        // Si la requête n'est pas de type POST, nous affichons simplement le formulaire
-        else {
-            $categoryManager = new CategoryManager();
-            $category = $categoryManager->findOneById($id);
-    
-            return [
-                "view" => VIEW_DIR . "forum/newTopic.php",
-                "data" => [
-                    "category" => $category
-                ]
-            ];
-        }
+
+        $categoryManager = new CategoryManager();
+        $category = $categoryManager->findOneById($id);
+
+        return [
+            "view" => VIEW_DIR . "forum/newTopic.php",
+            "data" => [
+                "category" => $category
+            ]
+        ];
     }
 
 }

@@ -79,12 +79,3 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
     </tbody>
   </table>
 <?php endif; ?>
-
-<!-- débugage -->
-<?php
-if (isset($_SESSION['debug'])) {
-  echo "<pre>";
-  var_dump($_SESSION['debug']);
-  echo "</pre>";
-}
-?>

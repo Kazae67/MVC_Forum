@@ -10,17 +10,17 @@
 
 
 <?php
-// require_once 'model/entities/User.php';
+require_once 'model/entities/User.php';
 
-// $data = [
-//     'id' => 1,
-//     'nickName' => 'Test User',
-//     'password' => 'testpassword',
-//     'email' => 'test@example.com',
-//     'user_registration_date' => '2023-01-01',
-//     'role' => 'admin',
-//     'ban' => false,
-// ];
+$data = [
+    'id' => 1,
+    'nickName' => 'Test User',
+    'password' => 'testpassword',
+    'email' => 'test@example.com',
+    'user_registration_date' => '2023-01-01',
+    'role' => 'admin',
+    'ban' => false,
+];
 
-// $user = new \Model\Entities\User($data);
+$user = new \Model\Entities\User($data);
 ?>
