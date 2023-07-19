@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.category : ~4 rows (environ)
+-- Listage des données de la table forum_mvc.category : ~5 rows (environ)
 INSERT INTO `category` (`id_category`, `categoryLabel`) VALUES
 	(1, 'Update'),
 	(2, 'Events'),
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `post` (
   CONSTRAINT `FK_post_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.post : ~0 rows (environ)
+-- Listage des données de la table forum_mvc.post : ~2 rows (environ)
 
 -- Listage de la structure de table forum_mvc. topic
 CREATE TABLE IF NOT EXISTS `topic` (
@@ -83,15 +83,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id_user`),
   UNIQUE KEY `nickname` (`nickname`),
   UNIQUE KEY `password` (`password`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.user : ~5 rows (environ)
+-- Listage des données de la table forum_mvc.user : ~10 rows (environ)
 INSERT INTO `user` (`id_user`, `nickname`, `password`, `email`, `user_registration_date`, `role`) VALUES
-	(6, 'Admin', '$2y$10$GG9CHtOoGRdhl/KTKy/Bb.7CMLoAV.K4hx0fktCHpTCNNRAfnKSrG', 'Admin@gmail.com', '2019-03-31 09:04:44', 'admin'),
 	(39, 'aaaa', '$2y$10$Ba5I7cD62KUcbjNBLv6Yr.gJZGfBqDyZzvmnmWLFhpmL1C.Jhc71y', 'azeazeza@gmail.com', '2023-07-12 11:57:03', 'normal'),
 	(40, 'Kaz', '$2y$10$4f/kWgBZ4ebbAjj9zz4e5.B1zool1pVqetCLa3ALrvYZJqv1.COxi', 'Kazae@gmail.com', '2023-07-18 14:09:48', 'normal'),
-	(63, 'Zaika', '$2y$10$Z4YRmvm9THgh4Q97NmaueOC2M.xDxE3mUTJPeL/yl4IzRMMhbL6xq', 'Zaika@gmail.com', '2023-07-18 15:29:11', 'normal'),
-	(64, 'Kazae10', '$2y$10$JCTuqFcpKRV8rnMUc.768.j9oFzqvC.RX.B1uM/A05.gfbAOUsZVe', 'Kazae10@gmail.com', '2023-07-18 16:04:14', 'normal');
+	(70, 'kaz33', '$2y$10$egN79k.SbD92d3wc9f5OvOubA4z9NemGZNfy6cAlmXughPXw2wtNm', 'kaz33@gmail.com', '2023-07-19 11:22:57', 'normal');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
