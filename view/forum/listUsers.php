@@ -34,6 +34,7 @@
                 <td>{$user->getRole()}</td>
             </tr>";
         endforeach;
+
         ?>
     </tbody>
 </table>
