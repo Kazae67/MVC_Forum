@@ -19,18 +19,18 @@ final class User extends Entity
         $this->hydrate($data);
     }
 
-    public function hydrate($data)
-    {
-        var_dump($data);
-        foreach ($data as $key => $value) {
-            $method = 'set'.ucfirst($key);
-            if (method_exists($this, $method)) {
-                echo "méthode: $method valeur: $value\n"; 
-                $this->$method($value);
-            }
-        }
-        var_dump($this); 
-    }
+    // public function hydrate($data)
+    // {
+    //     var_dump($data);
+    //     foreach ($data as $key => $value) {
+    //         $method = 'set'.ucfirst($key);
+    //         if (method_exists($this, $method)) {
+    //             echo "méthode: $method valeur: $value\n"; 
+    //             $this->$method($value);
+    //         }
+    //     }
+    //     var_dump($this); 
+    // }
 
     /**
      * Get the value of id
