@@ -44,22 +44,34 @@ class SecurityController extends AbstractController implements ControllerInterfa
         if (!isset($_POST["submit"])) {
             $this->redirectTo('security', 'index');
         }
-
+    
         $nickName = $this->filterPost("nickName", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $password = $this->filterPost("password", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $password_confirmation = $this->filterPost("password_confirmation", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $email = $this->filterPost("email", FILTER_SANITIZE_EMAIL);
-
+    
         if (!$this->isValidRegistration($nickName, $password, $password_confirmation, $email)) {
             $this->redirectTo('security', 'index');
         }
-
+            
+        // Générer la date et l'heure d'aujourd'hui au format Y-m-d H:i:s
+        $user_registration_date = date("Y-m-d H:i:s");
+    
+        // Hasher le mot de passe pour le stockage sécurisé
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $this->userManager->add(["nickName" => $nickName, "password" => $password, "email" => $email]);
-
+    
+        // Ajouter l'utilisateur à la base de données avec la date d'inscription
+        $this->userManager->add([
+            "nickName" => $nickName,
+            "password" => $password,
+            "email" => $email,
+            "user_registration_date" => $user_registration_date
+        ]);
+    
         Session::addFlash('success', self::SUCCESS_REGISTRATION);
         $this->redirectTo('security', 'login');
     }
+    
 
     // Cette méthode s'occupe de la connexion d'un utilisateur
     // Les méthodes isValidLogin, isValidUser, filterPost sont introduites pour améliorer la lisibilité et la maintenabilité du code

@@ -25,7 +25,7 @@ final class User extends Entity
         foreach ($data as $key => $value) {
             $method = 'set'.ucfirst($key);
             if (method_exists($this, $method)) {
-                echo "Appel de la méthode $method avec la valeur $value\n"; 
+                echo "méthode: $method valeur: $value\n"; 
                 $this->$method($value);
             }
         }
