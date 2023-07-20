@@ -54,22 +54,69 @@ class TopicController extends AbstractController implements ControllerInterface
         ];
     }
 
-    public function NewTopic($id)
+    public function newTopic($id)
     {
+        // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['user'])) {
-            Session::addFlash('error', 'you need to loggin for creat a new topic.');
+            Session::addFlash('error', 'You need to log in to create a new topic.');
             $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
-
-        $categoryManager = new CategoryManager();
-        $category = $categoryManager->findOneById($id);
-
-        return [
-            "view" => VIEW_DIR . "forum/newTopic.php",
-            "data" => [
-                "category" => $category
-            ]
-        ];
+    
+        // Si la requête est de type POST, nous devons créer un nouveau topic
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Stocker débogage
+            $_SESSION['debug']['post'] = $_POST;
+    
+            // Vérifier si l'ID de l'utilisateur est défini dans $_SESSION['user']
+            if ($_SESSION['user']->getId()) {
+                // Récupérer l'ID de l'utilisateur
+                $userId = $_SESSION['user']->getId();
+    
+                // Récupérer les données du formulaire
+                $title = $_POST['title'];
+                $text = $_POST['text'];
+    
+                // Débogage
+                $_SESSION['debug']['values'] = [
+                    "Title" => $title,
+                    "Text" => $text,
+                    "User ID" => $userId
+                ];
+    
+                // Appeler la méthode du gestionnaire pour créer le sujet
+                $result = $this->topicManager->createTopic($title, $text, $userId, $id);
+    
+                // Débogage result
+                $_SESSION['debug']['result'] = $result;
+    
+                // Checker si la création du topic est passé
+                if ($result === false) {
+                    Session::addFlash('error', 'There was an error creating your new topic.');
+                } else {
+                    Session::addFlash('success', 'Your new topic has been successfully created.');
+                }
+    
+                // Rediriger vers la liste des sujets de cette catégorie
+                $this->redirectTo('topic', 'listTopicsByCategory', $id);
+            } else {
+                // Si l'ID de l'utilisateur n'est pas défini, afficher un message d'erreur
+                Session::addFlash('error', 'User ID not found.');
+                $this->redirectTo('topic', 'listTopicsByCategory', $id);
+            }
+        }
+    
+        // Si la requête n'est pas de type POST, nous affichons simplement le formulaire
+        else {
+            $categoryManager = new CategoryManager();
+            $category = $categoryManager->findOneById($id);
+    
+            return [
+                "view" => VIEW_DIR . "forum/newTopic.php",
+                "data" => [
+                    "category" => $category
+                ]
+            ];
+        }
     }
 
 }

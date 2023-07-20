@@ -17,3 +17,7 @@ var_dump($user->getUser_registration_date());
     echo "This account is valid.";
 } ?>
 </p>
+
+<?php
+var_dump($_SESSION['user']->getId());
+?>

@@ -45,10 +45,10 @@ final class User extends Entity
      *
      * @return  self
      */ 
-    public function setId($id)
+    public function setId_user($id)
     {
         $this->id = $id;
-
+    
         return $this;
     }
 
