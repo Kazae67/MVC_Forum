@@ -6,12 +6,12 @@ use App\Entity;
 
 final class User extends Entity
 {
-    private $id;
-    private $nickName;
-    private $password;
-    private $email;
+    private int $id;
+    private string $nickName;
+    private string $password;
+    private string $email;
     private $user_registration_date;
-    private $role;
+    private string $role;
     private $ban;
 
     public function __construct($data)

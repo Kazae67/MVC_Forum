@@ -5,15 +5,12 @@ namespace App;
 abstract class AbstractController
 {
 
-    // fonction index de base
-    public function index()
-    {
+    // fonction index 
+    public function index(){
     }
 
-    // fonction redirectTo = fonction native sur les framework mais ici on la crée.
-    // permet de rédiriger
-    public function redirectTo($ctrl = null, $action = null, $id = null)
-    {
+    // fonction redirectTo = permet de rédiriger
+    public function redirectTo($ctrl = null, $action = null, $id = null){
 
         if ($ctrl != "home") {
             $url = "index.php";
@@ -25,8 +22,7 @@ abstract class AbstractController
         die();
     }
 
-    public function restrictTo($role)
-    {
+    public function restrictTo($role){
 
         if (!Session::getUser() || !Session::getUser()->hasRole($role)) {
             $this->redirectTo("security", "login");
