@@ -87,4 +87,5 @@ if (isset($_SESSION['debug'])) {
   var_dump($_SESSION['debug']);
   echo "</pre>";
 }
+
 ?>
