@@ -70,6 +70,16 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
     margin: 0 10px;
   }
   
+  /* Style pour les liens de la navbar lorsque l'utilisateur est connecté */
+  #nav-user a {
+    margin-left: 10px;
+  }
+  
+  /* Style pour les liens de la navbar lorsque l'utilisateur n'est pas connecté */
+  #nav-user a:first-child {
+    margin-left: 0;
+  }
+  
 
 
   
