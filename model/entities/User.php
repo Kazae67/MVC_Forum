@@ -101,7 +101,13 @@ final class User extends Entity
         return $this;
     }
 
-
+    /**
+     * Vérifier si l'utilisateur a le rôle donné
+     *
+     * @param string $role Le rôle à vérifier
+     * 
+     * @return bool Vrai si l'utilisateur a le rôle, sinon, faux
+     */
     public function hasRole(string $role): bool
     {
         return $this->role === $role;
