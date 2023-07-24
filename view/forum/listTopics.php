@@ -1,7 +1,6 @@
 <?php
 // Récupération des données nécessaires
 $topics = $result["data"]["topics"] ?? null;
-var_dump($topics);
 $category = $result["data"]["category"] ?? null;
 
 
@@ -84,9 +83,9 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
 
 <!-- débugage -->
 <?php
-if (isset($_SESSION['debug'])) {
-  echo "<pre>";
-  var_dump($_SESSION['debug']);
-  echo "</pre>";
-}
+// if (isset($_SESSION['debug'])) {
+//   echo "<pre>";
+//   var_dump($_SESSION['debug']);
+//   echo "</pre>";
+// }
 ?>
