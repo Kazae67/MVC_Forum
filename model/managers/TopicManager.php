@@ -60,25 +60,4 @@ class TopicManager extends Manager
         // Exécution de la requête et retour du résultat
         return DAO::update($sql, ['id' => $id]);
     }
-    public function createTopic($title, $text, $userId, $categoryId)
-    {
-        // Définition de la requête SQL
-        $sql =  "INSERT INTO " . $this->tableName .
-            " (title, text, user_id, category_id)
-             VALUES (:title, :text, :user_id, :category_id)";
-    
-        // Instructions de débogage pour imprimer la requête SQL et les valeurs
-        echo "SQL Query: $sql<br>";
-        echo "Values: ";
-        var_dump(['title' => $title, 'text' => $text, 'user_id' => $userId, 'category_id' => $categoryId]);
-    
-        // Exécution de la requête et retour du résultat
-        $result = DAO::update($sql, ['title' => $title, 'text' => $text, 'user_id' => $userId, 'category_id' => $categoryId]);
-    
-        // Débogage du résultat
-        echo "Result: ";
-        var_dump($result);
-    
-        return $result;
-    }
 }

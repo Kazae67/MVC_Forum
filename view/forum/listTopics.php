@@ -60,7 +60,6 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
           <td>
             <div class="container-admin">
               <div title="<?= $topic->getIs_Locked() ? "Topic locked" : "Topic closed" ?>">
-                <i class="fa-solid fa-lock<?= $topic->getIs_Locked() ? "" : "-open" ?>"></i>
               </div>
             </div>
           </td>

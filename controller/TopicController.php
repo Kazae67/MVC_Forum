@@ -8,6 +8,7 @@ use App\ControllerInterface;
 use Model\Managers\CategoryManager;
 use Model\Managers\TopicManager;
 use Model\Managers\PostManager;
+use Model\Managers\Manager;
 
 class TopicController extends AbstractController implements ControllerInterface
 {
@@ -62,6 +63,7 @@ class TopicController extends AbstractController implements ControllerInterface
             $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
     
+        $data = [];
         // Si la requête est de type POST, nous devons créer un nouveau topic
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Stocker débogage
@@ -73,24 +75,20 @@ class TopicController extends AbstractController implements ControllerInterface
                 $userId = $_SESSION['user']->getId();
     
                 // Récupérer les données du formulaire
-                $title = $_POST['title'];
-                $text = $_POST['text'];
-    
-                // Débogage
-                $_SESSION['debug']['values'] = [
-                    "Title" => $title,
-                    "Text" => $text,
-                    "User ID" => $userId
+                $data = [
+                    'title' => $_POST['title'],
+                    'user_id' => $userId,
+                    'category_id' => $id
                 ];
     
                 // Appeler la méthode du gestionnaire pour créer le sujet
-                $result = $this->topicManager->createTopic($title, $text, $userId, $id);
+                $result = $this->topicManager->add($data);
     
                 // Débogage result
                 $_SESSION['debug']['result'] = $result;
     
-                // Checker si la création du topic est passé
-                if ($result === false) {
+                // Checker si la création du topic est passée
+                if ($result == null) {
                     Session::addFlash('error', 'There was an error creating your new topic.');
                 } else {
                     Session::addFlash('success', 'Your new topic has been successfully created.');
@@ -118,5 +116,5 @@ class TopicController extends AbstractController implements ControllerInterface
             ];
         }
     }
-
+    
 }
