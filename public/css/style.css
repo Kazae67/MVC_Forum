@@ -27,15 +27,27 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
     transition: color 0.3s ease;
   }
   
+  /* hover */
   nav a:hover {
     color: #007BFF;
   }
   
 
+  /* hover button */
   nav .button:hover {
     background-color: #fff;
     color: #000;
   }
   
-
+  /* Style du message d'erreur */
+  .message.error {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Style du message de succès */
+  .message.success {
+    color: green;
+    font-weight: bold;
+  }
   
