@@ -6,7 +6,7 @@ $user = $_SESSION["user"];
 <p>Role: <?= $user->getRole(); ?></p>
 <p>Creation date: <?= $user->getUser_registration_date(); ?></p>
 <?php
-var_dump($user->getUser_registration_date());
+// var_dump($user->getUser_registration_date());
 ?>
 <p>Email: <?= $user->getEmail(); ?></p>
 
@@ -19,5 +19,5 @@ var_dump($user->getUser_registration_date());
 </p>
 
 <?php
-var_dump($_SESSION['user']->getId());
+// var_dump($_SESSION['user']->getId());
 ?>
