@@ -80,6 +80,18 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
     margin-left: 0;
   }
   
-
+  /* Style pour l'animation de la navbar */
+  .slide-in-animation {
+    animation: slideIn 0.5s ease forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 
   
