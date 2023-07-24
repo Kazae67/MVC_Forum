@@ -35,7 +35,7 @@ final class User extends Entity
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -45,7 +45,7 @@ final class User extends Entity
      *
      * @return  self
      */ 
-    public function setId_user($id)
+    public function setId_user(int $id): self
     {
         $this->id = $id;
     
@@ -55,7 +55,7 @@ final class User extends Entity
     /**
      * Get the value of nickName
      */ 
-    public function getNickName()
+    public function getNickName(): string
     {
         return $this->nickName;
     }
@@ -63,7 +63,7 @@ final class User extends Entity
     /**
      * Set the value of nickName
      */ 
-    public function setNickName($nickName)
+    public function setNickName(string $nickName)
     {
         $this->nickName = $nickName;
 
@@ -73,7 +73,7 @@ final class User extends Entity
     /**
      * Get the value of password
      */ 
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -81,7 +81,7 @@ final class User extends Entity
     /**
      * Set the value of password
      */ 
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = $password;
 
@@ -91,7 +91,7 @@ final class User extends Entity
     /**
      * Get the value of email
      */ 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -99,7 +99,7 @@ final class User extends Entity
     /**
      * Set the value of email
      */ 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
 
