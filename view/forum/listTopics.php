@@ -33,7 +33,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
         <tr>
           <td>
             <a title="View topic" href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>">
-              <?= $topic->getId() ?>
+              <?= $topic->getTitle() ?>
             </a>
           </td>
           <td>
