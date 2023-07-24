@@ -3,16 +3,17 @@
 namespace Model\Entities;
 
 use App\Entity;
+use DateTime;
 
 final class Post extends Entity
 {
-    private $id;
-    private $text;
-    private $post_creation_date;
+    private int $id;
+    private string $text;
+    private DateTime $post_creation_date;
     private $user;
     private $topic;
 
-    public function __construct($data)
+    public function __construct(array $data)
     {
         $this->hydrate($data);
     }
@@ -20,7 +21,7 @@ final class Post extends Entity
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -30,7 +31,7 @@ final class Post extends Entity
      *
      * @return self
      */ 
-    public function setId($id)
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -39,7 +40,7 @@ final class Post extends Entity
     /**
      * Get the value of text
      */ 
-    public function getText()
+    public function getText(): string
     {
         return $this->text;
     }
@@ -49,7 +50,7 @@ final class Post extends Entity
      *
      * @return self
      */ 
-    public function setText($text)
+    public function setText(string $text): self
     {
         $this->text = $text;
         return $this;
@@ -58,7 +59,7 @@ final class Post extends Entity
     /**
      * Get the value of post_creation_date
      */ 
-    public function getPostCreationDate()
+    public function getPostCreationDate(): DateTime
     {
         return $this->post_creation_date;
     }
@@ -68,7 +69,7 @@ final class Post extends Entity
      *
      * @return self
      */ 
-    public function setPostCreationDate($post_creation_date)
+    public function setPostCreationDate(DateTime $post_creation_date): self
     {
         $this->post_creation_date = $post_creation_date;
         return $this;
@@ -87,7 +88,7 @@ final class Post extends Entity
      *
      * @return self
      */ 
-    public function setUser($user)
+    public function setUser($user): self
     {
         $this->user = $user;
         return $this;
@@ -106,7 +107,7 @@ final class Post extends Entity
      *
      * @return self
      */ 
-    public function setTopic($topic)
+    public function setTopic($topic): self
     {
         $this->topic = $topic;
         return $this;
