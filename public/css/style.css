@@ -32,5 +32,10 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
   }
   
 
+  nav .button:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  
 
   
