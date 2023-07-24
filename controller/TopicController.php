@@ -117,4 +117,14 @@ class TopicController extends AbstractController implements ControllerInterface
         }
     }
     
+    public function listAllTopics()
+    {
+        $topics = $this->topicManager->findAll(["id", "DESC"]);
+    
+        return [
+            "view" => VIEW_DIR . "forum/listAllTopics.php",
+            "data" => compact('topics')
+        ];
+    }
+    
 }

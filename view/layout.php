@@ -21,8 +21,8 @@
                     <div id="nav-list">
                         <a href="index.php?ctrl=category&action=listCategories">
                         </a>
-                        <a class="button" href="index.php?ctrl=category&action=listTopics">Topics list</a>
-                        <a class="button" href="index.php?ctrl=category&action=listCategories">Categories list</a>
+                <a class="button" href="index.php?ctrl=topic&action=listAllTopics">Topics list</a>
+                <a class="button" href="index.php?ctrl=category&action=listCategories">Categories list</a>
                     </div>
                     <div id="nav-user">
                         <?php if ($user = App\Session::getUser()): ?>
