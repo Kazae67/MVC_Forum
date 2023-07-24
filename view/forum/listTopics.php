@@ -20,6 +20,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
   <table>
     <thead>
       <tr>
+        <th>ID</th> 
         <th>Title</th>
         <th>Author</th>
         <th>Creation date</th>
@@ -30,9 +31,11 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
     </thead>
     <tbody>
       <?php foreach ($topics as $topic):?>
+        <?php $topic_id = $topic->getId(); ?> 
         <tr>
+          <td><?= $topic_id ?></td>
           <td>
-            <a title="View topic" href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic->getId() ?>">
+            <a title="View topic" href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic_id ?>">
               <?= $topic->getTitle() ?>
             </a>
           </td>
@@ -67,7 +70,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
           <?php if ($admin): ?>
             <td>
               <div class="container-admin">
-                <a title="Lock topic" class="admin-lock" href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic->getId() ?>">
+                <a title="Lock topic" class="admin-lock" href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic_id ?>">
                   <i class="fa-solid fa-lock"></i>
                 </a>
               </div>
