@@ -6,10 +6,10 @@ use App\Entity;
 
 final class Category extends Entity
 {
-    private $id;
-    private $categoryLabel;
+    private int $id;
+    private string $categoryLabel;
 
-    public function __construct($data)
+    public function __construct(array $data)
     {
         $this->hydrate($data);
     }
@@ -17,7 +17,7 @@ final class Category extends Entity
     /**
      * Get the value of id
      */ 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -27,7 +27,7 @@ final class Category extends Entity
      *
      * @return self
      */ 
-    public function setId($id)
+    public function setId(int $id): self
     {
         $this->id = $id;
         return $this;
@@ -36,7 +36,7 @@ final class Category extends Entity
     /**
      * Get the value of categoryLabel
      */ 
-    public function getCategoryLabel()
+    public function getCategoryLabel(): string
     {
         return $this->categoryLabel;
     }
@@ -46,7 +46,7 @@ final class Category extends Entity
      *
      * @return self
      */ 
-    public function setCategoryLabel($categoryLabel)
+    public function setCategoryLabel(string $categoryLabel): self
     {
         $this->categoryLabel = $categoryLabel;
         return $this;
