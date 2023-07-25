@@ -68,6 +68,16 @@ class PostManager extends Manager
         return DAO::update($sql, [':textPost' => $text, ':id' => $id]);
     }
 
+    public function add($data)
+{
+    $sql = "INSERT INTO " . $this->tableName . " 
+            (text, user_id, topic_id, post_creation_date) 
+            VALUES 
+            (:text, :user_id, :topic_id, :post_creation_date)";
+
+    return DAO::insert($sql, $data);
+}
+
     // Méthode pour supprimer un post
     public function deletePostsByTopic($id)
     {

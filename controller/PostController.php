@@ -48,58 +48,67 @@ class PostController extends AbstractController implements ControllerInterface {
     // Méthode pour ajouter un post à un sujet donné
     public function addPostByTopic($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
-            $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $user = $_SESSION["user"]->getId();
-
-            // Ajoute un nouveau post avec les informations fournies
-            (new PostManager())->add(["topic_id" => $id, "user_id" => $user, "text" => $text]);
-            Session::addFlash('success', 'Message successfully added');
-        } else {
-            Session::addFlash('error', "Failed to add message");
+        // Vérifier si l'utilisateur est connecté
+        if (!isset($_SESSION['user'])) {
+            Session::addFlash('error', 'You need to log in to add a new post.');
+            $this->redirectTo('post', 'listPostsByTopic', $id);
         }
 
-        $this->redirectTo('post', 'listPostByTopic', $id);
-    }
+        $data = [];
+        // Si la requête est de type POST, nous devons créer un nouveau post
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Stocker débogage
+            $_SESSION['debug']['post'] = $_POST;
 
-    // Méthode pour supprimer un post
-    public function deletePost($id)
-    {
-        $postManager = new PostManager();
-        $post = $postManager->findOneById($id);
-        $topicId = $post->getTopic()->getId();
+            // Vérifier si l'ID de l'utilisateur est défini dans $_SESSION['user']
+            if ($_SESSION['user']->getId()) {
+                // Récupérer l'ID de l'utilisateur
+                $userId = $_SESSION['user']->getId();
 
-        // Vérifie les autorisations avant de supprimer le post
-        if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
-            $postManager->delete($id);
-            Session::addFlash('success', "Message successfully deleted");
-        }
+                // Récupérer les données du formulaire
+                $data = [
+                    'text' => $_POST['text'],
+                    'user_id' => $userId,
+                    'topic_id' => $id,
+                    'post_creation_date' => date("Y-m-d H:i:s")
+                ];
 
-        $this->redirectTo('post', 'listPostByTopic', $topicId);
-    }
+                // Appeler la méthode du gestionnaire pour créer le post
+                $result = $this->postManager->add($data);
 
-    // Méthode pour modifier un post
-    public function modifyPost($id)
-    {
-        $postManager = new PostManager();
-        $post = $postManager->findOneById($id);
-        $topicId = $post->getTopic()->getId();
+                // Débogage result
+                $_SESSION['debug']['result'] = $result;
 
-        // Vérifie les autorisations avant de modifier le post
-        if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['text']) && !empty($_POST['text'])) {
-                $text = filter_input(INPUT_POST, "text", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                // Checker si la création du post est passée
+                if ($result == null) {
+                    Session::addFlash('error', 'There was an error creating your new post.');
+                } else {
+                    Session::addFlash('success', 'Your new post has been successfully created.');
+                }
 
-                // Met à jour le texte du post
-                $postManager->updatePostById($id, $text);
-                Session::addFlash('success', 'Message successfully modified');
+                // Rediriger vers la liste des posts de ce topic
+                $this->redirectTo('post', 'listPostsByTopic', $id);
             } else {
-                Session::addFlash('error', 'Message modification failed');
+                // Si l'ID de l'utilisateur n'est pas défini, afficher un message d'erreur
+                Session::addFlash('error', 'User ID not found.');
+                $this->redirectTo('post', 'listPostsByTopic', $id);
             }
+        }
 
-            $this->redirectTo('post', 'listPostByTopic', $topicId);
+        // Si la requête n'est pas de type POST, nous affichons simplement le formulaire
+        else {
+            $topicManager = new TopicManager();
+            $topic = $topicManager->findOneById($id);
+
+            return [
+                "view" => VIEW_DIR . "forum/listPosts.php",
+                "data" => [
+                    "topic" => $topic
+                ]
+            ];
         }
     }
+
 
     // Méthode pour renvoyer la vue de modification d'un post
     public function returnModifyPost($id)
