@@ -26,21 +26,12 @@ CREATE TABLE IF NOT EXISTS `category` (
   PRIMARY KEY (`id_category`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.category : ~5 rows (environ)
+-- Listage des données de la table forum_mvc.category : ~13 rows (environ)
 INSERT INTO `category` (`id_category`, `categoryLabel`) VALUES
 	(1, 'Update'),
 	(2, 'Events'),
 	(4, 'Questions'),
-	(5, 'FAQ'),
-	(8, 'test'),
-	(9, 'lol'),
-	(10, 'aaaah'),
-	(11, 'azezaeza'),
-	(12, 'tttttt'),
-	(13, 'azezaeza'),
-	(14, 'tttttzzz'),
-	(15, 'blablabla'),
-	(16, 'roule ma poule');
+	(5, 'FAQ');
 
 -- Listage de la structure de table forum_mvc. post
 CREATE TABLE IF NOT EXISTS `post` (
@@ -68,30 +59,22 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `is_locked` tinyint(1) NOT NULL DEFAULT '0',
   `user_id` int DEFAULT NULL,
   `category_id` int DEFAULT NULL,
+  `topic_description` varchar(255) COLLATE utf8mb3_bin DEFAULT NULL,
   PRIMARY KEY (`id_topic`) USING BTREE,
   KEY `user_id` (`user_id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`id_category`),
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.topic : ~5 rows (environ)
-INSERT INTO `topic` (`id_topic`, `title`, `topic_creation_date`, `is_locked`, `user_id`, `category_id`) VALUES
-	(1, '1er topic', '2022-07-13 11:56:28', 0, 39, 1),
-	(2, '2eme topic', '2023-07-13 15:01:22', 0, 39, 2),
-	(3, '3eme topic', '2023-07-13 15:13:32', 0, 39, 2),
-	(4, '4eme topic', '2023-07-13 15:14:37', 0, 39, 4),
-	(5, '5eme', '2023-07-13 15:22:14', 0, 39, 4),
-	(70, 'TEST 3', '2023-07-24 11:05:41', 0, 40, 1),
-	(71, 'TEST 3', '2023-07-24 11:05:52', 0, 40, 1),
-	(72, 'Salut', '2023-07-24 11:11:56', 0, 40, 1),
-	(73, 'Test', '2023-07-24 13:40:37', 0, 40, 5),
-	(74, 'Test', '2023-07-24 13:40:48', 0, 40, 5),
-	(75, 'test', '2023-07-24 14:16:38', 0, 40, 1),
-	(76, 'test', '2023-07-24 16:33:33', 0, 40, 9),
-	(77, 'ezaezaez', '2023-07-24 16:38:39', 0, 40, 11),
-	(78, 'ttt', '2023-07-24 16:40:32', 0, 40, 12),
-	(79, 'azeazeza541', '2023-07-24 16:49:17', 0, 40, 11);
+-- Listage des données de la table forum_mvc.topic : ~15 rows (environ)
+INSERT INTO `topic` (`id_topic`, `title`, `topic_creation_date`, `is_locked`, `user_id`, `category_id`, `topic_description`) VALUES
+	(1, '1er topic', '2022-07-13 11:56:28', 0, 39, 1, NULL),
+	(2, '2eme topic', '2023-07-13 15:01:22', 0, 39, 2, NULL),
+	(3, '3eme topic', '2023-07-13 15:13:32', 0, 39, 2, NULL),
+	(4, '4eme topic', '2023-07-13 15:14:37', 0, 39, 4, NULL),
+	(75, 'test', '2023-07-24 14:16:38', 0, 40, 1, NULL),
+	(80, 'Any new about update ?', '2023-07-25 08:48:15', 0, 40, 1, NULL);
 
 -- Listage de la structure de table forum_mvc. user
 CREATE TABLE IF NOT EXISTS `user` (
@@ -106,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   UNIQUE KEY `password` (`password`)
 ) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
--- Listage des données de la table forum_mvc.user : ~8 rows (environ)
+-- Listage des données de la table forum_mvc.user : ~17 rows (environ)
 INSERT INTO `user` (`id_user`, `nickname`, `password`, `email`, `user_registration_date`, `role`) VALUES
 	(39, 'aaaa', '$2y$10$Ba5I7cD62KUcbjNBLv6Yr.gJZGfBqDyZzvmnmWLFhpmL1C.Jhc71y', 'azeazeza@gmail.com', '2023-07-12 11:57:03', 'User'),
 	(40, 'Kaz', '$2y$10$4f/kWgBZ4ebbAjj9zz4e5.B1zool1pVqetCLa3ALrvYZJqv1.COxi', 'Kazae@gmail.com', '2023-07-18 14:09:48', 'admin'),
