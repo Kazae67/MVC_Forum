@@ -54,7 +54,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
               <div class="forum-post-header-left">
                   <a title="Check profile" href="index.php?ctrl=security&action=usersProfiles&id=<?= $post->getUser()->getId() ?>"><?= $post->getUser()->getNickname() ?></a>
                 </p>
-                <p class="post-date"><?= $post->getPost_creation_date() ?></p>
+                <p class="post-date"><?= $post->getPostCreationDate() ?></p>
               </div>
               <div class="forum-post-header-right">
                 <?php
