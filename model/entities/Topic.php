@@ -14,6 +14,7 @@ final class Topic extends Entity
     private $user;
     private $category;
     private string $format;
+    private string $topic_description;
 
     public function __construct(array $data)
     {
@@ -157,6 +158,7 @@ final class Topic extends Entity
         $this->format = $format;
         return $this;
     }
+
 }
 
 ?>
