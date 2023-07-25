@@ -9,30 +9,25 @@ use Model\Managers\PostManager;
 use Model\Managers\TopicManager;
 
 class PostController extends AbstractController implements ControllerInterface {
-    private $postManager;
-    private $topicManager;
-
-    public function __construct()
-    {
-        $this->postManager = new PostManager();
-        $this->topicManager = new TopicManager();
-    }
-
+ 
     // Méthode pour lister tous les posts
     public function index()
     {
         // Récupère tous les posts triés par date de création
-        $posts = $this->postManager->findAll(["post_creation_date", "ASC"]);
+        $postManager = new PostManager();
+        $posts = $postManager->findAll(["post_creation_date", "ASC"]);
         return $this->render("forum/listPosts.php", ["posts" => $posts]);
     }
 
     // Méthode pour lister tous les posts par sujet
     public function listPostByTopic($topicId)
     {
+        $postManager = new PostManager();
+        $topicManager = new TopicManager();
         // Récupère les posts associés à un sujet donné
-        $posts = $this->postManager->findPostByTopic($topicId);
+        $posts = $postManager->findPostByTopic($topicId);
         // Récupère les informations du sujet
-        $topic = $this->topicManager->findOneById($topicId);
+        $topic = $topicManager->findOneById($topicId);
         return $this->render("forum/listPosts.php", ["posts" => $posts, "topic" => $topic]);
     }
 
@@ -51,7 +46,7 @@ class PostController extends AbstractController implements ControllerInterface {
         // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['user'])) {
             Session::addFlash('error', 'You need to log in to add a new post.');
-            $this->redirectTo('post', 'listPostsByTopic', $id);
+            $this->redirectTo('post', 'listPostByTopic', $id);
         }
 
         $data = [];
@@ -73,11 +68,14 @@ class PostController extends AbstractController implements ControllerInterface {
                     'post_creation_date' => date("Y-m-d H:i:s")
                 ];
 
+                $postManager = new PostManager();
+                // var_dump($postManager);die;
                 // Appeler la méthode du gestionnaire pour créer le post
-                $result = $this->postManager->add($data);
+                $result = $postManager->add($data);
+                var_dump($data);die;
 
                 // Débogage result
-                $_SESSION['debug']['result'] = $result;
+                // $_SESSION['debug']['result'] = $result;
 
                 // Checker si la création du post est passée
                 if ($result == null) {
@@ -87,26 +85,21 @@ class PostController extends AbstractController implements ControllerInterface {
                 }
 
                 // Rediriger vers la liste des posts de ce topic
-                $this->redirectTo('post', 'listPostsByTopic', $id);
+                $this->redirectTo('post', 'listPostByTopic', $id);
             } else {
                 // Si l'ID de l'utilisateur n'est pas défini, afficher un message d'erreur
                 Session::addFlash('error', 'User ID not found.');
-                $this->redirectTo('post', 'listPostsByTopic', $id);
+                $this->redirectTo('post', 'listPostByTopic', $id);
             }
         }
 
         // Si la requête n'est pas de type POST, nous affichons simplement le formulaire
-        else {
-            $topicManager = new TopicManager();
-            $topic = $topicManager->findOneById($id);
-
-            return [
-                "view" => VIEW_DIR . "forum/listPosts.php",
-                "data" => [
-                    "topic" => $topic
-                ]
-            ];
-        }
+        return [
+            "view" => VIEW_DIR . "forum/listPosts.php",
+            "data" => [
+                "topic" => $topic
+            ]
+        ];
     }
 
 

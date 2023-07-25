@@ -22,7 +22,7 @@
             $sql = "SELECT *
                     FROM ".$this->tableName." a
                     ".$orderQuery;
-
+            
             return $this->getMultipleResults(
                 DAO::select($sql), 
                 $this->className
@@ -59,6 +59,7 @@
                 INSERT INTO user (username,password,email) VALUES ('Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com') 
             */
             try{
+                var_dump($sql);die;
                 return DAO::insert($sql);
             }
             catch(\PDOException $e){
