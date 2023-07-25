@@ -29,15 +29,18 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
       </tr>
     </thead>
     <tbody>
+      <!-- ID -->
       <?php foreach ($topics as $topic):?>
         <?php $topic_id = $topic->getId(); ?> 
         <tr>
           <td><?= $topic_id ?></td>
+          <!-- TITLE -->
           <td>
             <a title="View topic" href="index.php?ctrl=post&action=listPostByTopic&id=<?= $topic_id ?>">
               <?= $topic->getTitle() ?>
             </a>
           </td>
+          <!-- USER -->
           <td>
             <?php if ($topic->getUser() !== null): ?>
               <p title="View profile" class="<?= $topic->getUser()->getRole() ?>">
@@ -49,6 +52,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
               <p>No user available</p>
             <?php endif; ?>
           </td>
+          <!-- CREATION DATE -->
           <td>
             <?php
             $topicCreationDate = $topic->getTopic_creation_date();
@@ -59,6 +63,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             }
             ?>
           </td>
+          <!-- IS_LOCKED -->
           <td>
             <div class="container-admin">
               <div title="<?= $topic->getIs_Locked() ? "Topic locked" : "Topic closed" ?>">

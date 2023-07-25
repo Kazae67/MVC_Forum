@@ -77,6 +77,7 @@ class TopicController extends AbstractController implements ControllerInterface
                 // Récupérer les données du formulaire
                 $data = [
                     'title' => $_POST['title'],
+                    'topic_description' => $_POST['topic_description'],
                     'user_id' => $userId,
                     'category_id' => $id
                 ];

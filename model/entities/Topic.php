@@ -24,7 +24,13 @@ final class Topic extends Entity
         } else {
             $this->topic_creation_date = new DateTime();
         }
+        if (isset($data['topic_description'])) {
+            $this->setTopic_description($data['topic_description']);
+        } else {
+            $this->topic_description = ""; 
+        }
     }
+    
     
     /**
      * Get the value of id
@@ -156,6 +162,26 @@ final class Topic extends Entity
     public function setFormat(string $format): self
     {
         $this->format = $format;
+        return $this;
+    }
+
+    /**
+     * Get the value of topic_description
+     */
+    public function getTopic_description(): ?string
+    {
+        return $this->topic_description;
+    }
+    
+
+    /**
+     * Set the value of topic_description
+     * 
+     * @return self
+     */
+    public function setTopic_description(string $topic_description): self
+    {
+        $this->topic_description = $topic_description;
         return $this;
     }
 

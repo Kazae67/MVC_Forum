@@ -14,8 +14,8 @@ $userLoggedIn = isset($_SESSION["user"]);
         <label for="title">Topic name</label>
         <input type="text" name="title" id="title">
 
-        <label for="text">Topic description</label>
-        <textarea rows="5" name="text" id="text"></textarea>
+        <label for="topic_description">Topic description</label>
+        <textarea rows="5" name="topic_description" id="topic_description"></textarea>
 
         <input class="button" type="submit" name="submit" id="submit" value="Create the topic">
     </form>
