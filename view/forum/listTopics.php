@@ -14,7 +14,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
 
 <!-- Tableau des topics -->
 <?php if ($topics): ?>
-  <table>
+  <table class="topic-table">
     <thead>
       <tr>
         <th>ID</th> 
@@ -93,6 +93,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
     </tbody>
   </table>
 <?php endif; ?>
+
 <!-- débugage -->
 <?php
 // if (isset($_SESSION['debug'])) {

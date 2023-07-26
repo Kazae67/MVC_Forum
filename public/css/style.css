@@ -50,7 +50,7 @@ nav .button:hover {
   font-weight: bold;
 }
 
-/* Autres styles  */
+/* main styles  */
 main {
   padding: 30px;
 }
@@ -84,16 +84,26 @@ footer a {
   animation: slideIn 0.5s ease forwards;
 }
 
-@keyframes slideIn {
-  from {
-      transform: translateY(-100%);
-  }
-  to {
-      transform: translateY(0);
-  }
-}
-
 /* Grise la ligne du topic si elle est verrouillée */
 .locked-topic {
   background-color: #d3d3d3; 
+}
+
+/* Tableau des topics */
+.topic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.topic-table th,
+.topic-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.topic-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
 }
