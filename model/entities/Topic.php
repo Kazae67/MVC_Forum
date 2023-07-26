@@ -10,7 +10,7 @@ final class Topic extends Entity
     private int $id;
     private string $title;
     private DateTime $topic_creation_date;
-    private $is_locked;
+    private bool $is_locked;
     private $user;
     private $category;
     private string $format;
@@ -29,6 +29,7 @@ final class Topic extends Entity
         } else {
             $this->topic_description = ""; 
         }
+        $this->is_locked = isset($data['is_locked']) ? (bool) $data['is_locked'] : false;
     }
     
     
@@ -92,7 +93,7 @@ final class Topic extends Entity
     /**
      * Get the value of is_locked
      */ 
-    public function getIs_locked()
+    public function getIs_locked(): bool
     {
         return $this->is_locked;
     }
@@ -102,7 +103,7 @@ final class Topic extends Entity
      *
      * @return self
      */ 
-    public function setIs_locked($is_locked): self
+    public function setIs_locked(bool $is_locked): self
     {
         $this->is_locked = $is_locked;
         return $this;
