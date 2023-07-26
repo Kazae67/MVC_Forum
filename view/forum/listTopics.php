@@ -63,23 +63,31 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             }
             ?>
           </td>
-          <!-- IS_LOCKED -->
+          <!-- IS_LOCKED options admin -->
           <td>
             <div class="container-admin">
-              <div title="<?= $topic->getIs_Locked() ? "Topic locked" : "Topic closed" ?>">
-              </div>
+              <?php if ($topic->getIs_Locked()): ?>
+                <div title="Topic locked">
+                  <i class="fa-solid fa-lock"></i>
+                </div>
+              <?php else: ?>
+                <div title="Topic open">
+                  <i class="fa-solid fa-lock-open"></i>
+                </div>
+              <?php endif; ?>
+              <?php if ($admin): ?>
+                <?php if ($topic->getIs_Locked()): ?>
+                  <a title="Unlock topic" class="admin-unlock" href="index.php?ctrl=topic&action=unlockTopicFromTopic&id=<?= $topic_id ?>">
+                    <i class="fa-solid fa-unlock"></i>
+                  </a>
+                <?php else: ?>
+                  <a title="Lock topic" class="admin-lock" href="index.php?ctrl=topic&action=lockTopicFromTopic&id=<?= $topic_id ?>">
+                    <i class="fa-solid fa-lock"></i>
+                  </a>
+                <?php endif; ?>
+              <?php endif; ?>
             </div>
           </td>
-          <!-- Options d'adminstrateur -->
-          <?php if ($admin): ?>
-            <td>
-              <div class="container-admin">
-                <a title="Lock topic" class="admin-lock" href="index.php?ctrl=topic&action=lockTopic&id=<?= $topic_id ?>">
-                  <i class="fa-solid fa-lock"></i>
-                </a>
-              </div>
-            </td>
-          <?php endif; ?>
         </tr>
       <?php endforeach; ?>
     </tbody>
