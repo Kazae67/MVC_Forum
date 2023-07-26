@@ -9,7 +9,7 @@ final class Post extends Entity
 {
     private int $id;
     private string $text;
-    private DateTime $post_creation_date;
+    private ?DateTime $post_creation_date = null; //  '?' pour rendre le type nullable
     private $user;
     private $topic;
 
@@ -59,7 +59,7 @@ final class Post extends Entity
     /**
      * Get the value of post_creation_date
      */ 
-    public function getPostCreationDate(): DateTime
+    public function getPostCreationDate(): ?DateTime // ajout du '?' pour rendre le type nullable
     {
         return $this->post_creation_date;
     }
@@ -69,7 +69,7 @@ final class Post extends Entity
      *
      * @return self
      */ 
-    public function setPostCreationDate(DateTime $post_creation_date): self
+    public function setPostCreationDate(?DateTime $post_creation_date): self // '?' pour rendre le type nullable
     {
         $this->post_creation_date = $post_creation_date;
         return $this;
