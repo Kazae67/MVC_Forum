@@ -152,23 +152,35 @@ class TopicController extends AbstractController implements ControllerInterface
     }
         
 
+    public function unlockTopicFromTopic($id)
+    {
+        if (!isset($_SESSION['user'])) {
+            Session::addFlash('error', 'You need to log in to unlock a topic.');
+            $this->redirectTo('topic', 'listTopicsByCategory', $id);
+        }
 
+        $result = $this->topicManager->unlockTopicById($id);
 
+        if ($result == null) {
+            Session::addFlash('error', 'There was an error unlocking the topic.');
+        } else {
+            Session::addFlash('success', 'The topic has been successfully unlocked.');
+        }
 
-
-
-
+        $this->redirectTo('topic', 'listTopicsByCategory', $id);
+    }
     
 
-        // prototype
-        public function listAllTopics()
-        {
-            $topics = $this->topicManager->findAll(["id", "DESC"]);
-        
-            return [
-                "view" => VIEW_DIR . "forum/listTopics.php",
-                "data" => compact('topics')
-            ];
-        }
-        
+
+    // Prototype, supprimer si perte de temps
+    public function listAllTopics()
+    {
+        $topics = $this->topicManager->findAll(["id", "DESC"]);
+    
+        return [
+            "view" => VIEW_DIR . "forum/listTopics.php",
+            "data" => compact('topics')
+        ];
+    }
+    
 }
