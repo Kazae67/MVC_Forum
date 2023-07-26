@@ -59,7 +59,7 @@
                 INSERT INTO user (username,password,email) VALUES ('Squalli', 'dfsyfshfbzeifbqefbq', 'sql@gmail.com') 
             */
             try{
-                var_dump($sql);die;
+                // var_dump($sql);die;
                 return DAO::insert($sql);
             }
             catch(\PDOException $e){

@@ -64,6 +64,9 @@ class TopicController extends AbstractController implements ControllerInterface
         }
     
         $data = [];
+        // Initialiser le résultat
+        $result = null;
+
         // Si la requête est de type POST, nous devons créer un nouveau topic
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Stocker débogage
