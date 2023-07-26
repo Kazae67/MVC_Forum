@@ -125,17 +125,21 @@ class TopicController extends AbstractController implements ControllerInterface
     public function lockTopicFromTopic($id)
     {
 
+        // Vérifier si l'utilisateur est connecté et est un administrateur
         if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
             Session::addFlash('error', 'You must be an administrator to lock a topic.');
             $this->redirectTo('topic', 'listTopics');
         }
 
+        // Récupérer le topic par son ID
         $topic = $this->topicManager->findOneById($id);
 
+        // Si le topic n'existe pas, rediriger vers la liste des topics
         if (!$topic) {
             $this->redirectTo('topic', 'listTopics');
         }
 
+        // Verrouiller le topic
         $result = $this->topicManager->lockTopicById($id);
 
         if (!$result) {
@@ -147,6 +151,16 @@ class TopicController extends AbstractController implements ControllerInterface
         $this->redirectTo('topic', 'listAllTopics');
     }
         
+
+
+
+
+
+
+
+    
+
+        // prototype
         public function listAllTopics()
         {
             $topics = $this->topicManager->findAll(["id", "DESC"]);
