@@ -69,6 +69,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
                         </div>
                     </div>
                     <p class="post-text"><?= $post->getText() ?></p>
+                    <hr>
                 </div>
                 <?php
             }
