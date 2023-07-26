@@ -120,15 +120,41 @@ class TopicController extends AbstractController implements ControllerInterface
             ];
         }
     }
-    
-    public function listAllTopics()
+
+    // Méthode pour lock un topic
+    public function lockTopicFromTopic($id)
     {
-        $topics = $this->topicManager->findAll(["id", "DESC"]);
-    
-        return [
-            "view" => VIEW_DIR . "forum/listAllTopics.php",
-            "data" => compact('topics')
-        ];
+
+        if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
+            Session::addFlash('error', 'You must be an administrator to lock a topic.');
+            $this->redirectTo('topic', 'listTopics');
+        }
+
+        $topic = $this->topicManager->findOneById($id);
+
+        if (!$topic) {
+            $this->redirectTo('topic', 'listTopics');
+        }
+
+        $result = $this->topicManager->lockTopicById($id);
+
+        if (!$result) {
+            Session::addFlash('error', 'There was an error locking the subject.');
+        } else {
+            Session::addFlash('success', 'The subject has been successfully locked.');
+        }
+
+        $this->redirectTo('topic', 'listAllTopics');
     }
-    
+        
+        public function listAllTopics()
+        {
+            $topics = $this->topicManager->findAll(["id", "DESC"]);
+        
+            return [
+                "view" => VIEW_DIR . "forum/listTopics.php",
+                "data" => compact('topics')
+            ];
+        }
+        
 }

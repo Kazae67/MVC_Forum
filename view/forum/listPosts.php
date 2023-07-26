@@ -26,7 +26,9 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
                 $action = $topic->getIs_Locked() == 0 ? 'lockTopicFromTopic' : 'unlockTopicFromTopic';
                 $title = $topic->getIs_Locked() == 0 ? 'Lock topic' : 'Unlock topic';
                 
-                echo "<a title='{$title}' href='index.php?ctrl=topic&action={$action}&id={$topic->getId()}'></a>";
+                echo "<a title='{$title}' href='index.php?ctrl=topic&action={$action}&id={$topic->getId()}'>
+                  <i class='icon {$title}'></i>
+                </a>";
                 
                 // Vérifie si l'utilisateur actuel est le créateur du sujet
                 if(isset($_SESSION["user"]) && $_SESSION["user"]->getId() == $topic->getUser()->getId()){
@@ -75,7 +77,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
     </div>
 
     <?php
-    // Si le sujet n'est pas verrouillé, affiche le formulaire de réponse
+    // Si le sujet n'est pas verrouillé, affiche le formulaire de réponse (à mettre dans un fichier newPost)
     if ($topic->getIs_Locked() == 0) { ?>
         <form class="form-add-topic" action="index.php?ctrl=post&action=addPostByTopic&id=<?= $topic->getId() ?>" method="POST">
             <label for="text">Answer</label>
