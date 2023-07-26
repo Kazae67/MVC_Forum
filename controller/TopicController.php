@@ -34,7 +34,7 @@ class TopicController extends AbstractController implements ControllerInterface
         ];
     }
 
-    // Méthode pour lister les sujets par catégorie
+    // Méthode pour lister les topics par catégorie
     public function listTopicsByCategory($id)
     {
         // Recherche de la catégorie par son ID
@@ -48,7 +48,7 @@ class TopicController extends AbstractController implements ControllerInterface
         $topics = $this->topicManager->findTopicsByCategory($id);
 
         // Les données sont extraites et renvoyées sous forme d'un tableau associatif avec les clés 'view' et 'data'.
-        // Les données incluent les sujets trouvés par la catégorie et la catégorie elle-même.
+        // Les données incluent les topics trouvés par la catégorie et la catégorie elle-même.
         return [
             "view" => VIEW_DIR . "forum/listTopics.php",
             "data" => compact('topics', 'category') // Utilisation de compact() ici
@@ -85,7 +85,7 @@ class TopicController extends AbstractController implements ControllerInterface
                     'category_id' => $id
                 ];
     
-                // Appeler la méthode du gestionnaire pour créer le sujet
+                // Appeler la méthode du gestionnaire pour créer le topic
                 $result = $this->topicManager->add($data);
     
                 // Débogage result
@@ -98,7 +98,7 @@ class TopicController extends AbstractController implements ControllerInterface
                     Session::addFlash('success', 'Your new topic has been successfully created.');
                 }
     
-                // Rediriger vers la liste des sujets de cette catégorie
+                // Rediriger vers la liste des topics de cette catégorie
                 $this->redirectTo('topic', 'listTopicsByCategory', $id);
             } else {
                 // Si l'ID de l'utilisateur n'est pas défini, afficher un message d'erreur
@@ -121,55 +121,52 @@ class TopicController extends AbstractController implements ControllerInterface
         }
     }
 
-    // Méthode pour lock un topic
+    // Méthode pour verrouiller un topic
     public function lockTopicFromTopic($id)
     {
-
-        // Vérifier si l'utilisateur est connecté et est un administrateur
+        // Vérifie si l'utilisateur est connecté et s'il est administrateur
         if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
             Session::addFlash('error', 'You must be an administrator to lock a topic.');
             $this->redirectTo('topic', 'listTopics');
         }
 
-        // Récupérer le topic par son ID
-        $topic = $this->topicManager->findOneById($id);
+        // Verrouille le topic
+        $result = $this->topicManager->lockTopicById($id);
 
-        // Si le topic n'existe pas, rediriger vers la liste des topics
-        if (!$topic) {
+        // Si le topic est verrouillé avec succès, affiche un message de succès, sinon affiche un message d'erreur
+        if($result) {
+            Session::addFlash('success', 'The subject has been successfully locked.');
+        } else {
+            Session::addFlash('error', 'An error occurred while locking the subject.');
+        }
+
+        // Redirige vers la liste des topics de cette catégorie
+        $this->redirectTo('topic', 'listTopicsByCategory', $id);
+    }
+
+    // Méthode pour déverrouiller un topic
+    public function unlockTopicFromTopic($id)
+    {
+        // Vérifie si l'utilisateur est connecté et s'il est administrateur
+        if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
+            Session::addFlash('error', 'You must be an administrator to unlock a topic.');
             $this->redirectTo('topic', 'listTopics');
         }
 
-        // Verrouiller le topic
-        $result = $this->topicManager->lockTopicById($id);
-
-        if (!$result) {
-            Session::addFlash('error', 'There was an error locking the subject.');
-        } else {
-            Session::addFlash('success', 'The subject has been successfully locked.');
-        }
-
-        $this->redirectTo('topic', 'listAllTopics');
-    }
-        
-
-    public function unlockTopicFromTopic($id)
-    {
-        if (!isset($_SESSION['user'])) {
-            Session::addFlash('error', 'You need to log in to unlock a topic.');
-            $this->redirectTo('topic', 'listTopicsByCategory', $id);
-        }
-
+        // Déverrouille le topic
         $result = $this->topicManager->unlockTopicById($id);
 
-        if ($result == null) {
-            Session::addFlash('error', 'There was an error unlocking the topic.');
+        // Si le topic est déverrouillé avec succès, affiche un message de succès, sinon affiche un message d'erreur
+        if($result) {
+            Session::addFlash('success', 'The subject has been successfully unlocked.');
         } else {
-            Session::addFlash('success', 'The topic has been successfully unlocked.');
+            Session::addFlash('error', 'An error occurred when unlocking the subject.');
         }
 
+        // Redirige vers la liste des topics de cette catégorie
         $this->redirectTo('topic', 'listTopicsByCategory', $id);
     }
-    
+
 
 
     // Prototype, supprimer si perte de temps
