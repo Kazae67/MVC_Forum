@@ -1,97 +1,99 @@
 /* STANDARDS */
 body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Style de la navbar */
-  nav {
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    position: relative;
-  }
-  
-  /* Style des liens dans la navbar */
-  nav a {
-    color: #fff;
-    font-size: 16px;
-    text-decoration: none;
-    padding: 8px 15px;
-    transition: color 0.3s ease;
-  }
-  
-  /* hover */
-  nav a:hover {
-    color: #007BFF;
-  }
-  
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+}
 
-  /* hover button */
-  nav .button:hover {
-    background-color: #fff;
-    color: #000;
-  }
-  
-  /* Style du message d'erreur */
-  .message.error {
-    color: red;
-    font-weight: bold;
-  }
-  
-  /* Style du message de succès */
-  .message.success {
-    color: green;
-    font-weight: bold;
-  }
-  
-  /* Autres styles  */
-  main {
-    padding: 30px;
-  }
-  
-  /* footer */
-  footer {
-    background-color: #333;
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  /* Style pour le lien du footer */
-  footer a {
-    color: #5199ec;
-    margin: 0 10px;
-  }
-  
-  /* Style pour les liens de la navbar lorsque l'utilisateur est connecté */
-  #nav-user a {
-    margin-left: 10px;
-  }
-  
-  /* Style pour les liens de la navbar lorsque l'utilisateur n'est pas connecté */
-  #nav-user a:first-child {
-    margin-left: 0;
-  }
-  
-  /* Style pour l'animation de la navbar */
-  .slide-in-animation {
-    animation: slideIn 0.5s ease forwards;
-  }
-  
-  @keyframes slideIn {
-    from {
+/* Style de la navbar */
+nav {
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  position: relative;
+}
+
+/* Style des liens dans la navbar */
+nav a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 8px 15px;
+  transition: color 0.3s ease;
+}
+
+/* hover */
+nav a:hover {
+  color: #007BFF;
+}
+
+/* hover button */
+nav .button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Style du message d'erreur */
+.message.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Style du message de succès */
+.message.success {
+  color: green;
+  font-weight: bold;
+}
+
+/* Autres styles  */
+main {
+  padding: 30px;
+}
+
+/* footer */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style pour le lien du footer */
+footer a {
+  color: #5199ec;
+  margin: 0 10px;
+}
+
+/* Style pour les liens de la navbar lorsque l'utilisateur est connecté */
+#nav-user a {
+  margin-left: 10px;
+}
+
+/* Style pour les liens de la navbar lorsque l'utilisateur n'est pas connecté */
+#nav-user a:first-child {
+  margin-left: 0;
+}
+
+/* Style pour l'animation de la navbar */
+.slide-in-animation {
+  animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
       transform: translateY(-100%);
-    }
-    to {
-      transform: translateY(0);
-    }
   }
+  to {
+      transform: translateY(0);
+  }
+}
 
-  
+/* Grise la ligne du topic si elle est verrouillée */
+.locked-topic {
+  background-color: #d3d3d3; 
+}

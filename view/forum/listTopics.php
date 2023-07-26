@@ -2,8 +2,6 @@
 // Récupération des données nécessaires
 $topics = $result["data"]["topics"] ?? null;
 $category = $result["data"]["category"] ?? null;
-
-
 $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["admin", "moderator"]);
 ?>
 
@@ -32,7 +30,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
       <!-- ID -->
       <?php foreach ($topics as $topic):?>
         <?php $topic_id = $topic->getId(); ?> 
-        <tr>
+        <tr class="<?= $topic->getIs_Locked() ? 'locked-topic' : '' ?>"> <!-- Ajoute la classe 'locked-topic' si le sujet est verrouillé -->
           <td><?= $topic_id ?></td>
           <!-- TITLE -->
           <td>
@@ -95,7 +93,6 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
     </tbody>
   </table>
 <?php endif; ?>
-
 <!-- débugage -->
 <?php
 // if (isset($_SESSION['debug'])) {
