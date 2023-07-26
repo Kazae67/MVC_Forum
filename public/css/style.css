@@ -108,8 +108,9 @@ footer a {
   font-weight: bold;
 }
 
-/* Conteneur du formulaire d'inscription */
-.registration-container {
+/* Conteneur du formulaire d'inscription et de connexion */
+.registration-container,
+.login-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -117,8 +118,9 @@ footer a {
   /* height: 100vh; */
 }
 
-/* Formulaire d'inscription */
-.registration-form {
+/* Formulaire d'inscription et de connexion */
+.registration-form,
+.login-form {
   border: 1px solid #ccc;
   padding: 20px;
   width: 300px;
@@ -126,31 +128,36 @@ footer a {
   box-sizing: border-box;
 }
 
-/* Centrer le titre 'Register' */
-.registration-form h3 {
+/* Centrer le titre 'Register' et 'Login' */
+.registration-form h3,
+.login-form h3 {
   text-align: center;
 }
 
-.registration-form label {
+.registration-form label,
+.login-form label {
   display: block;
   margin-bottom: 5px;
 }
 
-.registration-form input {
+.registration-form input,
+.login-form input {
   padding: 8px;
   width: 100%;
   margin-bottom: 10px;
   box-sizing: border-box;
 }
 
-.registration-form #submit {
+.registration-form #submit,
+.login-form #submit {
   width: 100%;
   margin-top: 10px;
   cursor: pointer;
 }
 
-/* Centrer le bouton 'Register' */
-.registration-form .button {
+/* Centrer le bouton 'Register' et 'Login' */
+.registration-form .button,
+.login-form .button {
   display: block;
   margin: 0 auto;
 }
