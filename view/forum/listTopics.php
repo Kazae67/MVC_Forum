@@ -83,6 +83,8 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
                 <?php else: ?>
                   <a title="Lock topic" class="admin-lock" href="index.php?ctrl=topic&action=lockTopicFromTopic&id=<?= $topic_id ?>">
                     <i class="fa-solid fa-lock"></i>
+                    <?php
+                    ?>
                   </a>
                 <?php endif; ?>
               <?php endif; ?>

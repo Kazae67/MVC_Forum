@@ -46,72 +46,58 @@ class PostController extends AbstractController implements ControllerInterface {
     }
 
     // Méthode pour ajouter un post à un sujet donné
-// Méthode pour ajouter un post à un sujet donné
-public function addPostByTopic($id)
-{
-    // Vérifier si l'utilisateur est connecté
-    if (!isset($_SESSION['user'])) {
-        Session::addFlash('error', 'You need to log in to add a new post.');
-        $this->redirectTo('post', 'listPostByTopic', $id);
-    }
-
-    $data = [];
-    // Si la requête est de type POST, nous devons créer un nouveau post
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Vérifier si l'ID de l'utilisateur est défini dans $_SESSION['user']
-        if ($_SESSION['user']->getId()) {
-            // Récupérer l'ID de l'utilisateur
-            $userId = $_SESSION['user']->getId();
-
-            // Récupérer les données du formulaire
-            $data = [
-                'text' => $_POST['text'],
-                'user_id' => $userId,
-                'topic_id' => $id,
-                'post_creation_date' => date("Y-m-d H:i:s")
-            ];
-
-            // Appeler la méthode du gestionnaire pour créer le post
-            $result = $this->postManager->add($data);
-
-            // Checker si la création du post est passée
-            if ($result == null) {
-                Session::addFlash('error', 'There was an error creating your new post.');
-            } else {
-                Session::addFlash('success', 'Your new post has been successfully created.');
-            }
-
-            // Rediriger vers la liste des posts de ce topic
-            $this->redirectTo('post', 'listPostByTopic', $id);
-        } else {
-            // Si l'ID de l'utilisateur n'est pas défini, afficher un message d'erreur
-            Session::addFlash('error', 'User ID not found.');
-            $this->redirectTo('post', 'listPostByTopic', $id);
-        }
-    }
-
-    // Si la requête n'est pas de type POST, nous affichons simplement le formulaire
-    $topic = $this->topicManager->findOneById($id);
-
-    return [
-        "view" => VIEW_DIR . "forum/listPosts.php",
-        "data" => [
-            "topic" => $topic
-        ]
-    ];
-}
-
-    // Méthode pour renvoyer la vue de modification d'un post
-    public function returnModifyPost($id)
+    public function addPostByTopic($id)
     {
-        // Vérifie les autorisations avant de renvoyer la vue de modification du post
-        if ($_SESSION["user"]->getRole() == 'admin' || $_SESSION["user"]->getRole() == 'moderator') {
-            return [
-                "view" => VIEW_DIR . "forum/modifyPost.php",
-                "data" => [
-                    "post" => $this->postManager->findOneById($id)
-                ]
-            ];
+        // Vérifier si l'utilisateur est connecté
+        if (!isset($_SESSION['user'])) {
+            Session::addFlash('error', 'You need to log in to add a new post.');
+            $this->redirectTo('post', 'listPostByTopic', $id);
         }
+
+        $data = [];
+        // Si la requête est de type POST, nous devons créer un nouveau post
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Vérifier si l'ID de l'utilisateur est défini dans $_SESSION['user']
+            if ($_SESSION['user']->getId()) {
+                // Récupérer l'ID de l'utilisateur
+                $userId = $_SESSION['user']->getId();
+
+                // Récupérer les données du formulaire
+                $data = [
+                    'text' => $_POST['text'],
+                    'user_id' => $userId,
+                    'topic_id' => $id,
+                    'post_creation_date' => date("Y-m-d H:i:s")
+                ];
+
+                // Appeler la méthode du gestionnaire pour créer le post
+                $result = $this->postManager->add($data);
+
+                // Checker si la création du post est passée
+                if ($result == null) {
+                    Session::addFlash('error', 'There was an error creating your new post.');
+                } else {
+                    Session::addFlash('success', 'Your new post has been successfully created.');
+                }
+
+                // Rediriger vers la liste des posts de ce topic
+                $this->redirectTo('post', 'listPostByTopic', $id);
+            } else {
+                // Si l'ID de l'utilisateur n'est pas défini, afficher un message d'erreur
+                Session::addFlash('error', 'User ID not found.');
+                $this->redirectTo('post', 'listPostByTopic', $id);
+            }
+        }
+
+        // Si la requête n'est pas de type POST, nous affichons simplement le formulaire
+        $topic = $this->topicManager->findOneById($id);
+
+        return [
+            "view" => VIEW_DIR . "forum/listPosts.php",
+            "data" => [
+                "topic" => $topic
+            ]
+        ];
     }
+
 }
