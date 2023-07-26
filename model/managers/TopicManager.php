@@ -37,24 +37,24 @@ class TopicManager extends Manager
         );
     }
 
-    // Cette méthode verrouille un sujet par son ID, empêchant de nouveaux posts d'être créés
+    // Méthode qui verrouille un topic par son ID
     public function lockTopicById($id)
     {
         // Définition de la requête SQL
         $sql =  "UPDATE " . $this->tableName .
-            " SET locked = 1
+            " SET is_locked = 1
              WHERE id_topic = :id";
 
         // Exécution de la requête et retour du résultat
         return DAO::update($sql, ['id' => $id]);
     }
 
-    // Cette méthode déverrouille un sujet par son ID, permettant de nouveaux posts d'être créés
+    // Méthode déverrouille un topic par son ID
     public function unlockTopicById($id)
     {
         // Définition de la requête SQL
         $sql =  "UPDATE " . $this->tableName .
-            " SET locked = 0 
+            " SET is_locked = 0 
              WHERE id_topic = :id";
 
         // Exécution de la requête et retour du résultat
