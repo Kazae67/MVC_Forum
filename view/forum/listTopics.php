@@ -21,7 +21,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
         <th>Title</th>
         <th>Author</th>
         <th>Creation date</th>
-        <th>Statut</th> <!-- Nouvelle colonne pour le statut -->
+        <th>Statut</th> 
         <?php if ($admin): ?>
           <th>Admin</th>
         <?php endif; ?>
@@ -62,19 +62,18 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
             }
             ?>
           </td>
-          <!-- IS_LOCKED options admin -->
+          <!-- IS_LOCKED -->
           <td>
-            <div class="container-admin">
-              <?php if ($topic->getIs_Locked()): ?>
-                <div title="Topic locked">
-                  <i class="fa-solid fa-lock"></i>
-                </div>
-              <?php else: ?>
-                <div title="Topic open">
-                  <i class="fa-solid fa-lock-open"></i>
-                </div>
-              <?php endif; ?>
-              <?php if ($admin): ?>
+            <?php if ($topic->getIs_Locked()): ?>
+              <i class="fa-solid fa-lock"></i>
+            <?php else: ?>
+              <i class="fa-solid fa-lock-open"></i>
+            <?php endif; ?>
+          </td>
+          <!-- IS_LOCKED options admin -->
+          <?php if ($admin): ?>
+            <td>
+              <div class="container-admin">
                 <?php if ($topic->getIs_Locked()): ?>
                   <a title="Unlock topic" class="admin-unlock" href="index.php?ctrl=topic&action=unlockTopicFromTopic&id=<?= $topic_id ?>">
                     <i class="fa-solid fa-unlock"></i>
@@ -86,9 +85,9 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
                     ?>
                   </a>
                 <?php endif; ?>
-              <?php endif; ?>
-            </div>
-          </td>
+              </div>
+            </td>
+          <?php endif; ?>
         </tr>
       <?php endforeach; ?>
     </tbody>
