@@ -60,4 +60,18 @@ class TopicManager extends Manager
         // Exécution de la requête et retour du résultat
         return DAO::update($sql, ['id' => $id]);
     }
+
+    // Méthode pour récupérer l'ID de l'auteur du topic par son ID
+    public function getTopicAuthorId($topicId)
+    {
+        $query = "SELECT user_id FROM topic WHERE id_topic = :topic_id";
+        $parameters = [":topic_id" => $topicId];
+        $result = DAO::select($query, $parameters, true);
+
+        if ($result && isset($result[0]['user_id'])) {
+            return $result[0]['user_id'];
+        }
+
+        return null;
+    }
 }
