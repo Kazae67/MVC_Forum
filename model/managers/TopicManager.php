@@ -67,11 +67,11 @@ class TopicManager extends Manager
         $query = "SELECT user_id FROM topic WHERE id_topic = :topic_id";
         $parameters = [":topic_id" => $topicId];
         $result = DAO::select($query, $parameters, true);
-
+    
         if ($result && isset($result[0]['user_id'])) {
             return $result[0]['user_id'];
         }
-
+    
         return null;
     }
 }
