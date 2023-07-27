@@ -229,3 +229,19 @@ footer a {
   margin-bottom: 5px;
 }
 
+.form-add-topic textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-add-topic input[type="submit"] {
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #007BFF;
+}
+
