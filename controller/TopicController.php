@@ -141,22 +141,22 @@ class TopicController extends AbstractController implements ControllerInterface
     // Méthode pour déverrouiller un topic
     public function unlockTopicFromTopic($id)
     {
-        // Vérifie si l'utilisateur est connecté et s'il est administrateur
-        if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
-            Session::addFlash('error', 'You must be an administrator to unlock a topic.');
-            $this->redirectTo('topic', 'listTopics');
+        // Vérifie si l'utilisateur est connecté et s'il est administrateur ou l'auteur du topic
+        if (!isset($_SESSION['user']) || ($_SESSION['user']->getRole() !== 'admin' && $_SESSION['user']->getId() !== $this->topicManager->getTopicAuthorId($id))) {
+            Session::addFlash('error', 'You must be an administrator or the author of the topic to unlock it.');
+            $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
-
+    
         // Déverrouille le topic
         $result = $this->topicManager->unlockTopicById($id);
-
+    
         // Si le topic est déverrouillé avec succès, affiche un message de succès, sinon affiche un message d'erreur
         if ($result) {
             Session::addFlash('success', 'The subject has been successfully unlocked.');
         } else {
             Session::addFlash('error', 'An error occurred when unlocking the subject.');
         }
-
+    
         // Redirige vers la liste des topics de cette catégorie
         $this->redirectTo('topic', 'listTopicsByCategory', $id);
     }
