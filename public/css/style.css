@@ -198,4 +198,19 @@ footer a {
   margin-bottom: 20px;
 }
 
+.forum-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.forum-post-header-left a {
+  color: #007BFF;
+  font-weight: bold;
+}
+
+.forum-post-header-right a {
+  color: #007BFF;
+}
 
