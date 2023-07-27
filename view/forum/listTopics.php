@@ -17,10 +17,11 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
   <table class="topic-table">
     <thead>
       <tr>
-        <th>ID</th> 
+        <th>ID</th>
         <th>Title</th>
         <th>Author</th>
         <th>Creation date</th>
+        <th>Statut</th> <!-- Nouvelle colonne pour le statut -->
         <?php if ($admin): ?>
           <th>Admin</th>
         <?php endif; ?>
