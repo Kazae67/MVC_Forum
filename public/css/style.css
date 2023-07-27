@@ -161,3 +161,23 @@ footer a {
   display: block;
   margin: 0 auto;
 }
+
+/* Styles pour listPost.php */
+.post-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.post-header-left h2, .post-header-left h1, .post-header-left h3 {
+  margin-bottom: 5px;
+}
+

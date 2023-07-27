@@ -14,10 +14,10 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
     <div class="post-header">
         <div class="post-header-left">
             <h2 class="post-category">
-                <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $topic->getCategory()->getId() ?>"><?= $topic->getCategory()->getCategoryLabel() ?></a>
+                <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?=$topic->getCategory()->getId()?>"><?=$topic->getCategory()->getCategoryLabel()?></a>
             </h2>
-            <h1 class="post-title"><?= $topic->getTitle() ?></h1>
-            <h2 class="post-topic-description"><?= $topic->getTopic_description() ?></h2>
+            <h1 class="post-title">/<?=$topic->getTitle()?></h1>
+            <h2 class="post-topic-description">/<?=$topic->getTopic_description()?></h2>
         </div>
         <div class="post-header-right">
             <?php 
@@ -61,15 +61,14 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
                             if($admin){
                                 // Si ce n'est pas le premier post, affiche le bouton de suppression
                                 if($countPost > 1){
-                                    echo "<a href='index.php?ctrl=post&action=deletePost&id={$post->getId()}'><p title='Delete post'></p></a>";
+                                    echo "<a href='index.php?ctrl=post&action=deletePost&id={$post->getId()}'><p title='Delete post'</p></a>";
                                 }
-                                echo "<a href='index.php?ctrl=post&action=linkToModifyPost&id={$post->getId()}'><p title='Modify post'></p></a>";
+                                echo "<a href='index.php?ctrl=post&action=linkToModifyPost&id={$post->getId()}'><p title='Modify post'</p></a>";
                             }
                             ?>
                         </div>
                     </div>
                     <p class="post-text"><?= $post->getText() ?></p>
-                    <hr>
                 </div>
                 <?php
             }
