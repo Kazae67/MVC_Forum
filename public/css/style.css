@@ -269,3 +269,8 @@ footer a {
   font-size: 12px;
   margin-left: 10px;
 }
+
+.post-category-centered {
+  text-align: center;
+  margin-bottom: 20px;
+}
