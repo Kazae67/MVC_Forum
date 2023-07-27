@@ -21,16 +21,21 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
         <th>Title</th>
         <th>Author</th>
         <th>Creation date</th>
-        <th>Statut</th> 
-        <?php if ($admin): ?>
-          <th>Admin</th>
+        <th>Statut</th>
+        <?php if ($admin || isset($_SESSION['user'])): ?>
+          <th>Actions</th>
         <?php endif; ?>
       </tr>
     </thead>
     <tbody>
       <!-- ID -->
       <?php foreach ($topics as $topic):?>
-        <?php $topic_id = $topic->getId(); ?> 
+        <?php $topic_id = $topic->getId(); ?>
+        <?php $isTopicAuthor = isset($_SESSION['user']) && $topic->getUser() !== null && $_SESSION['user']->getId() === $topic->getUser()->getId(); ?>
+        <?php if ($isTopicAuthor): ?>
+          <?php $authorLockAction = "author-lock"; ?>
+          <?php $authorUnlockAction = "author-unlock"; ?>
+        <?php endif; ?>
         <tr class="<?= $topic->getIs_Locked() ? 'locked-topic' : '' ?>"> <!-- Ajoute la classe 'locked-topic' si le sujet est verrouillé -->
           <td><?= $topic_id ?></td>
           <!-- TITLE -->
@@ -70,20 +75,22 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
               <i class="fa-solid fa-lock-open"></i>
             <?php endif; ?>
           </td>
-          <!-- IS_LOCKED options admin -->
-          <?php if ($admin): ?>
+          <!-- ACTIONS -->
+          <?php if ($admin || $isTopicAuthor): ?>
             <td>
               <div class="container-admin">
                 <?php if ($topic->getIs_Locked()): ?>
-                  <a title="Unlock topic" class="admin-unlock" href="index.php?ctrl=topic&action=unlockTopicFromTopic&id=<?= $topic_id ?>">
-                    <i class="fa-solid fa-unlock"></i>
-                  </a>
+                  <?php if ($admin || $isTopicAuthor): ?>
+                    <a title="Unlock topic" class="<?= $authorUnlockAction ?>" href="index.php?ctrl=topic&action=unlockTopicFromTopic&id=<?= $topic_id ?>">
+                      <i class="fa-solid fa-unlock"></i>
+                    </a>
+                  <?php endif; ?>
                 <?php else: ?>
-                  <a title="Lock topic" class="admin-lock" href="index.php?ctrl=topic&action=lockTopicFromTopic&id=<?= $topic_id ?>">
-                    <i class="fa-solid fa-lock"></i>
-                    <?php
-                    ?>
-                  </a>
+                  <?php if ($admin || $isTopicAuthor): ?>
+                    <a title="Lock topic" class="<?= $authorLockAction ?>" href="index.php?ctrl=topic&action=lockTopicFromTopic&id=<?= $topic_id ?>">
+                      <i class="fa-solid fa-lock"></i>
+                    </a>
+                  <?php endif; ?>
                 <?php endif; ?>
               </div>
             </td>
