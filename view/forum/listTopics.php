@@ -35,6 +35,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
         <?php if ($isTopicAuthor): ?>
           <?php $authorLockAction = "author-lock"; ?>
           <?php $authorUnlockAction = "author-unlock"; ?>
+          <?php $authorDeleteAction = "author-delete"; ?>
         <?php endif; ?>
         <tr class="<?= $topic->getIs_Locked() ? 'locked-topic' : '' ?>"> <!-- Ajoute la classe 'locked-topic' si le sujet est verrouillé -->
           <td><?= $topic_id ?></td>
@@ -91,6 +92,11 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
                       <i class="fa-solid fa-lock"></i>
                     </a>
                   <?php endif; ?>
+                <?php endif; ?>
+                <?php if ($admin || $isTopicAuthor): ?>
+                  <a title="Delete topic" class="<?= $authorDeleteAction ?>" href="index.php?ctrl=topic&action=deleteTopic&id=<?= $topic_id ?>">
+                    <i class="fa-solid fa-trash"></i>
+                  </a>
                 <?php endif; ?>
               </div>
             </td>
