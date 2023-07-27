@@ -8,7 +8,8 @@ use App\ControllerInterface;
 use Model\Managers\PostManager;
 use Model\Managers\TopicManager;
 
-class PostController extends AbstractController implements ControllerInterface {
+class PostController extends AbstractController implements ControllerInterface
+{
     private $postManager;
     private $topicManager;
 
@@ -29,10 +30,18 @@ class PostController extends AbstractController implements ControllerInterface {
     // Méthode pour lister tous les posts par sujet
     public function listPostByTopic($topicId)
     {
+        // Vérifier si l'ID du sujet est valide
+        if (!ctype_digit($topicId)) {
+            $this->redirectTo('topic', 'listTopics');
+        }
+
         // Récupère les posts associés à un sujet donné
         $posts = $this->postManager->findPostByTopic($topicId);
+
         // Récupère les informations du sujet
         $topic = $this->topicManager->findOneById($topicId);
+
+        // Les données sont extraites et renvoyées sous forme d'un tableau associatif avec les clés 'view' et 'data'.
         return $this->render("forum/listPosts.php", ["posts" => $posts, "topic" => $topic]);
     }
 
@@ -54,50 +63,45 @@ class PostController extends AbstractController implements ControllerInterface {
             $this->redirectTo('post', 'listPostByTopic', $id);
         }
 
-        $data = [];
         // Si la requête est de type POST, nous devons créer un nouveau post
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Vérifier si l'ID de l'utilisateur est défini dans $_SESSION['user']
-            if ($_SESSION['user']->getId()) {
-                // Récupérer l'ID de l'utilisateur
-                $userId = $_SESSION['user']->getId();
+            // Valider et filtrer les données du formulaire
+            $text = filter_input(INPUT_POST, 'text', FILTER_SANITIZE_STRING);
+            $userId = $_SESSION['user']->getId();
+            $topicId = (int) $id;
 
-                // Récupérer les données du formulaire
-                $data = [
-                    'text' => $_POST['text'],
-                    'user_id' => $userId,
-                    'topic_id' => $id,
-                    'post_creation_date' => date("Y-m-d H:i:s")
-                ];
-
-                // Appeler la méthode du gestionnaire pour créer le post
-                $result = $this->postManager->add($data);
-
-                // Checker si la création du post est passée
-                if ($result == null) {
-                    Session::addFlash('error', 'There was an error creating your new post.');
-                } else {
-                    Session::addFlash('success', 'Your new post has been successfully created.');
-                }
-
-                // Rediriger vers la liste des posts de ce topic
-                $this->redirectTo('post', 'listPostByTopic', $id);
-            } else {
-                // Si l'ID de l'utilisateur n'est pas défini, afficher un message d'erreur
-                Session::addFlash('error', 'User ID not found.');
-                $this->redirectTo('post', 'listPostByTopic', $id);
+            // Vérifier si les données sont valides
+            if (empty($text)) {
+                Session::addFlash('error', 'Please enter a valid text.');
+                $this->redirectTo('post', 'addPostByTopic', $id);
             }
+
+            // Utiliser des requêtes préparées pour éviter les attaques par injection SQL
+            $data = [
+                'text' => $text,
+                'user_id' => $userId,
+                'topic_id' => $topicId,
+                'post_creation_date' => date("Y-m-d H:i:s")
+            ];
+
+            // Appeler la méthode du gestionnaire pour créer le post en utilisant une requête préparée
+            $result = $this->postManager->add($data);
+
+            // Vérifier si la création du post s'est bien déroulée
+            if (!$result) {
+                Session::addFlash('error', 'There was an error creating your new post.');
+            } else {
+                Session::addFlash('success', 'Your new post has been successfully created.');
+            }
+
+            // Rediriger vers la liste des posts de ce topic
+            $this->redirectTo('post', 'listPostByTopic', $id);
         }
 
         // Si la requête n'est pas de type POST, nous affichons simplement le formulaire
         $topic = $this->topicManager->findOneById($id);
 
-        return [
-            "view" => VIEW_DIR . "forum/listPosts.php",
-            "data" => [
-                "topic" => $topic
-            ]
-        ];
+        // Les données sont extraites et renvoyées sous forme d'un tableau associatif avec les clés 'view' et 'data'.
+        return $this->render("forum/listPosts.php", ["topic" => $topic]);
     }
-
 }
