@@ -64,14 +64,31 @@ class TopicManager extends Manager
     // Méthode pour récupérer l'ID de l'auteur du topic par son ID
     public function getTopicAuthorId($topicId)
     {
+        // Définition de la requête SQL
         $sql = "SELECT user_id FROM " . $this->tableName . " WHERE id_topic = :topic_id";
         $parameters = [":topic_id" => $topicId];
+
+        // Exécution de la requête et récupération du résultat
         $result = DAO::select($sql, $parameters, true);
-    
+
+        // Vérification du résultat et retour de l'ID de l'auteur du topic s'il existe
         if ($result && isset($result[0]['user_id'])) {
             return $result[0]['user_id'];
         }
-    
+
         return null;
     }
+
+   public function deleteTopicById($id)
+   {
+       $this->deletePostsByTopicId($id);
+       $sql = "DELETE FROM " . $this->tableName . " WHERE id_topic = :id";
+       return DAO::delete($sql, ['id' => $id]);
+   }
+
+   public function deletePostsByTopicId($topicId)
+   {
+       $sql = "DELETE FROM post WHERE topic_id = :topicId";
+       return DAO::delete($sql, ['topicId' => $topicId]);
+   }
 }
