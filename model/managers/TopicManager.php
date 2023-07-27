@@ -79,16 +79,26 @@ class TopicManager extends Manager
         return null;
     }
 
-   public function deleteTopicById($id)
-   {
-       $this->deletePostsByTopicId($id);
-       $sql = "DELETE FROM " . $this->tableName . " WHERE id_topic = :id";
-       return DAO::delete($sql, ['id' => $id]);
-   }
+    // Méthode pour supprimer un topic par son ID
+    public function deleteTopicById($id)
+    {
+        // Supprimer les posts associés au topic
+        $this->deletePostsByTopicId($id);
 
-   public function deletePostsByTopicId($topicId)
-   {
-       $sql = "DELETE FROM post WHERE topic_id = :topicId";
-       return DAO::delete($sql, ['topicId' => $topicId]);
-   }
+        // Définition de la requête SQL pour supprimer le topic
+        $sql = "DELETE FROM " . $this->tableName . " WHERE id_topic = :id";
+
+        // Exécution de la requête et retour du résultat
+        return DAO::delete($sql, ['id' => $id]);
+    }
+
+    // Méthode pour supprimer les posts associés à un topic par son ID
+    public function deletePostsByTopicId($topicId)
+    {
+        // Définition de la requête SQL pour supprimer les posts associés au topic
+        $sql = "DELETE FROM post WHERE topic_id = :topicId";
+
+        // Exécution de la requête et retour du résultat
+        return DAO::delete($sql, ['topicId' => $topicId]);
+    }
 }
