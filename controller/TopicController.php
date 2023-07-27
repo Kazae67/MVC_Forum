@@ -118,22 +118,22 @@ class TopicController extends AbstractController implements ControllerInterface
     // Méthode pour verrouiller un topic
     public function lockTopicFromTopic($id)
     {
-        // Vérifie si l'utilisateur est connecté et s'il est administrateur
-        if (!isset($_SESSION['user']) || $_SESSION['user']->getRole() !== 'admin') {
-            Session::addFlash('error', 'You must be an administrator to lock a topic.');
-            $this->redirectTo('topic', 'listTopics');
+        // Vérifie si l'utilisateur est connecté et s'il est administrateur ou l'auteur du topic
+        if (!isset($_SESSION['user']) || ($_SESSION['user']->getRole() !== 'admin' && $_SESSION['user']->getId() !== $this->topicManager->getTopicAuthorId($id))) {
+            Session::addFlash('error', 'You must be an administrator or the author of the topic to lock it.');
+            $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
-
+    
         // Verrouille le topic
         $result = $this->topicManager->lockTopicById($id);
-
+    
         // Si le topic est verrouillé avec succès, affiche un message de succès, sinon affiche un message d'erreur
-        if ($result) {
+        if($result) {
             Session::addFlash('success', 'The subject has been successfully locked.');
         } else {
             Session::addFlash('error', 'An error occurred while locking the subject.');
         }
-
+    
         // Redirige vers la liste des topics de cette catégorie
         $this->redirectTo('topic', 'listTopicsByCategory', $id);
     }
