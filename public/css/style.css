@@ -181,3 +181,21 @@ footer a {
   margin-bottom: 5px;
 }
 
+.post-header-right a {
+  color: #007BFF;
+  margin-left: 10px;
+}
+
+.forum-posts {
+  margin-bottom: 20px;
+}
+
+.post-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+
