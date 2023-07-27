@@ -214,3 +214,18 @@ footer a {
   color: #007BFF;
 }
 
+.post-text {
+  white-space: pre-wrap;
+}
+
+.form-add-topic {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.form-add-topic label {
+  margin-bottom: 5px;
+}
+
