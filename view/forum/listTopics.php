@@ -101,6 +101,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
   </table>
 <?php endif; ?>
 
+
 <!-- débugage -->
 <?php
 // if (isset($_SESSION['debug'])) {
