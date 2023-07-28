@@ -85,7 +85,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
     // Si le sujet n'est pas verrouillé, affiche le formulaire de réponse (à mettre dans un fichier newPost)
     if ($topic->getIs_Locked() == 0) { ?>
         <form class="form-add-topic" action="index.php?ctrl=post&action=addPostByTopic&id=<?= $topic->getId() ?>" method="POST">
-            <label for="text">Answer</label>
+            <label for="text"></label>
             <textarea rows="5" name="text" id="text"></textarea>
             <input class="button" type="submit" name="submit" id="submit" value="Answer">
         </form>
