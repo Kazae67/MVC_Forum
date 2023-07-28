@@ -103,5 +103,6 @@ class PostController extends AbstractController implements ControllerInterface
 
         // Les données sont extraites et renvoyées sous forme d'un tableau associatif avec les clés 'view' et 'data'.
         return $this->render("forum/listPosts.php", ["topic" => $topic]);
+        
     }
 }
