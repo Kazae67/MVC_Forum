@@ -230,6 +230,7 @@ footer a {
   white-space: pre-wrap;
 }
 
+/* submit topic */
 .form-add-topic {
   display: flex;
   flex-direction: column;
