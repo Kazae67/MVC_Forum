@@ -1,4 +1,4 @@
-/* STANDARDS */
+/* Reset des éléments */
 body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@ body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
   font-family: Arial, sans-serif;
 }
 
-/* Style de la navbar */
+/* Navbar */
 nav {
   background-color: #333;
   color: #fff;
@@ -18,7 +18,6 @@ nav {
   position: relative;
 }
 
-/* Style des liens dans la navbar */
 nav a {
   color: #fff;
   font-size: 16px;
@@ -27,35 +26,32 @@ nav a {
   transition: color 0.3s ease;
 }
 
-/* hover */
 nav a:hover {
   color: #007BFF;
 }
 
-/* hover button */
 nav .button:hover {
   background-color: #fff;
   color: #000;
 }
 
-/* Style du message d'erreur */
+/* Messages d'erreur et de succès */
 .message.error {
   color: red;
   font-weight: bold;
 }
 
-/* Style du message de succès */
 .message.success {
   color: green;
   font-weight: bold;
 }
 
-/* main styles  */
+/* Contenu principal */
 main {
   padding: 30px;
 }
 
-/* footer */
+/* Footer */
 footer {
   background-color: #333;
   color: #fff;
@@ -63,33 +59,31 @@ footer {
   text-align: center;
 }
 
-/* Style pour le lien du footer */
 footer a {
   color: #5199ec;
   margin: 0 10px;
 }
 
-/* Style pour les liens de la navbar lorsque l'utilisateur est connecté */
+/* Styles pour les liens de la navbar en fonction de la connexion de l'utilisateur */
 #nav-user a {
   margin-left: 10px;
 }
 
-/* Style pour les liens de la navbar lorsque l'utilisateur n'est pas connecté */
 #nav-user a:first-child {
   margin-left: 0;
 }
 
-/* Style pour l'animation de la navbar */
+/* Animation de la navbar */
 .slide-in-animation {
   animation: slideIn 0.5s ease forwards;
 }
 
-/* Grise la ligne du topic si elle est verrouillée */
+/* Styles pour les sujets verrouillés */
 .locked-topic {
   background-color: #d3d3d3; 
 }
 
-/* Tableau des topics */
+/* Tableau des sujets */
 .topic-table {
   width: 100%;
   border-collapse: collapse;
@@ -108,17 +102,16 @@ footer a {
   font-weight: bold;
 }
 
-/* Conteneur du formulaire d'inscription et de connexion */
+/* Conteneurs des formulaires d'inscription et de connexion */
 .registration-container,
 .login-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100vh; */
 }
 
-/* Formulaire d'inscription et de connexion */
+/* Formulaires d'inscription et de connexion */
 .registration-form,
 .login-form {
   border: 1px solid #ccc;
@@ -128,7 +121,6 @@ footer a {
   box-sizing: border-box;
 }
 
-/* Centrer le titre 'Register' et 'Login' */
 .registration-form h3,
 .login-form h3 {
   text-align: center;
@@ -155,7 +147,6 @@ footer a {
   cursor: pointer;
 }
 
-/* Centrer le bouton 'Register' et 'Login' */
 .registration-form .button,
 .login-form .button {
   display: block;
@@ -170,7 +161,7 @@ footer a {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Post Title */
+/* Titre du message */
 .post-title-label {
   font-weight: bold;
 }
@@ -179,14 +170,13 @@ footer a {
   font-weight: bold;
 }
 
-/* Post Header */
+/* En-tête du message */
 .post-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
-
 
 .post-header-left h2, .post-header-left h1, .post-header-left h3 {
   margin-bottom: 5px;
@@ -197,7 +187,7 @@ footer a {
   margin-left: 10px;
 }
 
-/* Post card */
+/* Carte du message */
 .forum-posts {
   margin-bottom: 20px;
 }
@@ -230,7 +220,7 @@ footer a {
   white-space: pre-wrap;
 }
 
-/* submit topic */
+/* Formulaire pour ajouter un sujet */
 .form-add-topic {
   display: flex;
   flex-direction: column;
@@ -258,6 +248,7 @@ footer a {
   border-radius: 5px;
 }
 
+/* Contenu de l'auteur */
 .author-content {
   width: 100%;
   background-color: #fff;
@@ -273,7 +264,7 @@ footer a {
   font-weight: normal;
 }
 
-/* author */
+/* Étiquette de l'auteur */
 .author-label {
   color: #fff;
   padding: 2px 4px;
@@ -281,8 +272,8 @@ footer a {
   margin-left: 10px;
 }
 
+/* Centrage de la catégorie du message */
 .post-category-centered {
   text-align: center;
   margin-bottom: 20px;
 }
-
