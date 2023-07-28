@@ -18,6 +18,7 @@ nav {
   position: relative;
 }
 
+/* Liens dans la navbar */
 nav a {
   color: #fff;
   font-size: 16px;
@@ -26,21 +27,24 @@ nav a {
   transition: color 0.3s ease;
 }
 
+/* Hover sur les liens dans la navbar */
 nav a:hover {
   color: #007BFF;
 }
 
+/* Hover sur le bouton dans la navbar */
 nav .button:hover {
   background-color: #fff;
   color: #000;
 }
 
-/* Messages d'erreur et de succès */
+/* Styles pour les messages d'erreur */
 .message.error {
   color: red;
   font-weight: bold;
 }
 
+/* Styles pour les messages de succès */
 .message.success {
   color: green;
   font-weight: bold;
@@ -59,6 +63,7 @@ footer {
   text-align: center;
 }
 
+/* Liens dans le footer */
 footer a {
   color: #5199ec;
   margin: 0 10px;
@@ -69,6 +74,7 @@ footer a {
   margin-left: 10px;
 }
 
+/* Styles pour les liens de la navbar lorsque l'utilisateur n'est pas connecté */
 #nav-user a:first-child {
   margin-left: 0;
 }
@@ -90,6 +96,7 @@ footer a {
   margin-top: 20px;
 }
 
+/* Styles pour les en-têtes de colonne dans le tableau des sujets */
 .topic-table th,
 .topic-table td {
   padding: 10px;
@@ -97,6 +104,7 @@ footer a {
   border-bottom: 1px solid #ccc;
 }
 
+/* Styles pour l'en-tête de colonne dans le tableau des sujets */
 .topic-table th {
   background-color: #f2f2f2;
   font-weight: bold;
@@ -121,17 +129,20 @@ footer a {
   box-sizing: border-box;
 }
 
+/* Titres des formulaires d'inscription et de connexion */
 .registration-form h3,
 .login-form h3 {
   text-align: center;
 }
 
+/* Étiquettes des champs dans les formulaires d'inscription et de connexion */
 .registration-form label,
 .login-form label {
   display: block;
   margin-bottom: 5px;
 }
 
+/* Champs de saisie dans les formulaires d'inscription et de connexion */
 .registration-form input,
 .login-form input {
   padding: 8px;
@@ -140,13 +151,18 @@ footer a {
   box-sizing: border-box;
 }
 
+/* Boutons dans les formulaires d'inscription et de connexion */
 .registration-form #submit,
 .login-form #submit {
   width: 100%;
   margin-top: 10px;
   cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
+/* Centrage des boutons dans les formulaires d'inscription et de connexion */
 .registration-form .button,
 .login-form .button {
   display: block;
@@ -161,11 +177,12 @@ footer a {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Titre du message */
+/* Étiquette du titre du message */
 .post-title-label {
   font-weight: bold;
 }
 
+/* Titre du message */
 .post-title {
   font-weight: bold;
 }
@@ -178,10 +195,12 @@ footer a {
   margin-bottom: 20px;
 }
 
+/* Styles pour les titres de niveau 1, 2 et 3 dans l'en-tête du message */
 .post-header-left h2, .post-header-left h1, .post-header-left h3 {
   margin-bottom: 5px;
 }
 
+/* Lien dans l'en-tête du message */
 .post-header-right a {
   color: #007BFF;
   margin-left: 10px;
@@ -192,6 +211,7 @@ footer a {
   margin-bottom: 20px;
 }
 
+/* Styles pour la carte du message */
 .post-card {
   background-color: #fff;
   padding: 20px;
@@ -200,6 +220,7 @@ footer a {
   margin-bottom: 20px;
 }
 
+/* En-tête de la carte du message */
 .forum-post-header {
   display: flex;
   justify-content: space-between;
@@ -207,15 +228,18 @@ footer a {
   margin-bottom: 10px;
 }
 
+/* Lien dans l'en-tête de la carte du message */
 .forum-post-header-left a {
   color: #007BFF;
   font-weight: bold;
 }
 
+/* Lien dans l'en-tête de la carte du message */
 .forum-post-header-right a {
   color: #007BFF;
 }
 
+/* Texte du message */
 .post-text {
   white-space: pre-wrap;
 }
@@ -228,10 +252,12 @@ footer a {
   margin: 0 auto;
 }
 
+/* Étiquette dans le formulaire pour ajouter un sujet */
 .form-add-topic label {
   margin-bottom: 5px;
 }
 
+/* Zone de texte dans le formulaire pour ajouter un sujet */
 .form-add-topic textarea {
   padding: 10px;
   margin-bottom: 10px;
@@ -239,6 +265,7 @@ footer a {
   border-radius: 5px;
 }
 
+/* Bouton "Soumettre" dans le formulaire pour ajouter un sujet */
 .form-add-topic input[type="submit"] {
   width: 100%;
   margin-top: 10px;
@@ -259,6 +286,7 @@ footer a {
   border: 1px solid #ccc;
 }
 
+/* Contenu de la réponse */
 .response-content {
   background-color: #e1e1e1;
   font-weight: normal;
