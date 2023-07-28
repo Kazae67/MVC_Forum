@@ -23,13 +23,12 @@ class TopicManager extends Manager
     {
         // Définition de la requête SQL
         $sql = "SELECT t.*, DATE_FORMAT(topic_creation_date, '%d/%m/%Y %H:%i') AS formattedTopicDate,
-                DATE_FORMAT((SELECT MAX(post_creation_date) FROM post WHERE topic_id = t.id_topic), '%d/%m/%Y %H:%i') AS lastPostDate,
                 (SELECT COUNT(*) FROM post WHERE topic_id = t.id_topic) AS countPost 
                 FROM topic t 
                 WHERE t.category_id = :id
-                ORDER BY lastPostDate DESC
+                ORDER BY t.topic_creation_date DESC
                 ";
-
+    
         // Exécution de la requête et retour des résultats
         return $this->getMultipleResults(
             DAO::select($sql, ['id' => $categoryId], true), 
