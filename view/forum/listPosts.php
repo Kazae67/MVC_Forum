@@ -11,18 +11,18 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
 ?>
 
 <!-- Catégorie -->
-<h2 class="post-category-centered">
+<h1 class="post-category-centered">
     <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?=$topic->getCategory()->getId()?>"><?=$topic->getCategory()->getCategoryLabel()?></a>
-</h2>
+</h1>
 
 <div class="post-container">
     <div class="post-header">
         <div class="post-header-left author-content">
             <!-- Titre -->
-            <h2 class="post-title">Title: <?=$topic->getTitle()?></h2>
+            <p><span class="post-title-label">Title:</span> <?=$topic->getTitle()?></p>
             <hr>
             <!-- Description -->
-            <h2 class="post-topic-description"><?=$topic->getTopic_description()?></h2>
+            <p class="post-topic-description"><?=$topic->getTopic_description()?></p>
         </div>
         <div class="post-header-right">
             <?php 
@@ -87,7 +87,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
         <form class="form-add-topic" action="index.php?ctrl=post&action=addPostByTopic&id=<?= $topic->getId() ?>" method="POST">
             <label for="text">Answer</label>
             <textarea rows="5" name="text" id="text"></textarea>
-            <input type="submit" name="submit" id="submit" value="Answer">
+            <input class="button" type="submit" name="submit" id="submit" value="Answer">
         </form>
     <?php } ?>
 </div>
