@@ -15,6 +15,7 @@ final class Topic extends Entity
     private $category;
     private string $format;
     private string $topic_description;
+    protected $countPost;
 
     public function __construct(array $data)
     {
@@ -184,6 +185,18 @@ final class Topic extends Entity
     {
         $this->topic_description = $topic_description;
         return $this;
+    }
+
+    // Méthode pour définir le nombre de posts
+    public function setCountPost($countPost)
+    {
+        $this->countPost = $countPost;
+    }
+
+    // Méthode pour récupérer le nombre de posts
+    public function getCountPost()
+    {
+        return $this->countPost;
     }
 
 }

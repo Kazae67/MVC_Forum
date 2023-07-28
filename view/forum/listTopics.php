@@ -21,6 +21,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
         <th>Title</th>
         <th>Author</th>
         <th>Creation date</th>
+        <th>Number of posts</th> <!-- Nouvelle colonne -->
         <th>Statut</th>
         <?php if ($admin || isset($_SESSION['user'])): ?>
           <th>Actions</th>
@@ -76,6 +77,8 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
               <i class="fa-solid fa-lock-open"></i>
             <?php endif; ?>
           </td>
+          <!-- NUMBER OF POSTS -->
+          <td><?= $topic->getCountPost() ?></td>
           <!-- ACTIONS -->
           <?php if ($admin || $isTopicAuthor): ?>
             <td>
