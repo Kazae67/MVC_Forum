@@ -50,7 +50,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
           <td>
             <?php if ($topic->getUser() !== null): ?>
               <p title="View profile" class="<?= $topic->getUser()->getRole() ?>">
-                <a href="index.php?ctrl=security&action=usersProfiles&id=<?= $topic->getUser()->getId() ?>">
+              <a href="index.php?ctrl=security&action=usersProfiles&id=<?= $topic->getUser()->getId() ?>"> <!-- Mettez à jour le lien ici -->
                   <?= $topic->getUser()->getNickName() ?>
                 </a>
               </p>

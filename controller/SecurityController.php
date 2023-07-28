@@ -166,5 +166,23 @@ class SecurityController extends AbstractController implements ControllerInterfa
         }
         return true;
     }
+
+    // Méthode pour voir les profiles
+    public function usersProfiles($id)
+    {
+        // Récupérez l'utilisateur en fonction de son ID
+        $user = $this->userManager->findOneById($id);
+
+        if (!$user) {
+            Session::addFlash('error', 'User not found');
+            $this->redirectTo('security', 'toLogin');
+        }
+
+        return [
+            "view" => VIEW_DIR . "forum/usersProfiles.php",
+            "data" => [
+                "user" => $user,
+            ],
+        ];
+    }
 }
-//save
