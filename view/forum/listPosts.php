@@ -11,9 +11,10 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
 ?>
 
 <!-- Catégorie -->
-<h1 class="post-category-centered">
+<h3 class="header-post header-post-center">
     <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?=$topic->getCategory()->getId()?>"><?=$topic->getCategory()->getCategoryLabel()?></a>
-</h1>
+</h3>
+
 
 <div class="post-container">
     <div class="post-header">
@@ -55,7 +56,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
                 <div class="post-card">
                     <div class="forum-post-header">
                         <div class="forum-post-header-left">
-                            <a title="Check profile" href="index.php?ctrl=security&action=usersProfiles&id=<?= $post->getUser()->getId() ?>"><?= $post->getUser()->getNickname() ?></a>
+                            <h3><a title="Check profile" href="index.php?ctrl=security&action=usersProfiles&id=<?= $post->getUser()->getId() ?>"><?= $post->getUser()->getNickname() ?></a></h3>
                             <!-- Vérifie que la date de création du post n'est pas null avant de l'afficher -->
                             <?php if ($post->getPostCreationDate() !== null): ?>
                                 <p class="post-date"><?= $post->getPostCreationDate()->format('Y-m-d H:i:s') ?></p>

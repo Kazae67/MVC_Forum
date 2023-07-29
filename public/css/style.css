@@ -301,12 +301,6 @@ main {
   margin-left: 10px;
 }
 
-/* Centrage de la catégorie du message */
-.post-category-centered {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 /* Category */
 /* Styles pour le header-category dans listCategories */
 .header-category {
@@ -388,4 +382,44 @@ main {
 .login-form .button {
   display: block;
   margin: 0 auto;
+}
+
+/* Centrage de la catégorie du message et du titre du profil de l'auteur */
+.header-post,
+.header-post-center {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  box-sizing: border-box;
+}
+
+/* Appliquer le style de centrage au titre du profil de l'auteur */
+.header-post-center h3 {
+  margin: 0; /* Pour supprimer les marges par défaut du h3 */
+}
+
+/* Appliquer le style de centrage au lien du profil de l'auteur */
+.header-post-center a {
+  display: block; /* Pour que le lien occupe toute la largeur du conteneur */
+  margin: 0 auto; /* Pour centrer le lien horizontalement */
+}
+
+/* Appliquer le style de centrage au bouton "NEW POST" dans header-post */
+.header-post .button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+}
+
+/* Hover du bouton "NEW POST" dans header-post */
+.header-post .button:hover {
+  background-color: #0056b3;
 }
