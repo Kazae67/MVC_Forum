@@ -75,21 +75,6 @@
                 content_css: '//www.tiny.cloud/css/codepen.min.css'
             });
         });
-
-        // Vérifier si l'animation a déjà été jouée (en utilisant une variable de session)
-        const animationPlayed = sessionStorage.getItem('animationPlayed');
-
-        // Fonction pour ajouter la classe d'animation
-        function playAnimation() {
-            const navbar = document.querySelector('nav');
-            navbar.classList.add('slide-in-animation');
-            sessionStorage.setItem('animationPlayed', 'true');
-        }
-
-        // Ajouter la classe d'animation au chargement initial de la page
-        if (!animationPlayed) {
-            window.addEventListener('DOMContentLoaded', playAnimation);
-        }
     </script>
 </body>
 </html>

@@ -170,11 +170,6 @@ footer a {
   margin-left: 0;
 }
 
-/* Animation de la navbar */
-.slide-in-animation {
-  animation: slideIn 0.5s ease forwards;
-}
-
 /* Contenu principal */
 main {
   padding: 30px;
