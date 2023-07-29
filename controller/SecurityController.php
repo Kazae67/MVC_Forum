@@ -179,7 +179,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
         }
 
         return [
-            "view" => VIEW_DIR . "forum/usersProfiles.php",
+            "view" => VIEW_DIR . "security/usersProfiles.php",
             "data" => [
                 "user" => $user,
             ],
