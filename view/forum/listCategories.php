@@ -21,7 +21,9 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
             <tr>
                 <th>ID</th>
                 <th>Category name</th>
-                <th>Actions</th>
+                <?php if ($admin): ?>
+                    <th>Actions</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -46,14 +48,14 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
                             <?= $category->getCategoryLabel() ?>
                         </a>
                     </td>
-                    <td>
-                        <?php if ($admin): ?>
+                    <?php if ($admin): ?>
+                        <td>
                             <div class="container-admin">
                                 <a href="index.php?ctrl=category&action=editCategory&id=<?= $category->getId() ?>">Edit</a>
                                 <a href="index.php?ctrl=category&action=deleteCategory&id=<?= $category->getId() ?>">Delete</a>
                             </div>
-                        <?php endif; ?>
-                    </td>
+                        </td>
+                    <?php endif; ?>
                 </tr>
             <?php endforeach; ?>
         </tbody>
