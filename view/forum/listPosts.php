@@ -10,7 +10,6 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
 }
 ?>
 
-
 <!-- Catégorie -->
 <div class="header-post">
     <div class="header-post-left">
@@ -18,6 +17,9 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
     </div>
     <div class="header-post-center">
         <h3><?=$topic->getCategory()->getCategoryLabel()?></h3>
+    </div>
+    <div class="header-post-right">
+        <a title="Answer" href="#answer-form">Answer</a>
     </div>
 </div>
 
@@ -90,7 +92,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
     <?php
     // Si le sujet n'est pas verrouillé, affiche le formulaire de réponse (à mettre dans un fichier newPost)
     if ($topic->getIs_Locked() == 0) { ?>
-        <form class="form-add-topic" action="index.php?ctrl=post&action=addPostByTopic&id=<?= $topic->getId() ?>" method="POST">
+        <form id="answer-form" class="form-add-topic" action="index.php?ctrl=post&action=addPostByTopic&id=<?= $topic->getId() ?>" method="POST">
             <label for="text"></label>
             <textarea rows="5" name="text" id="text"></textarea>
             <input class="button" type="submit" name="submit" id="submit" value="Answer">
