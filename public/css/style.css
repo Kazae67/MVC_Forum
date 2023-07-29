@@ -50,25 +50,33 @@ nav a:hover {
   padding: 20px;
   background-color: #f8f9fa;
   border-bottom: 1px solid #dee2e6;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* Titre centré pour header-topic et header-category */
+.header-title {
+  text-align: center;
+  flex-grow: 1;
 }
 
 .header-topic h3,
 .header-category h3 {
   font-size: 1.5em;
   color: #495057;
+  margin: 0;
 }
 
-/* Bouton commun pour header-topic et header-category */
-.header-topic .button,
+/* Styles pour le bouton "NEW CATEGORY" */
 .header-category .button {
   padding: 10px 20px;
   background-color: #007BFF;
   color: #fff;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
-.header-topic .button:hover,
 .header-category .button:hover {
   background-color: #0056b3;
 }
@@ -77,7 +85,6 @@ nav a:hover {
 .topic-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
 }
 
 .topic-table th,
@@ -303,27 +310,10 @@ main {
 }
 
 /* Category */
-/* Styles pour le bouton "NEW CATEGORY" */
-.header-category .button {
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: #fff;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  text-decoration: none; /* Pour supprimer le soulignement par défaut des liens */
-  margin-left: 10px; /* Pour ajouter un espace entre le titre et le bouton */
-  display: inline-block; /* Pour afficher le bouton dans la même ligne que le titre */
-  line-height: 1; /* Pour aligner verticalement le texte du bouton */
-}
-
-.header-category .button:hover {
-  background-color: #0056b3;
-}
-
 /* Styles pour le header-category dans listCategories */
 .header-category {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
   background-color: #f8f9fa;
@@ -333,7 +323,13 @@ main {
 .header-category h3 {
   font-size: 1.5em;
   color: #495057;
-  margin: 0; 
+  margin: 0;
+}
+
+/* Nouvelle classe pour centrer le titre du header-category */
+.header-category-center {
+  text-align: center;
+  flex-grow: 1;
 }
 
 /* REGISTER - LOGIN */

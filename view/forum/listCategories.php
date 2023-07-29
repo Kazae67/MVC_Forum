@@ -9,17 +9,9 @@ $categories = $result["data"]['categories'];
 $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
 ?>
 
-<!-- Si l'utilisateur est un administrateur, afficher le formulaire d'ajout de catégorie -->
-<?php if ($admin) : ?>
-    <form action="index.php?ctrl=category&action=addCategory" method="post">
-        <label for="categoryLabel">New category :</label>
-        <input type="text" name="categoryLabel" id="categoryLabel">
-        <input type="submit" name="submit" id="submit" value="Add">
-    </form>
-<?php endif; ?>
-
-<div class="header-category"> <!-- Renommage de la classe "header-topic" en "header-category" -->
-    <h3>List of categories</h3>
+<!-- Titre  -->
+<div class="header-category"> 
+    <h3 class="header-category-center">List of categories</h3>
 </div>
 
 <!-- Si il y a des catégories, afficher la liste des catégories -->
@@ -33,6 +25,19 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
             </tr>
         </thead>
         <tbody>
+            <?php if ($admin) : ?>
+                <tr>
+                    <td></td>
+                    <td>
+                        <form action="index.php?ctrl=category&action=addCategory" method="post">
+                            <label for="categoryLabel">New category :</label>
+                            <input type="text" name="categoryLabel" id="categoryLabel">
+                            <input type="submit" name="submit" id="submit" value="Add">
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+            <?php endif; ?>
             <?php foreach ($categories as $category) : ?>
                 <tr>
                     <td><?= $category->getId() ?></td>
