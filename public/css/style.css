@@ -1,10 +1,19 @@
 /* Reset des éléments */
-body, h1, h2, h3, h4, h5, h6, p, ul, li, a {
+* {
   margin: 0;
   padding: 0;
-  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+a {
+  color: #007BFF;
   text-decoration: none;
-  font-family: Arial, sans-serif;
 }
 
 /* Navbar */
@@ -15,44 +24,103 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* Liens dans la navbar */
 nav a {
   color: #fff;
   font-size: 16px;
-  text-decoration: none;
   padding: 8px 15px;
   transition: color 0.3s ease;
 }
 
-/* Hover sur les liens dans la navbar */
 nav a:hover {
   color: #007BFF;
 }
 
-/* Hover sur le bouton dans la navbar */
-nav .button:hover {
-  background-color: #fff;
-  color: #000;
+/* Header Topic */
+.header-topic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
 }
 
-/* Styles pour les messages d'erreur */
+.header-topic h3 {
+  font-size: 1.5em;
+  color: #495057;
+}
+
+.header-topic .button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.header-topic .button:hover {
+  background-color: #0056b3;
+}
+
+/* Topic Table */
+.topic-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.topic-table th,
+.topic-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.topic-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.locked-topic {
+  background-color: #d3d3d3; 
+}
+
+/* Container Admin */
+.container-admin {
+  display: flex;
+  gap: 10px;
+}
+
+.container-admin a {
+  color: #007BFF;
+}
+
+.container-admin a:hover {
+  color: #0056b3;
+}
+
+/* Message Styles */
+.message {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
 .message.error {
-  color: red;
-  font-weight: bold;
+  background-color: #f8d7da;
+  color: #721c24;
+  border-color: #f5c6cb;
 }
 
-/* Styles pour les messages de succès */
 .message.success {
-  color: green;
-  font-weight: bold;
-}
-
-/* Contenu principal */
-main {
-  padding: 30px;
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
 }
 
 /* Footer */
@@ -61,9 +129,11 @@ footer {
   color: #fff;
   padding: 10px;
   text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
 
-/* Liens dans le footer */
 footer a {
   color: #5199ec;
   margin: 0 10px;
@@ -84,89 +154,9 @@ footer a {
   animation: slideIn 0.5s ease forwards;
 }
 
-/* Styles pour les sujets verrouillés */
-.locked-topic {
-  background-color: #d3d3d3; 
-}
-
-/* Tableau des sujets */
-.topic-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-/* Styles pour les en-têtes de colonne dans le tableau des sujets */
-.topic-table th,
-.topic-table td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ccc;
-}
-
-/* Styles pour l'en-tête de colonne dans le tableau des sujets */
-.topic-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-/* Conteneurs des formulaires d'inscription et de connexion */
-.registration-container,
-.login-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Formulaires d'inscription et de connexion */
-.registration-form,
-.login-form {
-  border: 1px solid #ccc;
-  padding: 20px;
-  width: 300px;
-  margin: 0 auto;
-  box-sizing: border-box;
-}
-
-/* Titres des formulaires d'inscription et de connexion */
-.registration-form h3,
-.login-form h3 {
-  text-align: center;
-}
-
-/* Étiquettes des champs dans les formulaires d'inscription et de connexion */
-.registration-form label,
-.login-form label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Champs de saisie dans les formulaires d'inscription et de connexion */
-.registration-form input,
-.login-form input {
-  padding: 8px;
-  width: 100%;
-  margin-bottom: 10px;
-  box-sizing: border-box;
-}
-
-/* Boutons dans les formulaires d'inscription et de connexion */
-.registration-form #submit,
-.login-form #submit {
-  width: 100%;
-  margin-top: 10px;
-  cursor: pointer;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Centrage des boutons dans les formulaires d'inscription et de connexion */
-.registration-form .button,
-.login-form .button {
-  display: block;
-  margin: 0 auto;
+/* Contenu principal */
+main {
+  padding: 30px;
 }
 
 /* Styles pour listPost.php */
