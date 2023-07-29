@@ -6,6 +6,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
+/* Couleurs et arrière-plan */
 body {
   background-color: #f5f5f5;
   color: #333;
@@ -40,8 +41,9 @@ nav a:hover {
   color: #007BFF;
 }
 
-/* Header Topic */
-.header-topic {
+/* Styles communs pour header-topic et header-category */
+.header-topic,
+.header-category {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,12 +52,15 @@ nav a:hover {
   border-bottom: 1px solid #dee2e6;
 }
 
-.header-topic h3 {
+.header-topic h3,
+.header-category h3 {
   font-size: 1.5em;
   color: #495057;
 }
 
-.header-topic .button {
+/* Bouton commun pour header-topic et header-category */
+.header-topic .button,
+.header-category .button {
   padding: 10px 20px;
   background-color: #007BFF;
   color: #fff;
@@ -63,11 +68,12 @@ nav a:hover {
   transition: background-color 0.3s ease;
 }
 
-.header-topic .button:hover {
+.header-topic .button:hover,
+.header-category .button:hover {
   background-color: #0056b3;
 }
 
-/* Topic Table */
+/* Tableau des sujets */
 .topic-table {
   width: 100%;
   border-collapse: collapse;
@@ -90,7 +96,7 @@ nav a:hover {
   background-color: #d3d3d3; 
 }
 
-/* Container Admin */
+/* Conteneur pour les actions admin */
 .container-admin {
   display: flex;
   gap: 10px;
@@ -104,7 +110,7 @@ nav a:hover {
   color: #0056b3;
 }
 
-/* Message Styles */
+/* Styles pour les messages */
 .message {
   padding: 10px;
   margin-bottom: 20px;
@@ -294,4 +300,98 @@ main {
 .post-category-centered {
   text-align: center;
   margin-bottom: 20px;
+}
+
+/* Category */
+/* Styles pour le bouton "NEW CATEGORY" */
+.header-category .button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* Pour supprimer le soulignement par défaut des liens */
+  margin-left: 10px; /* Pour ajouter un espace entre le titre et le bouton */
+  display: inline-block; /* Pour afficher le bouton dans la même ligne que le titre */
+  line-height: 1; /* Pour aligner verticalement le texte du bouton */
+}
+
+.header-category .button:hover {
+  background-color: #0056b3;
+}
+
+/* Styles pour le header-category dans listCategories */
+.header-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.header-category h3 {
+  font-size: 1.5em;
+  color: #495057;
+  margin: 0; 
+}
+
+/* REGISTER - LOGIN */
+/* Conteneurs des formulaires d'inscription et de connexion */
+.registration-container,
+.login-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Formulaires d'inscription et de connexion */
+.registration-form,
+.login-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Titres des formulaires d'inscription et de connexion */
+.registration-form h3,
+.login-form h3 {
+  text-align: center;
+}
+
+/* Étiquettes des champs dans les formulaires d'inscription et de connexion */
+.registration-form label,
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Champs de saisie dans les formulaires d'inscription et de connexion */
+.registration-form input,
+.login-form input {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Boutons dans les formulaires d'inscription et de connexion */
+.registration-form #submit,
+.login-form #submit {
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Centrage des boutons dans les formulaires d'inscription et de connexion */
+.registration-form .button,
+.login-form .button {
+  display: block;
+  margin: 0 auto;
 }
