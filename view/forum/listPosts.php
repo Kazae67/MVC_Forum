@@ -21,7 +21,7 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
         <h3><?=$topic->getCategory()->getCategoryLabel()?></h3>
     </div>
     <div class="header-post-right">
-        <a title="Answer" class="button" href="#answer-form" onclick="scrollAndFocus()">Answer</a>
+        <a title="Answer" href="#answer-form" onclick="scrollAndFocus()">Scroll to answer</a>
     </div>
 </div>
 

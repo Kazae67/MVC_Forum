@@ -7,6 +7,6 @@ function scrollAndFocus() {
     setTimeout(function() {
         const textareaElement = document.getElementById('text');
         textareaElement.focus();
-    }, 200); // ajuster le délai (en millisecondes)
+    }, 200); // ajuster le délai
 }
 
