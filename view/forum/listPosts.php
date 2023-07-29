@@ -10,11 +10,16 @@ if (isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ['admin',
 }
 ?>
 
-<!-- Catégorie -->
-<h3 class="header-post header-post-center">
-    <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?=$topic->getCategory()->getId()?>"><?=$topic->getCategory()->getCategoryLabel()?></a>
-</h3>
 
+<!-- Catégorie -->
+<div class="header-post">
+    <div class="header-post-left">
+        <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?=$topic->getCategory()->getId()?>">Back to topics</a>
+    </div>
+    <div class="header-post-center">
+        <h3><?=$topic->getCategory()->getCategoryLabel()?></h3>
+    </div>
+</div>
 
 <div class="post-container">
     <div class="post-header">

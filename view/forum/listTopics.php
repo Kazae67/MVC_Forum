@@ -8,7 +8,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
 <!-- Header avec le bouton de retour, le titre de la catégorie et le bouton pour créer un nouveau topic -->
 <div class="header-topic">
   <a title="Go back to categories" href="index.php?ctrl=category" class="button">Back to category list</a>
-  <h3>Category: <?= $category->getCategoryLabel() ?></h3>
+  <h3><?= $category->getCategoryLabel() ?></h3>
   <a title="Create a new topic" class="button" href="index.php?ctrl=topic&action=newTopic&id=<?= $category->getId() ?>">NEW TOPIC</a>
 </div>
 

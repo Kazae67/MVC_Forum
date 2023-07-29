@@ -43,7 +43,8 @@ nav a:hover {
 
 /* Styles communs pour header-topic et header-category */
 .header-topic,
-.header-category {
+.header-category,
+.header-post {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,23 +53,31 @@ nav a:hover {
   border-bottom: 1px solid #dee2e6;
   margin-bottom: 20px;
   box-sizing: border-box;
+  text-align: center;
 }
 
-/* Titre centré pour header-topic et header-category */
-.header-title {
+.header-post-center {
+  flex-grow: 1;
   text-align: center;
+}
+
+
+.header-title,
+.header-category-center {
   flex-grow: 1;
 }
 
 .header-topic h3,
-.header-category h3 {
+.header-category h3,
+.header-post h3 {
   font-size: 1.5em;
   color: #495057;
   margin: 0;
 }
 
 /* Styles pour le bouton "NEW CATEGORY" */
-.header-category .button {
+.header-category .button,
+.header-post .button {
   padding: 10px 20px;
   background-color: #007BFF;
   color: #fff;
@@ -77,7 +86,8 @@ nav a:hover {
   text-decoration: none;
 }
 
-.header-category .button:hover {
+.header-category .button:hover,
+.header-post .button:hover {
   background-color: #0056b3;
 }
 
@@ -190,14 +200,13 @@ main {
 
 /* En-tête du message */
 .post-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
 }
 
 /* Styles pour les titres de niveau 1, 2 et 3 dans l'en-tête du message */
-.post-header-left h2, .post-header-left h1, .post-header-left h3 {
+.post-header-left h2,
+.post-header-left h1,
+.post-header-left h3 {
   margin-bottom: 5px;
 }
 
@@ -230,14 +239,10 @@ main {
 }
 
 /* Lien dans l'en-tête de la carte du message */
-.forum-post-header-left a {
-  color: #007BFF;
-  font-weight: bold;
-}
-
-/* Lien dans l'en-tête de la carte du message */
+.forum-post-header-left a,
 .forum-post-header-right a {
   color: #007BFF;
+  font-weight: bold;
 }
 
 /* Texte du message */
@@ -303,25 +308,10 @@ main {
 
 /* Category */
 /* Styles pour le header-category dans listCategories */
-.header-category {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-}
-
 .header-category h3 {
   font-size: 1.5em;
   color: #495057;
   margin: 0;
-}
-
-/* Nouvelle classe pour centrer le titre du header-category */
-.header-category-center {
-  text-align: center;
-  flex-grow: 1;
 }
 
 /* REGISTER - LOGIN */
@@ -377,49 +367,54 @@ main {
   border-radius: 5px;
 }
 
-/* Centrage des boutons dans les formulaires d'inscription et de connexion */
-.registration-form .button,
-.login-form .button {
-  display: block;
-  margin: 0 auto;
+/* Conteneurs des formulaires d'inscription et de connexion */
+.registration-container,
+.login-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Centrage de la catégorie du message et du titre du profil de l'auteur */
-.header-post,
-.header-post-center {
-  text-align: center;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Formulaires d'inscription et de connexion */
+.registration-form,
+.login-form {
+  border: 1px solid #ccc;
   padding: 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
+  width: 300px;
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
-/* Appliquer le style de centrage au titre du profil de l'auteur */
-.header-post-center h3 {
-  margin: 0; /* Pour supprimer les marges par défaut du h3 */
+/* Titres des formulaires d'inscription et de connexion */
+.registration-form h3,
+.login-form h3 {
+  text-align: center;
 }
 
-/* Appliquer le style de centrage au lien du profil de l'auteur */
-.header-post-center a {
-  display: block; /* Pour que le lien occupe toute la largeur du conteneur */
-  margin: 0 auto; /* Pour centrer le lien horizontalement */
+/* Étiquettes des champs dans les formulaires d'inscription et de connexion */
+.registration-form label,
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
 }
 
-/* Appliquer le style de centrage au bouton "NEW POST" dans header-post */
-.header-post .button {
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: #fff;
+/* Champs de saisie dans les formulaires d'inscription et de connexion */
+.registration-form input,
+.login-form input {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* Boutons dans les formulaires d'inscription et de connexion */
+.registration-form #submit,
+.login-form #submit {
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
-  text-decoration: none;
-}
-
-/* Hover du bouton "NEW POST" dans header-post */
-.header-post .button:hover {
-  background-color: #0056b3;
 }
