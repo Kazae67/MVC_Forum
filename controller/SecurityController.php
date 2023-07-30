@@ -216,5 +216,20 @@ class SecurityController extends AbstractController implements ControllerInterfa
     $this->redirectTo('security', 'usersProfiles', ['id' => $id]);
 }
 
+    public function unbanUser()
+    {
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
+        $user = $this->userManager->findOneById($id);
+
+        if (!$user) {
+            Session::addFlash('error', 'User not found');
+            $this->redirectTo('security', 'toLogin');
+        }
+
+        $this->userManager->unbanUserById($id);
+
+        Session::addFlash('success', self::SUCCESS_UNBAN);
+        $this->redirectTo('security', 'usersProfiles', ['id' => $id]);
+    }
 }
