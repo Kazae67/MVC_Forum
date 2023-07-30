@@ -6,19 +6,22 @@ use App\Entity;
 
 final class User extends Entity
 {
-    private int $id;
+    // Propriétés de la classe
+    private int $id; 
     private string $nickName;
     private string $password;
     private string $email;
     private $user_registration_date;
     private string $role;
-    private $ban;
+    private $ban; // Statut de bannissement de l'utilisateur (0 = non banni, 1 = banni)
 
+    // Constructeur de la classe
     public function __construct($data)
     {
         $this->hydrate($data);
     }
 
+    // Méthode pour hydrater les propriétés de la classe à partir d'un tableau de données
     public function hydrate($data)
     {
         foreach ($data as $key => $value) {
@@ -30,7 +33,9 @@ final class User extends Entity
     }
 
     /**
-     * Récupérer la valeur de id
+     * Méthode pour récupérer l'identifiant de l'utilisateur.
+     * 
+     * @return int 
      */ 
     public function getId(): int
     {
@@ -38,19 +43,21 @@ final class User extends Entity
     }
 
     /**
-     * Définir la valeur de id
+     * Méthode pour définir l'identifiant de l'utilisateur.
      *
-     * @return  self
+     * @param int $id 
+     * @return self
      */ 
     public function setId_user(int $id): self
     {
         $this->id = $id;
-    
         return $this;
     }
 
     /**
-     * Récupérer la valeur de nickName
+     * Méthode pour récupérer le pseudonyme de l'utilisateur.
+     * 
+     * @return string 
      */ 
     public function getNickName(): string
     {
@@ -58,17 +65,20 @@ final class User extends Entity
     }
 
     /**
-     * Définir la valeur de nickName
+     * Méthode pour définir le pseudonyme de l'utilisateur.
+     *
+     * @param string $nickName 
      */ 
     public function setNickName(string $nickName)
     {
         $this->nickName = $nickName;
-
         return $this;
     }
 
     /**
-     * Récupérer la valeur de password
+     * Méthode pour récupérer le mot de passe de l'utilisateur.
+     * 
+     * @return string 
      */ 
     public function getPassword(): string
     {
@@ -76,17 +86,20 @@ final class User extends Entity
     }
 
     /**
-     * Définir la valeur de password
+     * Méthode pour définir le mot de passe de l'utilisateur.
+     *
+     * @param string $password 
      */ 
     public function setPassword(string $password)
     {
         $this->password = $password;
-
         return $this;
     }
 
     /**
-     * Récupérer la valeur de email
+     * Méthode pour récupérer l'adresse email de l'utilisateur.
+     * 
+     * @return string 
      */ 
     public function getEmail(): string
     {
@@ -94,17 +107,20 @@ final class User extends Entity
     }
 
     /**
-     * Définir la valeur de email
+     * Méthode pour définir l'adresse email de l'utilisateur.
+     *
+     * @param string $email 
      */ 
     public function setEmail(string $email)
     {
         $this->email = $email;
-
         return $this;
     }
 
     /**
-     * Récupérer la valeur de user_registration_date
+     * Méthode pour récupérer la date d'enregistrement de l'utilisateur.
+     * 
+     * @return mixed 
      */ 
     public function getUser_registration_date()
     {
@@ -112,17 +128,20 @@ final class User extends Entity
     }
 
     /**
-     * Définir la valeur de user_registration_date
+     * Méthode pour définir la date d'enregistrement de l'utilisateur.
+     *
+     * @param mixed $user_registration_date
      */ 
     public function setUser_registration_date($user_registration_date)
     {
         $this->user_registration_date = $user_registration_date;
-
         return $this;
     }
 
     /**
-     * Récupérer la valeur de role
+     * Méthode pour récupérer le rôle de l'utilisateur.
+     * 
+     * @return mixed 
      */ 
     public function getRole()
     {
@@ -130,22 +149,21 @@ final class User extends Entity
     }
 
     /**
-     * Définir la valeur de role
+     * Méthode pour définir le rôle de l'utilisateur.
      *
-     * @return  self
+     * @param mixed $role 
+     * @return self
      */ 
     public function setRole($role)
     {
         $this->role = $role;
-
         return $this;
     }
 
     /**
-     * Vérifier si l'utilisateur a le rôle donné
+     * Méthode pour vérifier si l'utilisateur a le rôle donné.
      *
-     * @param string $role Le rôle à vérifier
-     * 
+     * @param string $role 
      * @return bool True si l'utilisateur a le rôle, False sinon
      */
     public function hasRole(string $role): bool
@@ -154,7 +172,9 @@ final class User extends Entity
     }
 
     /**
-     * Récupérer la valeur de ban
+     * Méthode pour récupérer le statut de bannissement de l'utilisateur.
+     * 
+     * @return int Le statut de bannissement de l'utilisateur (0 = non banni, 1 = banni)
      */ 
     public function getBan(): int
     {
@@ -162,19 +182,19 @@ final class User extends Entity
     }
 
     /**
-     * Définir la valeur de ban
+     * Méthode pour définir le statut de bannissement de l'utilisateur.
      *
+     * @param int $ban Le statut de bannissement de l'utilisateur (0 = non banni, 1 = banni)
      * @return  self
      */ 
     public function setBan(int $ban): self
     {
         $this->ban = $ban;
-
         return $this;
     }
 
     /**
-     * Vérifier si l'utilisateur est un administrateur
+     * Méthode pour vérifier si l'utilisateur est un administrateur.
      *
      * @return bool True si l'utilisateur est un administrateur, False sinon
      */
@@ -183,5 +203,4 @@ final class User extends Entity
         return $this->role === 'admin';
     }
 }
-
 ?>
