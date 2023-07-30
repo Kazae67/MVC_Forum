@@ -192,21 +192,27 @@ class SecurityController extends AbstractController implements ControllerInterfa
         ];
     }
 
+    // Méthode pour bannir un utilisateur
     public function banUser()
     {
+    // Récupérez l'ID de l'utilisateur à partir de la requête GET
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
+    // Récupérez l'utilisateur en fonction de son ID
     $user = $this->userManager->findOneById($id);
 
+    // Si aucun utilisateur n'a été trouvé, ajoutez un message flash et redirigez vers la page de login
     if (!$user) {
         Session::addFlash('error', 'User not found');
         $this->redirectTo('security', 'toLogin');
         return;
     }
 
+    // Si un utilisateur a été trouvé, bannissez l'utilisateur et ajoutez un message flash
     $this->userManager->banUserById($id);
     Session::addFlash('success', 'User has been banned');
 
+    // Redirigez vers la page de profil de l'utilisateur
     $this->redirectTo('security', 'usersProfiles', ['id' => $id]);
 }
 
