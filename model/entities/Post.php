@@ -7,19 +7,23 @@ use DateTime;
 
 final class Post extends Entity
 {
-    private int $id;
-    private string $text;
-    private ?DateTime $post_creation_date = null; //  '?' pour rendre le type nullable
+    // Propriétés de la classe
+    private int $id; 
+    private string $text; 
+    private ?DateTime $post_creation_date = null; 
     private $user;
-    private $topic;
+    private $topic; 
 
+    // Constructeur de la classe
     public function __construct(array $data)
     {
         $this->hydrate($data);
     }
 
     /**
-     * Get the value of id
+     * Méthode pour récupérer l'identifiant du post.
+     * 
+     * @return int 
      */ 
     public function getId(): int
     {
@@ -27,8 +31,9 @@ final class Post extends Entity
     }
 
     /**
-     * Set the value of id
+     * Méthode pour définir l'identifiant du post.
      *
+     * @param int $id 
      * @return self
      */ 
     public function setId(int $id): self
@@ -38,7 +43,9 @@ final class Post extends Entity
     }
 
     /**
-     * Get the value of text
+     * Méthode pour récupérer le contenu du post.
+     * 
+     * @return string 
      */ 
     public function getText(): string
     {
@@ -46,8 +53,9 @@ final class Post extends Entity
     }
 
     /**
-     * Set the value of text
+     * Méthode pour définir le contenu du post.
      *
+     * @param string $text
      * @return self
      */ 
     public function setText(string $text): self
@@ -57,26 +65,31 @@ final class Post extends Entity
     }
 
     /**
-     * Get the value of post_creation_date
+     * Méthode pour récupérer la date de création du post.
+     * 
+     * @return DateTime|null 
      */ 
-    public function getPostCreationDate(): ?DateTime // ajout du '?' pour rendre le type nullable
+    public function getPostCreationDate(): ?DateTime
     {
         return $this->post_creation_date;
     }
 
     /**
-     * Set the value of post_creation_date
+     * Méthode pour définir la date de création du post.
      *
+     * @param DateTime|null $post_creation_date
      * @return self
      */ 
-    public function setPostCreationDate(?DateTime $post_creation_date): self // '?' pour rendre le type nullable
+    public function setPostCreationDate(?DateTime $post_creation_date): self
     {
         $this->post_creation_date = $post_creation_date;
         return $this;
     }
 
     /**
-     * Get the value of user
+     * Méthode pour récupérer l'utilisateur associé au post.
+     * 
+     * @return mixed
      */ 
     public function getUser()
     {
@@ -84,8 +97,9 @@ final class Post extends Entity
     }
 
     /**
-     * Set the value of user
+     * Méthode pour définir l'utilisateur associé au post.
      *
+     * @param mixed $user
      * @return self
      */ 
     public function setUser($user): self
@@ -95,7 +109,9 @@ final class Post extends Entity
     }
 
     /**
-     * Get the value of topic
+     * Méthode pour récupérer le sujet auquel le post appartient.
+     * 
+     * @return mixed 
      */ 
     public function getTopic()
     {
@@ -103,8 +119,9 @@ final class Post extends Entity
     }
 
     /**
-     * Set the value of topic
+     * Méthode pour définir le sujet auquel le post appartient.
      *
+     * @param mixed $topic
      * @return self
      */ 
     public function setTopic($topic): self
@@ -113,5 +130,4 @@ final class Post extends Entity
         return $this;
     }
 }
-
 ?>
