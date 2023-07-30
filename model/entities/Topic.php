@@ -16,6 +16,7 @@ final class Topic extends Entity
     private string $format;
     private string $topic_description;
     protected $countPost;
+    private ?string $lastActivity; 
 
     public function __construct(array $data)
     {
@@ -31,6 +32,7 @@ final class Topic extends Entity
             $this->topic_description = ""; 
         }
         $this->is_locked = isset($data['is_locked']) ? (bool) $data['is_locked'] : false;
+        $this->lastActivity = $data['lastActivity'] ?? null; // Initialisation de lastActivity
     }
     
     
@@ -198,6 +200,26 @@ final class Topic extends Entity
     {
         return $this->countPost;
     }
+
+    /**
+     * Get the value of lastActivity
+     */ 
+    public function getLastActivity(): ?string
+    {
+        return $this->lastActivity;
+    }
+
+    /**
+     * Set the value of lastActivity
+     *
+     * @return self
+     */ 
+    public function setLastActivity(?string $lastActivity): self
+    {
+        $this->lastActivity = $lastActivity;
+        return $this;
+    }
+    
 
 }
 
