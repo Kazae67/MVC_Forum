@@ -6,16 +6,20 @@ use App\Entity;
 
 final class Category extends Entity
 {
-    private int $id;
-    private string $categoryLabel;
+    // Propriétés de la classe
+    private int $id; 
+    private string $categoryLabel; 
 
+    // Constructeur de la classe
     public function __construct(array $data)
     {
         $this->hydrate($data);
     }
 
     /**
-     * Get the value of id
+     * Méthode pour récupérer l'identifiant de la catégorie.
+     * 
+     * @return int
      */ 
     public function getId(): int
     {
@@ -23,8 +27,9 @@ final class Category extends Entity
     }
 
     /**
-     * Set the value of id
+     * Méthode pour définir l'identifiant de la catégorie.
      *
+     * @param int $id 
      * @return self
      */ 
     public function setId(int $id): self
@@ -34,7 +39,9 @@ final class Category extends Entity
     }
 
     /**
-     * Get the value of categoryLabel
+     * Méthode pour récupérer le libellé de la catégorie.
+     * 
+     * @return string 
      */ 
     public function getCategoryLabel(): string
     {
@@ -42,8 +49,9 @@ final class Category extends Entity
     }
 
     /**
-     * Set the value of categoryLabel
+     * Méthode pour définir le libellé de la catégorie.
      *
+     * @param string $categoryLabel
      * @return self
      */ 
     public function setCategoryLabel(string $categoryLabel): self
@@ -52,5 +60,4 @@ final class Category extends Entity
         return $this;
     }
 }
-
 ?>
