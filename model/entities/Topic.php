@@ -32,7 +32,7 @@ final class Topic extends Entity
             $this->topic_description = ""; 
         }
         $this->is_locked = isset($data['is_locked']) ? (bool) $data['is_locked'] : false;
-        $this->lastActivity = $data['lastActivity'] ?? null; // Initialisation de lastActivity
+        $this->lastActivity = $data['lastActivity'] ?? null; 
     }
     
     
