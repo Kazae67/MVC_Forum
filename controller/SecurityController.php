@@ -216,10 +216,13 @@ class SecurityController extends AbstractController implements ControllerInterfa
     $this->redirectTo('security', 'usersProfiles', ['id' => $id]);
 }
 
+    // Méthode pour débannir un utilisateur
     public function unbanUser()
     {
+        // Récupérez l'ID de l'utilisateur à partir de la requête GET
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
+        // Récupérez l'utilisateur en fonction de son ID
         $user = $this->userManager->findOneById($id);
 
         if (!$user) {
@@ -227,6 +230,7 @@ class SecurityController extends AbstractController implements ControllerInterfa
             $this->redirectTo('security', 'toLogin');
         }
 
+        // Mettre à jour le statut de l'utilisateur pour le débannir
         $this->userManager->unbanUserById($id);
 
         Session::addFlash('success', self::SUCCESS_UNBAN);
