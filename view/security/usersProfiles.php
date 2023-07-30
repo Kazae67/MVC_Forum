@@ -2,6 +2,9 @@
 // Vérifie si la clé "user" existe dans $result["data"] et stocke sa valeur dans $user
 $user = isset($result["data"]['user']) ? $result["data"]['user'] : null; 
 
+// Vérifie si la clé "admin" existe dans $result["data"] et stocke sa valeur dans $admin
+$admin = isset($result["data"]['admin']) ? $result["data"]['admin'] : null;
+
 // Vérifie si la clé "posts" existe dans $result["data"] et stocke sa valeur dans $lastPosts
 $lastPosts = isset($result["data"]['posts']) ? $result["data"]['posts'] : null; 
 
