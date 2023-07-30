@@ -19,6 +19,8 @@ class SecurityController extends AbstractController implements ControllerInterfa
     const SUCCESS_LOGIN = 'successful connection';
     const SUCCESS_LOGOUT = 'successful disconnection';
     const ERROR_LOGOUT = 'disconnection failed';
+    const SUCCESS_BAN = 'User has been banned';
+    const SUCCESS_UNBAN = 'User has been unbanned';
 
     // Injecter UserManager via le constructeur pour faciliter la réutilisation
     public function __construct() {
@@ -178,11 +180,16 @@ class SecurityController extends AbstractController implements ControllerInterfa
             $this->redirectTo('security', 'toLogin');
         }
 
+        // Vérifiez si l'utilisateur actuel est un administrateur
+        $admin = $_SESSION["user"]->isAdmin();
+
         return [
             "view" => VIEW_DIR . "security/usersProfiles.php",
             "data" => [
                 "user" => $user,
+                "admin" => $admin,
             ],
         ];
     }
+
 }
