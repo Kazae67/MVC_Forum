@@ -156,7 +156,7 @@ final class User extends Entity
     /**
      * Récupérer la valeur de ban
      */ 
-    public function getBan()
+    public function getBan(): int
     {
         return $this->ban;
     }
@@ -166,13 +166,22 @@ final class User extends Entity
      *
      * @return  self
      */ 
-    public function setBan($ban)
+    public function setBan(int $ban): self
     {
         $this->ban = $ban;
 
         return $this;
     }
 
+    /**
+     * Vérifier si l'utilisateur est un administrateur
+     *
+     * @return bool True si l'utilisateur est un administrateur, False sinon
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
 }
 
 ?>
