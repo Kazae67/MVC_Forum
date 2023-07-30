@@ -29,7 +29,7 @@ $userBanned = $user && $user->getBan() == 1;
     <!-- Affiche l'état du compte de l'utilisateur -->
     <div style="display:flex; flex-direction:row; align-items:center;">
         <?php if ($userBanned): ?>
-            <p class='button'>Account: This account is unvalid, you probably have been banned.</p>
+            <p class='button'>Account: This account is unvalid, probably have been banned.</p>
         <?php else: ?>
             <p class='button'>Account status: This account is valid.</p>
         <?php endif; ?>
