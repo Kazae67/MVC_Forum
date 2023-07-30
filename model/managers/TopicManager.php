@@ -22,13 +22,14 @@ class TopicManager extends Manager
     public function findTopicsByCategory($categoryId)
     {
         // Définition de la requête SQL
-        $sql = "SELECT t.*, DATE_FORMAT(topic_creation_date, '%d/%m/%Y %H:%i') AS formattedTopicDate,
-                (SELECT COUNT(*) FROM post WHERE topic_id = t.id_topic) AS countPost 
+        $sql = "SELECT t.*, DATE_FORMAT(t.topic_creation_date, '%d/%m/%Y %H:%i') AS formattedTopicDate,
+                (SELECT COUNT(*) FROM post WHERE topic_id = t.id_topic) AS countPost,
+                (SELECT p.post_creation_date FROM post p WHERE p.topic_id = t.id_topic ORDER BY p.post_creation_date DESC LIMIT 1) AS lastActivity
                 FROM topic t 
                 WHERE t.category_id = :id
-                ORDER BY t.topic_creation_date DESC
+                ORDER BY lastActivity DESC
                 ";
-    
+        
         // Exécution de la requête et retour des résultats
         return $this->getMultipleResults(
             DAO::select($sql, ['id' => $categoryId], true), 
