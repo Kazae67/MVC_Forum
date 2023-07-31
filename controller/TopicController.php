@@ -123,19 +123,22 @@ class TopicController extends AbstractController implements ControllerInterface
             Session::addFlash('error', 'You must be an administrator or the author of the topic to lock it.');
             $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
-    
+
         // Verrouille le topic
         $result = $this->topicManager->lockTopicById($id);
-    
+
         // Si le topic est verrouillé avec succès, affiche un message de succès, sinon affiche un message d'erreur
         if($result) {
             Session::addFlash('success', 'The subject has been successfully locked.');
         } else {
             Session::addFlash('error', 'An error occurred while locking the subject.');
         }
-    
+
+        // Récupérer l'ID de la catégorie à laquelle le topic appartient
+        $categoryId = $this->topicManager->getCategoryIdByTopicId($id);
+
         // Redirige vers la liste des topics de cette catégorie
-        $this->redirectTo('topic', 'listTopicsByCategory', $id);
+        $this->redirectTo('topic', 'listTopicsByCategory', $categoryId);
     }
 
     // Méthode pour déverrouiller un topic
@@ -146,19 +149,22 @@ class TopicController extends AbstractController implements ControllerInterface
             Session::addFlash('error', 'You must be an administrator or the author of the topic to unlock it.');
             $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
-    
+
         // Déverrouille le topic
         $result = $this->topicManager->unlockTopicById($id);
-    
+
         // Si le topic est déverrouillé avec succès, affiche un message de succès, sinon affiche un message d'erreur
         if ($result) {
             Session::addFlash('success', 'The subject has been successfully unlocked.');
         } else {
             Session::addFlash('error', 'An error occurred when unlocking the subject.');
         }
-    
+
+        // Récupérer l'ID de la catégorie à laquelle le topic appartient
+        $categoryId = $this->topicManager->getCategoryIdByTopicId($id);
+
         // Redirige vers la liste des topics de cette catégorie
-        $this->redirectTo('topic', 'listTopicsByCategory', $id);
+        $this->redirectTo('topic', 'listTopicsByCategory', $categoryId);
     }
 
     // Méthode pour supprimer un topic
