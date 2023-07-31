@@ -40,5 +40,21 @@ class CategoryController extends AbstractController implements ControllerInterfa
 
         $this->redirectTo('category', 'index');
     }
+
+    // La méthode deleteCategory
+    public function deleteCategory() {
+        $this->restrictTo('admin');
+
+        $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+        if ($id) {
+            $this->categoryManager->delete($id);
+            Session::addFlash('success', "The category has been successfully deleted.");
+        } else {
+            Session::addFlash('error', "Please, provide a valid category id.");
+        }
+
+        $this->redirectTo('category', 'index');
+    }
 }
 ?>
