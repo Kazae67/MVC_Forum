@@ -74,6 +74,7 @@ class UserManager extends Manager
         return DAO::update($sql, ['id' => $id]);
     }
 
+    // Méthode pour set l'utilisateur a "user"
     public function setUserRoleById($id) {
         // Requête SQL pour changer le rôle de l'utilisateur à "user"
         $sql =  "UPDATE " . $this->tableName .
@@ -84,6 +85,7 @@ class UserManager extends Manager
         return DAO::update($sql, ['id' => $id]);
     }
     
+    // Méthode pour set l'utilisateur a "admin"
     public function setAdminRoleById($id) {
         // Requête SQL pour changer le rôle de l'utilisateur à "admin"
         $sql =  "UPDATE " . $this->tableName .
