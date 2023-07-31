@@ -1,3 +1,4 @@
+<script src="public/js/alertCategories.js"></script>
 <?php
 // Vérifier si il y a des erreurs dans la réponse
 $error = $result["data"]['error'] ?? null;
@@ -52,7 +53,8 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
                         <td>
                             <div class="container-admin">
                                 <a href="index.php?ctrl=category&action=editCategory&id=<?= $category->getId() ?>">Edit</a>
-                                <a href="index.php?ctrl=category&action=deleteCategory&id=<?= $category->getId() ?>"><i class="fa-solid fa-trash"></i></a>
+                                <a href="index.php?ctrl=category&action=deleteCategory&id=<?= $category->getId() ?>" class="confirm" data-action="delete"><i class="fa-solid fa-trash"></i></a>
+
                             </div>
                         </td>
                     <?php endif; ?>
