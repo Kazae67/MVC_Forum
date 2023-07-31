@@ -52,7 +52,7 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
                         <td>
                             <div class="container-admin">
                                 <a href="index.php?ctrl=category&action=editCategory&id=<?= $category->getId() ?>">Edit</a>
-                                <a href="index.php?ctrl=category&action=deleteCategory&id=<?= $category->getId() ?>">Delete</a>
+                                <a href="index.php?ctrl=category&action=deleteCategory&id=<?= $category->getId() ?>"><i class="fa-solid fa-trash"></i></a>
                             </div>
                         </td>
                     <?php endif; ?>
