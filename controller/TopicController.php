@@ -169,19 +169,22 @@ class TopicController extends AbstractController implements ControllerInterface
             Session::addFlash('error', 'You must be an administrator or the author of the topic to delete it.');
             $this->redirectTo('topic', 'listTopicsByCategory', $id);
         }
-
+    
+        // Récupérer l'ID de la catégorie à laquelle le topic appartient avant de le supprimer
+        $categoryId = $this->topicManager->getCategoryIdByTopicId($id);
+    
         // Supprimer le topic et ses posts associés
         $result = $this->topicManager->deleteTopicById($id);
-
+    
         // Vérifier si la suppression du topic s'est bien déroulée
         if (!$result) {
             Session::addFlash('error', 'There was an error deleting the topic.');
         } else {
             Session::addFlash('success', 'The topic has been successfully deleted.');
         }
-
+    
         // Rediriger vers la liste des topics de cette catégorie
-        $this->redirectTo('topic', 'listTopicsByCategory', $id);
+        $this->redirectTo('topic', 'listTopicsByCategory', $categoryId);
     }
     
     // Prototype, supprimer si perte de temps
