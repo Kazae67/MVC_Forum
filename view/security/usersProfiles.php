@@ -20,6 +20,13 @@ $userBanned = $user && $user->getBan() == 1;
     <a class="button-green" href="index.php?ctrl=security&action=unbanUser&id=<?= $user->getId() ?>">Unban this user</a>
 <?php endif; ?>
 
+<?php if ($admin): ?>
+    <!-- Affiche un lien pour attribuer le rôle "user" à l'utilisateur -->
+    <a class="button-blue" href="index.php?ctrl=security&action=setUserRole&id=<?= $user->getId() ?>">Set as User</a>
+    <!-- Affiche un lien pour attribuer le rôle "admin" à l'utilisateur -->
+    <a class="button-blue" href="index.php?ctrl=security&action=setAdminRole&id=<?= $user->getId() ?>">Set as Admin</a>
+<?php endif; ?>
+
 <?php if ($user): ?>
     <!-- Affiche les informations de l'utilisateur -->
     <p>Nickname : <?= $user->getNickname(); ?></p>
