@@ -297,6 +297,29 @@ class SecurityController extends AbstractController implements ControllerInterfa
         return $this->usersProfiles($id);
     }
 
+    // Méthode pour attribuer le rôle "admin" à un utilisateur
+    public function setAdminRole()
+    {
+        // Récupère l'ID de l'utilisateur à partir de la requête GET
+        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
+        // Récupère l'utilisateur en fonction de son ID
+        $user = $this->userManager->findOneById($id);
+
+        // Si aucun utilisateur n'a été trouvé, ajoutez un message flash et redirigez vers la page de login
+        if (!$user) {
+            Session::addFlash('error', 'User not found');
+            $this->redirectTo('security', 'toLogin');
+            return;
+        }
+
+        // Si un utilisateur a été trouvé, changez son rôle à "admin"
+        $this->userManager->setAdminRoleById($id);
+
+        Session::addFlash('success', 'User role has been set to "admin"');
+
+        // Redirigez vers la page de profil de l'utilisateur
+        return $this->usersProfiles($id);
+    }
     
 }

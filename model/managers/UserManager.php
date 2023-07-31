@@ -84,5 +84,13 @@ class UserManager extends Manager
         return DAO::update($sql, ['id' => $id]);
     }
     
-
+    public function setAdminRoleById($id) {
+        // Requête SQL pour changer le rôle de l'utilisateur à "admin"
+        $sql =  "UPDATE " . $this->tableName .
+                " SET role = 'admin' 
+                 WHERE id_user = :id";
+    
+        // Exécute la requête et renvoie le résultat
+        return DAO::update($sql, ['id' => $id]);
+    }
 }
