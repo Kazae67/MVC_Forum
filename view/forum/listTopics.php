@@ -1,3 +1,4 @@
+<script src="public/js/alert/alertTopics.js"></script>
 <?php
 // Récupération des données nécessaires
 $topics = $result["data"]["topics"] ?? null;
@@ -51,7 +52,7 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
           <td>
             <?php if ($topic->getUser() !== null): ?>
               <p title="View profile" class="<?= $topic->getUser()->getRole() ?>">
-              <a href="index.php?ctrl=security&action=usersProfiles&id=<?= $topic->getUser()->getId() ?>"> <!-- Mettez à jour le lien ici -->
+              <a href="index.php?ctrl=security&action=usersProfiles&id=<?= $topic->getUser()->getId() ?>">
                   <?= $topic->getUser()->getNickName() ?>
                 </a>
               </p>
@@ -89,19 +90,19 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
               <div class="container-admin">
                 <?php if ($topic->getIs_Locked()): ?>
                   <?php if ($admin || $isTopicAuthor): ?>
-                    <a title="Unlock topic" class="<?= $authorUnlockAction ?>" href="index.php?ctrl=topic&action=unlockTopicFromTopic&id=<?= $topic_id ?>">
+                    <a title="Unlock topic" class="confirm <?= $authorUnlockAction ?>" data-action="unlock" href="index.php?ctrl=topic&action=unlockTopicFromTopic&id=<?= $topic_id ?>">
                       <i class="fa-solid fa-unlock"></i>
                     </a>
                   <?php endif; ?>
                 <?php else: ?>
                   <?php if ($admin || $isTopicAuthor): ?>
-                    <a title="Lock topic" class="<?= $authorLockAction ?>" href="index.php?ctrl=topic&action=lockTopicFromTopic&id=<?= $topic_id ?>">
+                    <a title="Lock topic" class="confirm <?= $authorLockAction ?>" data-action="lock" href="index.php?ctrl=topic&action=lockTopicFromTopic&id=<?= $topic_id ?>">
                       <i class="fa-solid fa-lock"></i>
                     </a>
                   <?php endif; ?>
                 <?php endif; ?>
                 <?php if ($admin || $isTopicAuthor): ?>
-                  <a title="Delete topic" class="<?= $authorDeleteAction ?>" href="index.php?ctrl=topic&action=deleteTopic&id=<?= $topic_id ?>">
+                  <a title="Delete topic" class="confirm <?= $authorDeleteAction ?>" data-action="delete" href="index.php?ctrl=topic&action=deleteTopic&id=<?= $topic_id ?>">
                     <i class="fa-solid fa-trash"></i>
                   </a>
                 <?php endif; ?>
@@ -113,7 +114,6 @@ $admin = isset($_SESSION["user"]) && in_array($_SESSION["user"]->getRole(), ["ad
     </tbody>
   </table>
 <?php endif; ?>
-
 
 <!-- débugage -->
 <?php
