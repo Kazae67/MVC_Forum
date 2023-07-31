@@ -195,10 +195,10 @@ class SecurityController extends AbstractController implements ControllerInterfa
     // Méthode pour bannir un utilisateur
     public function banUser()
     {
-        // Récupérez l'ID de l'utilisateur à partir de la requête GET
+        // Récupère l'ID de l'utilisateur à partir de la requête GET
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     
-        // Récupérez l'utilisateur en fonction de son ID
+        // Récupère l'utilisateur en fonction de son ID
         $user = $this->userManager->findOneById($id);
     
         // Si aucun utilisateur n'a été trouvé, ajoutez un message flash et redirigez vers la page de login
@@ -214,14 +214,16 @@ class SecurityController extends AbstractController implements ControllerInterfa
         // Si l'utilisateur a été banni, ajoutez un message flash
         if ($banned) {
             Session::addFlash('success', 'User has been banned');
+    
+            // Récupère à nouveau l'utilisateur de la base de données pour obtenir le nouveau statut de bannissement
+            $user = $this->userManager->findOneById($id);
         }
     
         // Redirigez vers la page de profil de l'utilisateur
         return [
-            'view' => 'view/security/usersProfiles.php', 
+            'view' => 'view/security/usersProfiles.php',
             'data' => [
                 'user' => $user,
-
             ],
         ];
     }
@@ -229,10 +231,10 @@ class SecurityController extends AbstractController implements ControllerInterfa
     // Méthode pour débannir un utilisateur
     public function unbanUser()
     {
-        // Récupérez l'ID de l'utilisateur à partir de la requête GET
+        // Récupère l'ID de l'utilisateur à partir de la requête GET
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     
-        // Récupérez l'utilisateur en fonction de son ID
+        // Récupère l'utilisateur en fonction de son ID
         $user = $this->userManager->findOneById($id);
     
         // Si aucun utilisateur n'a été trouvé, ajoutez un message flash et redirigez vers la page de login
@@ -248,6 +250,9 @@ class SecurityController extends AbstractController implements ControllerInterfa
         // Si l'utilisateur a été débanni, ajoutez un message flash
         if ($unbanned) {
             Session::addFlash('success', self::SUCCESS_UNBAN);
+    
+            // Récupère à nouveau l'utilisateur de la base de données pour obtenir le nouveau statut de bannissement
+            $user = $this->userManager->findOneById($id);
         }
     
         // Redirigez vers la page de profil de l'utilisateur
@@ -255,7 +260,10 @@ class SecurityController extends AbstractController implements ControllerInterfa
             'view' => 'view/security/usersProfiles.php', 
             'data' => [
                 'user' => $user,
+               
             ],
         ];
     }
+
+    
 }
