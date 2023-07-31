@@ -15,7 +15,7 @@ class CategoryManager extends Manager
     protected $className = "Model\Entities\Category";
     protected $tableName = "category";
 
-    // La méthode constructeur se connecte à la base de données
+    // La méthode constructeur
     public function __construct()
     {
         parent::connect();
@@ -24,6 +24,7 @@ class CategoryManager extends Manager
     // Méthode pour trouver une catégorie par son ID
     public function findOneById($id)
     {
+        
         // Requête SQL pour obtenir une catégorie par son ID
         $sql = "SELECT *
                     FROM ".$this->tableName."
@@ -36,5 +37,16 @@ class CategoryManager extends Manager
             $this->className
         );
     }
+
+    // La méthode delete
+    public function delete($id)
+    {
+        $sql = "DELETE FROM ".$this->tableName."
+                WHERE id_".$this->tableName." = :id
+                ";
+
+        return DAO::delete($sql, ['id' => $id]);
+    }
 }
+
 ?>
