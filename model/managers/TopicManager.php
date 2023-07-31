@@ -102,21 +102,23 @@ class TopicManager extends Manager
         return DAO::delete($sql, ['topicId' => $topicId]);
     }
 
-    public function getCategoryIdByTopicId($topicId)
-{
-    // Définition de la requête SQL
-    $sql = "SELECT category_id FROM " . $this->tableName . " WHERE id_topic = :topicId";
-    $parameters = [":topicId" => $topicId];
+    
+        // Méthode pour récupérer le topicId de la categoryId
+        public function getCategoryIdByTopicId($topicId)
+    {
+        // Définition de la requête SQL
+        $sql = "SELECT category_id FROM " . $this->tableName . " WHERE id_topic = :topicId";
+        $parameters = [":topicId" => $topicId];
 
-    // Exécution de la requête et récupération du résultat
-    $result = DAO::select($sql, $parameters, false);
+        // Exécution de la requête et récupération du résultat
+        $result = DAO::select($sql, $parameters, false);
 
-    // Vérification du résultat et retour de l'ID de la catégorie s'il existe
-    if ($result && isset($result['category_id'])) {
-        return $result['category_id'];
+        // Vérification du résultat et retour de l'ID de la catégorie s'il existe
+        if ($result && isset($result['category_id'])) {
+            return $result['category_id'];
+        }
+
+        // Si aucun résultat n'a été trouvé, retourn null
+        return null;
     }
-
-    // Si aucun résultat n'a été trouvé, retournez null
-    return null;
-}
 }
