@@ -1,4 +1,4 @@
-<script src="public/js/alertCategories.js"></script>
+<script src="public/js/alert/alertCategories.js"></script>
 <?php
 // Vérifier si il y a des erreurs dans la réponse
 $error = $result["data"]['error'] ?? null;

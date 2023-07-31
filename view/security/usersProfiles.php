@@ -1,4 +1,4 @@
-<script src="public/js/alertConfirm.js"></script>
+<script src="public/js/alert/alertUsersProfiles.js"></script>
 <?php
 // Vérifie si la clé "user" existe dans $result["data"] et stocke sa valeur dans $user
 $user = isset($result["data"]['user']) ? $result["data"]['user'] : null; 
