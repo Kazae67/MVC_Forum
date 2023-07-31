@@ -197,70 +197,77 @@ class SecurityController extends AbstractController implements ControllerInterfa
     {
         // Récupère l'ID de l'utilisateur à partir de la requête GET
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    
+
         // Récupère l'utilisateur en fonction de son ID
         $user = $this->userManager->findOneById($id);
-    
+
         // Si aucun utilisateur n'a été trouvé, ajoutez un message flash et redirigez vers la page de login
         if (!$user) {
             Session::addFlash('error', 'User not found');
             $this->redirectTo('security', 'toLogin');
             return;
         }
-    
+
         // Si un utilisateur a été trouvé, bannissez l'utilisateur
         $banned = $this->userManager->banUserById($id);
-    
+
         // Si l'utilisateur a été banni, ajoutez un message flash
         if ($banned) {
             Session::addFlash('success', 'User has been banned');
-    
+
             // Récupère à nouveau l'utilisateur de la base de données pour obtenir le nouveau statut de bannissement
             $user = $this->userManager->findOneById($id);
         }
-    
+
+        // Vérifiez si l'utilisateur actuel est un administrateur
+        $admin = $_SESSION["user"]->isAdmin();
+
         // Redirigez vers la page de profil de l'utilisateur
         return [
             'view' => 'view/security/usersProfiles.php',
             'data' => [
                 'user' => $user,
+                'admin' => $admin,
             ],
         ];
     }
-    
+
     // Méthode pour débannir un utilisateur
     public function unbanUser()
     {
         // Récupère l'ID de l'utilisateur à partir de la requête GET
         $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-    
+
         // Récupère l'utilisateur en fonction de son ID
         $user = $this->userManager->findOneById($id);
-    
+
         // Si aucun utilisateur n'a été trouvé, ajoutez un message flash et redirigez vers la page de login
         if (!$user) {
             Session::addFlash('error', 'User not found');
             $this->redirectTo('security', 'toLogin');
             return;
         }
-    
+
         // Si un utilisateur a été trouvé, débannissez l'utilisateur
         $unbanned = $this->userManager->unbanUserById($id);
-    
+
         // Si l'utilisateur a été débanni, ajoutez un message flash
         if ($unbanned) {
             Session::addFlash('success', self::SUCCESS_UNBAN);
-    
+
             // Récupère à nouveau l'utilisateur de la base de données pour obtenir le nouveau statut de bannissement
             $user = $this->userManager->findOneById($id);
         }
-    
+
+        // Vérifiez si l'utilisateur actuel est un administrateur
+        $admin = $_SESSION["user"]->isAdmin();
+
         // Redirigez vers la page de profil de l'utilisateur
         return [
             'view' => 'view/security/usersProfiles.php', 
             'data' => [
                 'user' => $user,
-               
+                'admin' => $admin,
             ],
         ];
     }
