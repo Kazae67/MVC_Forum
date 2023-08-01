@@ -44,7 +44,9 @@ nav a:hover {
 /* Styles communs pour header-topic et header-category */
 .header-topic,
 .header-category,
-.header-post {
+.header-post,
+.header-register,
+.header-login {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,23 +58,35 @@ nav a:hover {
   text-align: center;
 }
 
-.header-post-center {
+.header-post-center,
+.header-register-center,
+.header-login-center {
   flex-grow: 1;
   text-align: center;
 }
 
 
 .header-title,
-.header-category-center {
+.header-category-center,
+.header-register-center,
+.header-login-center {
   flex-grow: 1;
 }
 
 .header-topic h3,
 .header-category h3,
-.header-post h3 {
+.header-post h3,
+.header-register h3,
+.header-login h3 {
   font-size: 1.5em;
   color: #495057;
   margin: 0;
+}
+
+.header-register,
+.header-login {
+  display: flex;
+  justify-content: center;
 }
 
 /* Styles pour le bouton "NEW CATEGORY" */

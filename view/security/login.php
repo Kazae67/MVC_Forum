@@ -1,7 +1,11 @@
+<!-- HEADER LOGIN -->
+<div class="header-login">
+  <h3 class="header-login-center">Login</h3>
+</div>
+
 <!-- FORMULAIRE DE CONNEXION -->
 <div class="login-container">
   <div class="login-form">
-    <h3>Login</h3>
     <form action="index.php?ctrl=security&action=login" method="post">
       <!-- Champ d'entrée pour l'e-mail -->
       <div class="form-group">

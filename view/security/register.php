@@ -1,7 +1,11 @@
+<!-- HEADER REGISTER -->
+<div class="header-register">
+  <h3 class="header-register-center">Register</h3>
+</div>
+
 <!-- FORMULAIRE D'INSCRIPTION -->
 <div class="registration-container">
   <div class="registration-form">
-    <h3>Register</h3>
     <form action="index.php?ctrl=security&action=register" method="POST">
       <!-- Champ d'entrée pour le pseudonyme -->
       <div class="form-group">
