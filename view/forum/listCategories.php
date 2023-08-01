@@ -44,16 +44,23 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
                 <tr>
                     <td><?= $category->getId() ?></td>
                     <td>
-                        <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getId() ?>">
-                            <?= $category->getCategoryLabel() ?>
-                        </a>
+                        <div class="category-name">
+                            <a href="index.php?ctrl=topic&action=listTopicsByCategory&id=<?= $category->getId() ?>">
+                                <?= $category->getCategoryLabel() ?>
+                            </a>
+                            <?php if ($admin): ?>
+                                <form class="edit-form" style="display: none;" action="index.php?ctrl=category&action=editCategory&id=<?= $category->getId() ?>" method="post">
+                                    <input type="text" name="categoryLabel" value="<?= $category->getCategoryLabel() ?>">
+                                    <input type="submit" name="submit" value="Update">
+                                </form>
+                            <?php endif; ?>
+                        </div>
                     </td>
                     <?php if ($admin): ?>
                         <td>
                             <div class="container-admin">
-                                <a href="index.php?ctrl=category&action=editCategory&id=<?= $category->getId() ?>">Edit</a>
+                                <a href="#" class="edit-btn">Edit</a>
                                 <a href="index.php?ctrl=category&action=deleteCategory&id=<?= $category->getId() ?>" class="confirm" data-action="delete"><i class="fa-solid fa-trash"></i></a>
-
                             </div>
                         </td>
                     <?php endif; ?>
@@ -62,3 +69,26 @@ $admin = isset($_SESSION["user"]) && $_SESSION["user"]->getRole() == 'admin';
         </tbody>
     </table>
 <?php endif; ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.edit-btn').click(function(e){
+            e.preventDefault();
+            var $row = $(this).closest('tr');
+            $row.find('.category-name a').hide();
+            $row.find('.edit-form').show();
+        });
+
+        $('.edit-form').submit(function(e){
+            e.preventDefault();
+            var $form = $(this);
+            var url = $form.attr('action');
+            var data = $form.serialize();
+
+            $.post(url, data, function(response) {
+                location.reload();
+            });
+        });
+    });
+</script>
