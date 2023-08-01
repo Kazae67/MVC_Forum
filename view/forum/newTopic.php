@@ -1,28 +1,39 @@
-<?php
-// Vérifie si une catégorie a été envoyée dans les données de réponse et l'assigne si c'est le cas
-$category = $result["data"]['category'] ?? null;
+<!-- HEADER NEW TOPIC -->
+<div class="header-new-topic">
+  <h3 class="header-new-topic-center">New Topic</h3>
+</div>
 
-// Vérifie si un utilisateur est connecté
-$userLoggedIn = isset($_SESSION["user"]);
-?>
+<!-- NOUVEAU TOPIC CONTAINER -->
+<div class="new-topic-container">
+  <div class="new-topic-form">
+    <?php
+    // Vérifie si une catégorie a été envoyée dans les données de réponse et l'assigne si c'est le cas
+    $category = $result["data"]['category'] ?? null;
 
-<?php if ($userLoggedIn && $category) : ?>
-    <!-- NOUVEAU TOPIC -->
-    <h3>Add a topic to the category "<?= $category->getCategoryLabel() ?>"</h3>
+    // Vérifie si un utilisateur est connecté
+    $userLoggedIn = isset($_SESSION["user"]);
+    ?>
 
-    <form class="form-new-topic" action="index.php?ctrl=topic&action=newTopic&id=<?= $category->getId() ?>" method="POST">
-        <label for="title">Topic name</label>
-        <input type="text" name="title" id="title">
+    <?php if ($userLoggedIn && $category) : ?>
+        <form action="index.php?ctrl=topic&action=newTopic&id=<?= $category->getId() ?>" method="POST">
+            <div class="form-group">
+              <label for="title">Topic name</label>
+              <input type="text" name="title" id="title" required>
+            </div>
 
-        <label for="topic_description">Topic description</label>
-        <textarea rows="5" name="topic_description" id="topic_description"></textarea>
+            <div class="form-group">
+              <label for="topic_description">Topic description</label>
+              <textarea rows="5" name="topic_description" id="topic_description" required></textarea>
+            </div>
 
-        <input class="button" type="submit" name="submit" id="submit" value="Create the topic">
-    </form>
-<?php elseif(!$userLoggedIn) : ?>
-    <!-- L'utilisateur n'est pas connecté -->
-    <a href="index.php?ctrl=security&action=login">Please log in</a>
-<?php else : ?>
-    <!-- Pas de catégorie sélectionnée -->
-    <p>Please select a category first</p>
-<?php endif; ?>
+            <input class="button" type="submit" name="submit" id="submit" value="Create the topic">
+        </form>
+    <?php elseif(!$userLoggedIn) : ?>
+        <!-- L'utilisateur n'est pas connecté -->
+        <a href="index.php?ctrl=security&action=login">Please log in</a>
+    <?php else : ?>
+        <!-- Pas de catégorie sélectionnée -->
+        <p>Please select a category first</p>
+    <?php endif; ?>
+  </div>
+</div>

@@ -464,6 +464,59 @@ main {
   border-radius: 5px;
 }
 
+/* HEADER NEW TOPIC */
+.header-new-topic {
+  display: flex;
+  justify-content: center;
+}
+
+.header-new-topic-center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* NEW TOPIC FORM */
+.new-topic-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-topic-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.new-topic-form h3 {
+  text-align: center;
+}
+
+.new-topic-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.new-topic-form input,
+.new-topic-form textarea {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.new-topic-form #submit {
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 /* Media query pour écrans en dessous de 768px */
 @media screen and (max-width: 768px) {
   nav {
