@@ -9,4 +9,3 @@ function scrollAndFocus() {
         textareaElement.focus();
     }, 200); // ajuster le délai
 }
-

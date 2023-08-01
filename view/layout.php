@@ -65,8 +65,8 @@
     <script src="public/js/scrollSelect.js"></script>
     <script src="public/js/alert/alertTopics.js"></script>
     <script src="public/js/alert/alertCategories.js"></script>
-    <script src="public/js/burger.js"></script>
     <script src="public/js/alert/alertUsersProfiles.js"></script>
+    <script src="public/js/burger.js"></script>
     <script>
         $(document).ready(function(){
             $(".message").each(function(){
