@@ -1,5 +1,3 @@
-<script src="public/js/scrollSelect.js"></script>
-
 <?php
 // Vérifie si les données sont définies et les assigne aux variables, sinon assigne null
 $posts = $result["data"]['posts'] ?? null;

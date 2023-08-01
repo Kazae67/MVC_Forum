@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://kit.fontawesome.com/a45e9c27c8.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <title>FORUM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
-    <title>FORUM</title>
+    <script src="https://kit.fontawesome.com/a45e9c27c8.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
     <div id="wrapper"> 
@@ -22,10 +22,19 @@
                     <div></div>
                 </button>
                 <div id="nav-list">
-                    <a href="index.php?ctrl=category&action=listCategories">
-                    </a>
+                    <a href="index.php?ctrl=category&action=listCategories"></a>
                     <a class="button" href="index.php?ctrl=topic&action=listAllTopics">Topics list</a>
                     <a class="button" href="index.php?ctrl=category&action=listCategories">Categories list</a>
+                    
+                    <div class="nav-user-mobile">
+                        <?php if ($user = App\Session::getUser()): ?>
+                            <a class="button" href="index.php?ctrl=security&action=myProfile"><?= $user->getNickname() ?></a>
+                            <a class="button" href="index.php?ctrl=security&action=logOut">Logout</a>
+                        <?php else: ?>
+                            <a class="button" href="index.php?ctrl=security&action=login">Login</a>
+                            <a class="button" href="index.php?ctrl=security&action=register">Register</a>
+                        <?php endif; ?>
+                    </div>
                 </div>
                 <div id="nav-user">
                     <?php if ($user = App\Session::getUser()): ?>
@@ -53,7 +62,11 @@
 
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="public/js/scrollSelect.js"></script>
+    <script src="public/js/alert/alertTopics.js"></script>
+    <script src="public/js/alert/alertCategories.js"></script>
     <script src="public/js/burger.js"></script>
+    <script src="public/js/alert/alertUsersProfiles.js"></script>
     <script>
         $(document).ready(function(){
             $(".message").each(function(){

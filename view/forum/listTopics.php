@@ -1,4 +1,3 @@
-<script src="public/js/alert/alertTopics.js"></script>
 <?php
 // Récupération des données nécessaires
 $topics = $result["data"]["topics"] ?? null;

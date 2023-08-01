@@ -52,15 +52,18 @@ nav {
 
 .burger div {
   width: 2rem;
-  height: 0.3rem; 
+  height: 0.4rem;
   background-color: #fff;
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
   transform-origin: 1px;
+  margin-bottom: 0.5rem;
 }
 
-
+nav.show {
+  flex-direction: column;
+}
 
 nav a {
   color: #fff;
@@ -90,14 +93,12 @@ nav a:hover {
   text-align: center;
 }
 
-
 .header-topic-center,
 .header-register-center,
 .header-login-center {
   flex-grow: 1;
   text-align: center;
 }
-
 
 .header-title,
 .header-category-center,
@@ -157,7 +158,7 @@ nav a:hover {
 }
 
 .locked-topic {
-  background-color: #d3d3d3; 
+  background-color: #d3d3d3;
 }
 
 /* Conteneur pour les actions admin */
@@ -209,7 +210,7 @@ footer a {
 
 /* Styles pour les liens de la navbar en fonction de la connexion de l'utilisateur */
 #nav-user a {
-  margin-left: 10px;
+  margin-left: auto;
 }
 
 /* Styles pour les liens de la navbar lorsque l'utilisateur n'est pas connecté */
@@ -461,11 +462,15 @@ main {
   border-radius: 5px;
 }
 
-/* Media query for screens less than 768px */
+/* Media query pour écrans en dessous de 768px */
 @media screen and (max-width: 768px) {
   nav {
     flex-direction: column;
     max-height: 0;
+  }
+
+  #nav-user {
+    margin-left: 0;
   }
 
   nav a {
@@ -482,5 +487,20 @@ main {
 
   nav.show a {
     display: block;
+  }
+}
+
+/* Media pour faire disparaître nav-user et utiliser nav-user-mobile dans nav-list pour qu'il n'y ait pas de décalage */
+@media screen and (max-width: 768px) {
+  #nav-user {
+    display: none;
+  }
+  #nav-list .nav-user-mobile {
+    display: block;
+  }
+}
+@media screen and (min-width: 769px) {
+  #nav-list .nav-user-mobile {
+    display: none;
   }
 }
