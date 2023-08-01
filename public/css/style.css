@@ -28,7 +28,39 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
+  overflow: hidden;
+  transition: max-height 0.3s;
 }
+
+/* Burger menu */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.burger:focus {
+  outline: none;
+}
+
+.burger div {
+  width: 2rem;
+  height: 0.3rem; 
+  background-color: #fff;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+
 
 nav a {
   color: #fff;
@@ -429,3 +461,26 @@ main {
   border-radius: 5px;
 }
 
+/* Media query for screens less than 768px */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    max-height: 0;
+  }
+
+  nav a {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  nav.show {
+    max-height: 50vh;
+  }
+
+  nav.show a {
+    display: block;
+  }
+}

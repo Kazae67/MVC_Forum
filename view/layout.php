@@ -16,6 +16,11 @@
         <div id="mainpage"></div>
         <header>
             <nav>
+                <button class="burger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </button>
                 <div id="nav-list">
                     <a href="index.php?ctrl=category&action=listCategories">
                     </a>
@@ -45,7 +50,10 @@
         <p>&copy; 2020 - Forum CDA - <a href="/home/forumRules.html">Règlement du forum</a> - <a href="">Mentions légales</a></p>
         <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
     </footer>
+
+    <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="public/js/burger.js"></script>
     <script>
         $(document).ready(function(){
             $(".message").each(function(){
