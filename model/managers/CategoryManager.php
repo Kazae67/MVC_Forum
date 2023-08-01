@@ -47,6 +47,16 @@ class CategoryManager extends Manager
 
         return DAO::delete($sql, ['id' => $id]);
     }
+
+    // Méthode pour update l'edit
+    public function update($id, $categoryLabel) {
+        $sql = "UPDATE ".$this->tableName."
+                SET categoryLabel = :categoryLabel
+                WHERE id_".$this->tableName." = :id
+                ";
+    
+        return DAO::update($sql, ['id' => $id, 'categoryLabel' => $categoryLabel]);
+    }
 }
 
 ?>

@@ -56,5 +56,38 @@ class CategoryController extends AbstractController implements ControllerInterfa
 
         $this->redirectTo('category', 'index');
     }
+
+
+    // Méthode pour editer une catégorie
+    public function editCategory() {
+        $this->restrictTo('admin');
+    
+        $id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+    
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $categoryLabel = filter_input(INPUT_POST, "categoryLabel", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+            if ($id && $categoryLabel) {
+                $this->categoryManager->update($id, $categoryLabel);
+                Session::addFlash('success', "The category has been successfully updated.");
+                $this->redirectTo('category', 'index');
+            } else {
+                Session::addFlash('error', "Please, provide a valid category id and label.");
+            }
+        } else {
+            $category = $this->categoryManager->findOneById($id);
+    
+            if (!$category) {
+                Session::addFlash('error', "The category does not exist.");
+                $this->redirectTo('category', 'index');
+            }
+    
+            return [
+                "view" => VIEW_DIR . "forum/editCategory.php",
+                "data" => compact('category')
+            ];
+        }
+    }
+    
 }
 ?>
