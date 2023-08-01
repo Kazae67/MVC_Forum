@@ -58,7 +58,8 @@ nav a:hover {
   text-align: center;
 }
 
-.header-post-center,
+
+.header-topic-center,
 .header-register-center,
 .header-login-center {
   flex-grow: 1;
